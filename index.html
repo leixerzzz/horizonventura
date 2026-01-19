@@ -1,71 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Horizon Ventura</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Horizon Ventura — Experiences Beyond Travel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Horizon Ventura offers curated travel experiences, services, adventures, and lifestyle access in Cuba and globally." />
   <style>
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #0b0f19;
+      background: #0b0f1a;
       color: #ffffff;
+      line-height: 1.6;
     }
     header {
-      background: linear-gradient(135deg, #1e293b, #020617);
-      padding: 80px 20px;
+      background: linear-gradient(135deg, #0f172a, #020617);
+      padding: 60px 20px;
       text-align: center;
     }
     header h1 {
-      font-size: 3rem;
+      font-size: 2.6rem;
       margin-bottom: 10px;
+      letter-spacing: 1px;
     }
     header p {
-      font-size: 1.2rem;
-      opacity: 0.85;
+      max-width: 720px;
+      margin: auto;
+      font-size: 1.1rem;
+      opacity: 0.9;
     }
     .btn {
       display: inline-block;
       margin-top: 25px;
-      padding: 14px 28px;
+      padding: 14px 26px;
       background: #22c55e;
-      color: #000;
-      font-weight: bold;
-      border-radius: 8px;
+      color: #020617;
       text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background: #16a34a;
     }
     section {
-      padding: 60px 20px;
+      padding: 70px 20px;
       max-width: 1100px;
       margin: auto;
     }
     h2 {
-      text-align: center;
-      margin-bottom: 40px;
       font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
     }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      gap: 25px;
+      margin-top: 40px;
     }
     .card {
       background: #020617;
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.3);
-      transition: 0.3s;
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid #1e293b;
     }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 40px rgba(34,197,94,0.4);
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #22c55e;
     }
     footer {
       background: #020617;
       text-align: center;
-      padding: 30px;
-      opacity: 0.7;
+      padding: 35px 20px;
       font-size: 0.9rem;
+      opacity: 0.7;
+    }
+    .tag {
+      display: inline-block;
+      background: #1e293b;
+      color: #22c55e;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -73,70 +91,111 @@
 
 <header>
   <h1>Horizon Ventura</h1>
-  <p>Cuba is no longer a destination. It’s an experience.</p>
-  <a class="btn" href="#services">Explore Experiences</a>
+  <p>Experiences Beyond Travel. Curated stays, adventures, services, and lifestyle access in Cuba — and soon worldwide.</p>
+  <a href="#services" class="btn">Explore Services</a>
 </header>
 
-<section>
-  <h2>About Horizon Ventura</h2>
+<section id="about">
+  <h2>What is Horizon Ventura?</h2>
   <p style="text-align:center; max-width:800px; margin:auto;">
-    Horizon Ventura is a premium experience platform offering curated travel,
-    lifestyle, wellness, and adventure services in Cuba — starting in Guardalavaca.
-    Guests customize their stay like a shopping cart: choose housing, food,
-    excursions, wellness, transport, nightlife, and more — all paid digitally
-    from anywhere in the world.
+    Horizon Ventura is not a travel agency — it is an experience platform. We offer premium stays, curated excursions, local services, wellness, adventure, nightlife, and authentic cultural access, all organized through a single digital ecosystem.
+    <br><br>
+    Our mission is simple: make travel effortless, immersive, and unforgettable.
   </p>
 </section>
 
 <section id="services">
-  <h2>Our Experiences</h2>
+  <h2>Core Services</h2>
+
   <div class="grid">
-    <div class="card">🏠 Vacation Home Rentals</div>
-    <div class="card">🍽️ Food Experiences & Private Chefs</div>
-    <div class="card">🏖️ Beach Excursions & Island Tours</div>
-    <div class="card">🤿 Diving, Windsurfing & Shark Encounters</div>
-    <div class="card">🚗 Classic Car Rentals & Chauffeurs</div>
-    <div class="card">🎣 Deep Sea Fishing</div>
-    <div class="card">🦷 Dental & Medical Tourism</div>
-    <div class="card">🏊 Kids Swimming, Volleyball & Water Sports</div>
-    <div class="card">💈 Barber, Beauty & Tattoo Services</div>
-    <div class="card">🌙 Nightlife & VIP Club Transport</div>
-    <div class="card">🎉 Cuban Family Parties & Cultural Events</div>
-    <div class="card">🌍 Province Tours & Hidden Destinations</div>
+
+    <div class="card">
+      <span class="tag">Stay</span>
+      <h3>Vacation Homes & Villas</h3>
+      <p>Fully managed short-term rentals, premium houses, family stays, and group accommodations near beaches and cultural centers.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Adventure</span>
+      <h3>Excursions & Tours</h3>
+      <p>Nature tours, city experiences, cultural visits, eco-adventures, private guides, and personalized itineraries.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Ocean</span>
+      <h3>Diving, Windsurfing & Ocean Experiences</h3>
+      <p>Certified scuba diving, snorkeling, windsurfing, swimming with sharks, reef exploration, and marine excursions.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Transport</span>
+      <h3>Classic Car Rentals & Private Drivers</h3>
+      <p>Vintage cars, modern vehicles, chauffeurs, airport transfers, and private transportation packages.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Lifestyle</span>
+      <h3>Beauty, Barber, Tattoos & Wellness</h3>
+      <p>Barbers, salons, tattoo artists, massages, wellness treatments, and curated personal services.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Health</span>
+      <h3>Dental Tourism & Medical Services</h3>
+      <p>Dental care, aesthetic treatments, checkups, and wellness tourism coordinated with trusted clinics.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Family</span>
+      <h3>Kids Classes & Sports</h3>
+      <p>Swimming lessons, volleyball, water sports, and activity programs for children and teens.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Fun</span>
+      <h3>Nightlife, Parties & Private Events</h3>
+      <p>Clubs, bars, beach parties, family celebrations, and Cuban-style private events.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Money</span>
+      <h3>Currency Exchange & Concierge Services</h3>
+      <p>Private currency exchange, concierge coordination, reservations, logistics, and local access.</p>
+    </div>
+
   </div>
 </section>
 
-<section>
-  <h2>Why Guardalavaca</h2>
-  <p style="text-align:center; max-width:800px; margin:auto;">
-    Located just 5 minutes walking from the beach and 15 minutes from town,
-    in one of the safest and warmest neighborhoods in the region, Horizon Ventura
-    offers authentic Cuban hospitality combined with modern comfort, security,
-    and digital convenience.
-  </p>
-</section>
-
-<section>
+<section id="model">
   <h2>How It Works</h2>
-  <div class="grid">
-    <div class="card">🛒 Customize your trip like shopping — add services to cart</div>
-    <div class="card">💳 Pay securely online from anywhere in the world</div>
-    <div class="card">📲 Receive confirmation & concierge access</div>
-    <div class="card">🌴 Arrive and live Cuba — stress free</div>
-  </div>
+  <p style="text-align:center; max-width:900px; margin:auto;">
+    Customers book and pay digitally in Canada or internationally. Horizon Ventura handles logistics locally through vetted partners, ensuring safety, quality, and seamless delivery of experiences.
+    <br><br>
+    Our platform will evolve into a full marketplace where users can select services like shopping in a cart, build their trip, and pay securely online.
+  </p>
 </section>
 
-<section>
-  <h2>Contact</h2>
-  <p style="text-align:center;">
-    📧 horizonventura@gmail.com <br>
-    📍 Guardalavaca, Holguín Province, Cuba <br>
-    🌐 Powered by Horizon Ventura
+<section id="location">
+  <h2>Our First Destination</h2>
+  <p style="text-align:center; max-width:850px; margin:auto;">
+    Our flagship location is Guardalavaca, Cuba — 5 minutes walking from the beach, 15 minutes from town center, and located in one of the safest and most welcoming neighborhoods in the region.
+    <br><br>
+    Cuba is no longer a destination. It is an experience.
   </p>
+</section>
+
+<section id="cta">
+  <h2>Start Your Experience</h2>
+  <p style="text-align:center; max-width:700px; margin:auto;">
+    Ready to explore Cuba differently? Contact us to build your custom stay, adventure, or lifestyle experience.
+  </p>
+  <div style="text-align:center;">
+    <a href="mailto:horizonventura@gmail.com" class="btn">Contact Horizon Ventura</a>
+  </div>
 </section>
 
 <footer>
-  © 2026 Horizon Ventura. All rights reserved.
+  <p>© 2026 Horizon Ventura. All rights reserved.</p>
 </footer>
 
 </body>
