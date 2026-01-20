@@ -2,201 +2,878 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Horizon Ventura — Experiences Beyond Travel</title>
+  <title>Horizon Ventura — Build Your Experience Anywhere</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Horizon Ventura offers curated travel experiences, services, adventures, and lifestyle access in Cuba and globally." />
+
   <style>
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #0b0f1a;
-      color: #ffffff;
-      line-height: 1.6;
+      background: #f4f8fb;
+      color: #0a2540;
     }
+
     header {
-      background: linear-gradient(135deg, #0f172a, #020617);
-      padding: 60px 20px;
+      background: linear-gradient(135deg, #0a2540, #0077b6);
+      color: white;
+      padding: 30px 20px;
       text-align: center;
     }
+
     header h1 {
+      margin: 0;
       font-size: 2.6rem;
-      margin-bottom: 10px;
       letter-spacing: 1px;
     }
+
     header p {
-      max-width: 720px;
-      margin: auto;
+      margin-top: 10px;
       font-size: 1.1rem;
       opacity: 0.9;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 26px;
-      background: #22c55e;
-      color: #020617;
+
+    nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
       text-decoration: none;
-      border-radius: 8px;
+      color: #0077b6;
       font-weight: bold;
+      font-size: 0.95rem;
     }
-    .btn:hover {
-      background: #16a34a;
+
+    nav a:hover {
+      text-decoration: underline;
     }
+
+    .hero {
+      background: linear-gradient(to right, rgba(0,0,0,0.45), rgba(0,0,0,0.2)),
+                  url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 90px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    .hero button {
+      background: #ffb703;
+      border: none;
+      padding: 14px 26px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      color: #0a2540;
+    }
+
+    .hero button:hover {
+      background: #ffd166;
+    }
+
     section {
       padding: 70px 20px;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
     }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+
+    section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    section p.section-subtitle {
+      text-align: center;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto 50px;
+      font-size: 1rem;
+    }
+
+    /* FLAGS / COUNTRIES */
+    .countries {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 25px;
       text-align: center;
     }
-    .grid {
+
+    .country-card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .country-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+    }
+
+    .country-card img {
+      width: 64px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .country-card h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #0a2540;
+    }
+
+    /* DESTINATION SECTION */
+    .destination-section {
+      display: none;
+      margin-top: 40px;
+      background: white;
+      padding: 40px 25px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .destination-section.active {
+      display: block;
+    }
+
+    .destination-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .destination-header h3 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .destination-header p {
+      color: #555;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* SERVICE CATEGORIES */
+    .service-category {
+      margin-bottom: 50px;
+    }
+
+    .service-category h4 {
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+      color: #0077b6;
+      border-bottom: 2px solid #e0eef7;
+      padding-bottom: 6px;
+    }
+
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background: #f9fbfd;
+      border-radius: 14px;
+      padding: 18px 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service-card h5 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: #0a2540;
+    }
+
+    .service-card p {
+      margin: 0 0 12px;
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    .service-card span {
+      font-weight: bold;
+      color: #0077b6;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .service-card button {
+      background: #0077b6;
+      color: white;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+
+    .service-card button:hover {
+      background: #0096c7;
+    }
+
+    /* AMIGO SECTION */
+    .amigo {
+      background: linear-gradient(135deg, #ffb703, #fb8500);
+      color: white;
+      border-radius: 24px;
+      padding: 70px 25px;
+      margin-top: 80px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .amigo h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+
+    .amigo p.subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 45px;
+      opacity: 0.95;
+    }
+
+    .amigo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 25px;
+    }
+
+    .amigo-card {
+      background: rgba(255,255,255,0.15);
+      border-radius: 18px;
+      padding: 22px 20px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+    }
+
+    .amigo-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .amigo-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
       margin-top: 40px;
     }
-    .card {
-      background: #020617;
-      padding: 28px;
-      border-radius: 14px;
-      border: 1px solid #1e293b;
-    }
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      color: #22c55e;
-    }
-    footer {
-      background: #020617;
+
+    .step-card {
+      background: white;
+      border-radius: 16px;
+      padding: 26px 20px;
       text-align: center;
-      padding: 35px 20px;
-      font-size: 0.9rem;
-      opacity: 0.7;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
-    .tag {
+
+    .step-card span {
       display: inline-block;
-      background: #1e293b;
-      color: #22c55e;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      margin-bottom: 10px;
+      background: #0077b6;
+      color: white;
+      width: 38px;
+      height: 38px;
+      line-height: 38px;
+      border-radius: 50%;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .step-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      color: #0a2540;
+    }
+
+    .step-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    footer {
+      background: #0a2540;
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    footer h3 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    footer p {
+      margin: 10px 0 0;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    /* Buttons smooth scroll */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Horizon Ventura</h1>
-  <p>Experiences Beyond Travel. Curated stays, adventures, services, and lifestyle access in Cuba — and soon worldwide.</p>
-  <a href="#services" class="btn">Explore Services</a>
-</header>
+  <!-- HEADER -->
+  <header>
+    <h1>HORIZON VENTURA</h1>
+    <p>Build Your Experience. Anywhere.</p>
+  </header>
 
-<section id="about">
-  <h2>What is Horizon Ventura?</h2>
-  <p style="text-align:center; max-width:800px; margin:auto;">
-    Horizon Ventura is not a travel agency — it is an experience platform. We offer premium stays, curated excursions, local services, wellness, adventure, nightlife, and authentic cultural access, all organized through a single digital ecosystem.
-    <br><br>
-    Our mission is simple: make travel effortless, immersive, and unforgettable.
-  </p>
-</section>
+  <!-- NAV -->
+  <nav>
+    <a href="#countries">Destinations</a>
+    <a href="#experiences">Experiences</a>
+    <a href="#amigo">Amigo</a>
+    <a href="#how">How It Works</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<section id="services">
-  <h2>Core Services</h2>
+  <!-- HERO -->
+  <section class="hero">
+    <h2>Design Your Life Experiences — Anywhere in the World</h2>
+    <p>Travel, services, lifestyle, wellness, adventures, beauty, food, events and more — all in one powerful global platform.</p>
+    <button onclick="document.getElementById('countries').scrollIntoView()">Start Exploring</button>
+  </section>
 
-  <div class="grid">
+  <!-- COUNTRIES -->
+  <section id="countries">
+    <h2>Choose Your Destination</h2>
+    <p class="section-subtitle">Select a country to unlock local experiences, services, stays, adventures, and lifestyle access.</p>
 
-    <div class="card">
-      <span class="tag">Stay</span>
-      <h3>Vacation Homes & Villas</h3>
-      <p>Fully managed short-term rentals, premium houses, family stays, and group accommodations near beaches and cultural centers.</p>
+    <div class="countries">
+      <div class="country-card" onclick="showDestination('cuba')">
+        <img src="https://flagcdn.com/w80/cu.png" alt="Cuba flag">
+        <h3>Cuba</h3>
+      </div>
+
+      <div class="country-card" onclick="showDestination('mexico')">
+        <img src="https://flagcdn.com/w80/mx.png" alt="Mexico flag">
+        <h3>Mexico</h3>
+      </div>
+
+      <div class="country-card" onclick="showDestination('trinidad')">
+        <img src="https://flagcdn.com/w80/tt.png" alt="Trinidad & Tobago flag">
+        <h3>Trinidad & Tobago</h3>
+      </div>
+
+      <div class="country-card" onclick="showDestination('canada')">
+        <img src="https://flagcdn.com/w80/ca.png" alt="Canada flag">
+        <h3>Canada</h3>
+      </div>
+
+      <div class="country-card" onclick="showDestination('comingsoon')">
+        <img src="https://flagcdn.com/w80/un.png" alt="More">
+        <h3>More Soon</h3>
+      </div>
     </div>
 
-    <div class="card">
-      <span class="tag">Adventure</span>
-      <h3>Excursions & Tours</h3>
-      <p>Nature tours, city experiences, cultural visits, eco-adventures, private guides, and personalized itineraries.</p>
+    <!-- ===================== CUBA DESTINATION ===================== -->
+    <div id="cuba" class="destination-section">
+      <div class="destination-header">
+        <h3>🇨🇺 Cuba</h3>
+        <p>Authentic stays, private experiences, lifestyle services, adventure tours, wellness, beauty, nightlife and more — curated and managed by Horizon Ventura.</p>
+      </div>
+
+      <!-- STAYS -->
+      <div class="service-category">
+        <h4>🏠 Stays</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Basic Stay</h5>
+            <p>Private room, hot water, limited WiFi.</p>
+            <span>$45 – $65 CAD / night</span>
+            <button>Add to Trip</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Comfort Stay</h5>
+            <p>Full house, kitchen access, daily cleaning.</p>
+            <span>$75 – $110 CAD / night</span>
+            <button>Add to Trip</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Premium Experience Stay</h5>
+            <p>Full house + breakfast + concierge + welcome drinks.</p>
+            <span>$120 – $160 CAD / night</span>
+            <button>Add to Trip</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOD -->
+      <div class="service-category">
+        <h4>🍽️ Food Experiences</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Cuban Breakfast</h5>
+            <p>Traditional Cuban breakfast experience.</p>
+            <span>$10 – $18 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Local Lunch</h5>
+            <p>Authentic Cuban lunch at local spots.</p>
+            <span>$15 – $25 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Authentic Cuban Dinner</h5>
+            <p>Private or restaurant dinner experience.</p>
+            <span>$30 – $60 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Cuban Family Party</h5>
+            <p>Music, food, drinks and local vibes.</p>
+            <span>$120 – $180 CAD</span>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- WATER & ADVENTURE -->
+      <div class="service-category">
+        <h4>🌊 Water & Adventure</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Snorkeling Tour</h5>
+            <p>Explore reefs and marine life.</p>
+            <span>$40 – $85 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Beginner Scuba Diving</h5>
+            <p>Certified instructors and equipment.</p>
+            <span>$80 – $150 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Shark Experience</h5>
+            <p>High-adrenaline underwater encounter.</p>
+            <span>$120 – $230 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Windsurf / Paddleboard</h5>
+            <p>Ocean sports for all levels.</p>
+            <span>$35 – $75 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Deep Sea Fishing</h5>
+            <p>Private boat fishing experience.</p>
+            <span>$220 – $320 CAD</span>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRANSPORT -->
+      <div class="service-category">
+        <h4>🚗 Transport & Mobility</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Airport Pickup</h5>
+            <p>Private transfer from airport.</p>
+            <span>$70 – $140 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Private Driver (Half Day)</h5>
+            <p>City movement with driver.</p>
+            <span>$100 – $140 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Private Driver (Full Day)</h5>
+            <p>All-day mobility service.</p>
+            <span>$180 – $260 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Classic Car Experience</h5>
+            <p>Vintage Cuban car ride experience.</p>
+            <span>$200 – $320 CAD</span>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOURS -->
+      <div class="service-category">
+        <h4>🏖️ Tours & Excursions</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Beach Escape Tour</h5>
+            <p>Private beach experiences.</p>
+            <span>$45 – $100 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Holguín City Tour</h5>
+            <p>Discover the city with locals.</p>
+            <span>$60 – $120 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Sierra Cristal Nature Tour</h5>
+            <p>Nature, mountains and waterfalls.</p>
+            <span>$80 – $170 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>VIP Full Day Adventure</h5>
+            <p>Custom private day experience.</p>
+            <span>$140 – $320 CAD</span>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KIDS -->
+      <div class="service-category">
+        <h4>🧒 Kids Experiences</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Swimming Lessons</h5>
+            <p>Private swimming instruction.</p>
+            <span>$25 – $40 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Volleyball Training</h5>
+            <p>Sports training with coach.</p>
+            <span>$20 – $35 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Mini Diving</h5>
+            <p>Kids-friendly diving experience.</p>
+            <span>$40 – $70 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Weekly Kids Pack</h5>
+            <p>Multi-activity kids program.</p>
+            <span>$120 – $200 CAD</span>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEAUTY -->
+      <div class="service-category">
+        <h4>💈 Beauty, Style & Body</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Haircut (Barber)</h5>
+            <p>Professional barber service.</p>
+            <span>$15 – $25 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Fade + Beard</h5>
+            <p>Fade haircut with beard styling.</p>
+            <span>$30 – $50 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Nails</h5>
+            <p>Manicure or pedicure service.</p>
+            <span>$20 – $35 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Hair Styling</h5>
+            <p>Professional styling service.</p>
+            <span>$25 – $45 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Small Tattoo</h5>
+            <p>Simple tattoo design.</p>
+            <span>$60 – $100 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Medium Tattoo</h5>
+            <p>Medium custom tattoo.</p>
+            <span>$120 – $200 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Large Custom Tattoo</h5>
+            <p>Full custom tattoo project.</p>
+            <span>$250 – $500 CAD</span>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEDICAL -->
+      <div class="service-category">
+        <h4>🦷 Medical & Wellness</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Dental Checkup + Cleaning</h5>
+            <p>Professional dental service.</p>
+            <span>$90 – $130 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Basic Procedures</h5>
+            <p>Basic medical or dental treatments.</p>
+            <span>$120 – $400 CAD</span>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MONEY -->
+      <div class="service-category">
+        <h4>💱 Private Money Exchange</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Private Currency Exchange</h5>
+            <p>Better-than-street rates. Safe. Discreet.</p>
+            <span>+$40 – $60 CAD value per $300 CAD</span>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NIGHTLIFE -->
+      <div class="service-category">
+        <h4>🎉 Nightlife & Events</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <h5>Nightclub Transport + Entry</h5>
+            <p>Door-to-door nightlife experience.</p>
+            <span>$60 – $130 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Cuban Family Party</h5>
+            <p>Private home party with locals.</p>
+            <span>$120 – $200 CAD</span>
+            <button>Add</button>
+          </div>
+
+          <div class="service-card">
+            <h5>Private Beach Party</h5>
+            <p>Exclusive beach party event.</p>
+            <span>$250 – $450 CAD</span>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <span class="tag">Ocean</span>
-      <h3>Diving, Windsurfing & Ocean Experiences</h3>
-      <p>Certified scuba diving, snorkeling, windsurfing, swimming with sharks, reef exploration, and marine excursions.</p>
+    <!-- ===================== MEXICO DESTINATION ===================== -->
+    <div id="mexico" class="destination-section">
+      <div class="destination-header">
+        <h3>🇲🇽 Mexico</h3>
+        <p>Coming soon — curated stays, beach adventures, nightlife, wellness, food and experiences across Mexico.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <span class="tag">Transport</span>
-      <h3>Classic Car Rentals & Private Drivers</h3>
-      <p>Vintage cars, modern vehicles, chauffeurs, airport transfers, and private transportation packages.</p>
+    <!-- ===================== TRINIDAD DESTINATION ===================== -->
+    <div id="trinidad" class="destination-section">
+      <div class="destination-header">
+        <h3>🇹🇹 Trinidad & Tobago</h3>
+        <p>Coming soon — island experiences, parties, adventures and lifestyle services.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <span class="tag">Lifestyle</span>
-      <h3>Beauty, Barber, Tattoos & Wellness</h3>
-      <p>Barbers, salons, tattoo artists, massages, wellness treatments, and curated personal services.</p>
+    <!-- ===================== CANADA DESTINATION ===================== -->
+    <div id="canada" class="destination-section">
+      <div class="destination-header">
+        <h3>🇨🇦 Canada</h3>
+        <p>Coming soon — lifestyle services, experiences and curated access across Canada.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <span class="tag">Health</span>
-      <h3>Dental Tourism & Medical Services</h3>
-      <p>Dental care, aesthetic treatments, checkups, and wellness tourism coordinated with trusted clinics.</p>
+    <!-- ===================== COMING SOON ===================== -->
+    <div id="comingsoon" class="destination-section">
+      <div class="destination-header">
+        <h3>🌍 More Countries Coming Soon</h3>
+        <p>Horizon Ventura is expanding globally. Soon you’ll be able to unlock experiences worldwide.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <span class="tag">Family</span>
-      <h3>Kids Classes & Sports</h3>
-      <p>Swimming lessons, volleyball, water sports, and activity programs for children and teens.</p>
+  </section>
+
+  <!-- AMIGO SECTION -->
+  <section id="amigo" class="amigo">
+    <h2>AMIGO</h2>
+    <p class="subtitle">Fun Happens Here — Your gateway to parties, social vibes, nightlife, adventures and unforgettable moments worldwide.</p>
+
+    <div class="amigo-grid">
+      <div class="amigo-card">
+        <h4>🎉 Parties & Events</h4>
+        <p>Private beach parties, house events, club nights and curated social experiences.</p>
+      </div>
+
+      <div class="amigo-card">
+        <h4>🌊 Adventures</h4>
+        <p>Snorkeling, diving, water sports, tours and adrenaline-packed moments.</p>
+      </div>
+
+      <div class="amigo-card">
+        <h4>🧑‍🤝‍🧑 Social Vibes</h4>
+        <p>Meet locals, travelers, hosts and communities in real experiences.</p>
+      </div>
+
+      <div class="amigo-card">
+        <h4>🏝️ Lifestyle Access</h4>
+        <p>Food, wellness, beauty, nightlife, experiences and services in one place.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <span class="tag">Fun</span>
-      <h3>Nightlife, Parties & Private Events</h3>
-      <p>Clubs, bars, beach parties, family celebrations, and Cuban-style private events.</p>
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <h2>How It Works</h2>
+    <p class="section-subtitle">Simple. Transparent. Global.</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <span>1</span>
+        <h4>Choose Destination</h4>
+        <p>Select a country and city.</p>
+      </div>
+
+      <div class="step-card">
+        <span>2</span>
+        <h4>Build Your Experience</h4>
+        <p>Add stays, services and adventures.</p>
+      </div>
+
+      <div class="step-card">
+        <span>3</span>
+        <h4>Pay Online</h4>
+        <p>Secure CAD payments worldwide.</p>
+      </div>
+
+      <div class="step-card">
+        <span>4</span>
+        <h4>Receive Itinerary</h4>
+        <p>Instant confirmation & planning.</p>
+      </div>
+
+      <div class="step-card">
+        <span>5</span>
+        <h4>Arrive & Enjoy</h4>
+        <p>Live the experience offline.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <span class="tag">Money</span>
-      <h3>Currency Exchange & Concierge Services</h3>
-      <p>Private currency exchange, concierge coordination, reservations, logistics, and local access.</p>
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Horizon Ventura</h2>
+    <p class="section-subtitle">Ready to build your experience? Reach out.</p>
+
+    <div style="text-align:center;">
+      <p><strong>Email:</strong> info@horizonventura.com</p>
+      <p><strong>WhatsApp:</strong> Coming soon</p>
+      <p><strong>Global Platform:</strong> Powered by Horizon Ventura</p>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- FOOTER -->
+  <footer>
+    <h3>HORIZON VENTURA</h3>
+    <p>Build Your Experience. Anywhere.</p>
+    <p>© 2026 Horizon Ventura. All rights reserved.</p>
+  </footer>
 
-<section id="model">
-  <h2>How It Works</h2>
-  <p style="text-align:center; max-width:900px; margin:auto;">
-    Customers book and pay digitally in Canada or internationally. Horizon Ventura handles logistics locally through vetted partners, ensuring safety, quality, and seamless delivery of experiences.
-    <br><br>
-    Our platform will evolve into a full marketplace where users can select services like shopping in a cart, build their trip, and pay securely online.
-  </p>
-</section>
+  <!-- SCRIPT -->
+  <script>
+    function showDestination(id) {
+      const sections = document.querySelectorAll('.destination-section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
 
-<section id="location">
-  <h2>Our First Destination</h2>
-  <p style="text-align:center; max-width:850px; margin:auto;">
-    Our flagship location is Guardalavaca, Cuba — 5 minutes walking from the beach, 15 minutes from town center, and located in one of the safest and most welcoming neighborhoods in the region.
-    <br><br>
-    Cuba is no longer a destination. It is an experience.
-  </p>
-</section>
-
-<section id="cta">
-  <h2>Start Your Experience</h2>
-  <p style="text-align:center; max-width:700px; margin:auto;">
-    Ready to explore Cuba differently? Contact us to build your custom stay, adventure, or lifestyle experience.
-  </p>
-  <div style="text-align:center;">
-    <a href="mailto:horizonventura@gmail.com" class="btn">Contact Horizon Ventura</a>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 Horizon Ventura. All rights reserved.</p>
-</footer>
+      const selected = document.getElementById(id);
+      if (selected) {
+        selected.classList.add('active');
+        selected.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
 
 </body>
 </html>
