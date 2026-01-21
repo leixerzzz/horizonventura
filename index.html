@@ -1,1359 +1,1517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Horizon Ventura™ | Build Your Experience Anywhere</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Horizon Ventura is a global travel experience platform. Build your trip online. Pay in CAD. Live real experiences worldwide.">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Horizon Ventura — Build Your Experience Anywhere</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Horizon Ventura is the global platform to build, book and live real travel experiences — starting in Cuba and expanding worldwide." />
 
-<style>
-:root {
-  --primary:#0b3c5d;
-  --secondary:#ff9f1c;
-  --accent:#1ecbe1;
-  --light:#f4f8fb;
-  --dark:#102a43;
-  --radius:14px;
-  --shadow:0 12px 30px rgba(0,0,0,.12);
-}
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'Poppins',sans-serif;
-  background:var(--light);
-  color:var(--dark);
-  line-height:1.6;
-  scroll-behavior:smooth;
-}
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block;border-radius:12px}
+  <style>
+    :root {
+      --primary: #0b2c4d;
+      --secondary: #ff9f1c;
+      --accent: #00bcd4;
+      --light: #f8fbff;
+      --dark: #061a2b;
+      --card: #ffffff;
+      --gradient: linear-gradient(135deg, #0b2c4d, #003f66);
+    }
 
-button{
-  border:none;
-  background:var(--secondary);
-  color:#fff;
-  padding:12px 22px;
-  border-radius:999px;
-  font-weight:600;
-  cursor:pointer;
-  transition:.25s;
-}
-button:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.15)}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-section{padding:90px 7%}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: #222;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-h1,h2,h3{font-weight:800;letter-spacing:-.5px}
-h2{font-size:2.3rem;margin-bottom:14px}
-p{opacity:.85}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-.badge{
-  display:inline-block;
-  padding:6px 14px;
-  border-radius:999px;
-  background:rgba(255,255,255,.2);
-  color:#fff;
-  font-weight:600;
-  font-size:.8rem;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-/* NAVBAR */
-nav{
-  position:fixed;
-  top:0;left:0;width:100%;
-  background:#fff;
-  box-shadow:0 4px 18px rgba(0,0,0,.06);
-  z-index:999;
-}
-.nav-inner{
-  max-width:1400px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 6%;
-}
-.nav-left{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.nav-left img{
-  width:46px;
-}
-.nav-left span{
-  font-weight:800;
-  font-size:1.25rem;
-  color:var(--primary);
-}
-.nav-menu{
-  display:flex;
-  align-items:center;
-  gap:26px;
-}
-.nav-menu a{
-  font-weight:600;
-  font-size:.95rem;
-}
-.nav-menu a:hover{color:var(--secondary)}
-.nav-actions{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.cart-btn{
-  position:relative;
-}
-.cart-count{
-  position:absolute;
-  top:-6px;right:-6px;
-  background:#e63946;
-  color:#fff;
-  font-size:.65rem;
-  width:18px;height:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  font-weight:700;
-}
-.lang-select{
-  border:1px solid #ddd;
-  border-radius:999px;
-  padding:6px 12px;
-  font-size:.85rem;
-  background:#fff;
-}
+    button {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
 
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:
-    linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
-    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80")
-    center/cover no-repeat;
-  color:#fff;
-  text-align:center;
-  position:relative;
-}
-.hero-content{
-  max-width:820px;
-  animation:fadeUp .9s ease forwards;
-}
-.hero h1{
-  font-size:3.4rem;
-  margin-bottom:18px;
-}
-.hero p{
-  font-size:1.2rem;
-  margin-bottom:26px;
-}
-.hero-cta{
-  display:flex;
-  gap:14px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-.hero-cta button.secondary{
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.35);
-}
+    /* ===== NAVBAR ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-/* FEATURES ICON BAR */
-.features-bar{
-  background:#fff;
-  box-shadow:var(--shadow);
-  border-radius:18px;
-  padding:26px;
-  margin-top:-60px;
-  position:relative;
-  z-index:2;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
-  gap:20px;
-  max-width:1100px;
-  margin-left:auto;
-  margin-right:auto;
-}
-.feature-item{
-  text-align:center;
-  font-size:.85rem;
-  font-weight:600;
-}
-.feature-item img{
-  width:52px;
-  margin:auto auto 8px;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
 
-/* WHY SECTION */
-.why-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:28px;
-  margin-top:36px;
-}
-.why-card{
-  background:#fff;
-  padding:22px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  transition:.25s;
-}
-.why-card:hover{transform:translateY(-6px)}
-.why-card img{
-  height:170px;
-  width:100%;
-  object-fit:cover;
-  margin-bottom:12px;
-}
-.why-card h4{margin-bottom:6px}
+    .brand img {
+      height: 38px;
+    }
 
-/* DESTINATIONS */
-.destinations-header{
-  text-align:center;
-  max-width:700px;
-  margin:auto;
-}
-.flags-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:26px;
-  margin-top:40px;
-}
-.flag-card{
-  background:#fff;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:20px;
-  text-align:center;
-  cursor:pointer;
-  transition:.25s;
-}
-.flag-card:hover{transform:translateY(-6px)}
-.flag-card img{
-  width:90px;
-  margin:auto auto 10px;
-}
-.flag-card h4{font-size:1.05rem}
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      font-weight: 500;
+      color: #333;
+    }
 
-/* CITY SECTION */
-.city-section{
-  display:none;
-  margin-top:40px;
-}
-.city-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:28px;
-}
-.city-card{
-  background:#fff;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  cursor:pointer;
-  transition:.25s;
-}
-.city-card:hover{transform:translateY(-6px)}
-.city-card img{
-  height:180px;
-  width:100%;
-  object-fit:cover;
-}
-.city-card-content{
-  padding:18px;
-}
-.city-card-content h4{margin-bottom:6px}
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
 
-/* SERVICES */
-.services-section{
-  display:none;
-  margin-top:50px;
-}
-.services-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-bottom:26px;
-}
-.service-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
-}
-.service-card{
-  background:#fff;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  transition:.25s;
-}
-.service-card:hover{transform:translateY(-6px)}
-.service-card img{
-  height:180px;
-  width:100%;
-  object-fit:cover;
-}
-.service-card-content{
-  padding:16px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-}
-.service-card h4{margin-bottom:6px}
-.service-card p{font-size:.9rem;margin-bottom:10px}
-.price{
-  font-weight:700;
-  margin-bottom:12px;
-}
-.service-card button{
-  margin-top:auto;
-  width:100%;
-}
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-/* CART DRAWER */
-.cart-drawer{
-  position:fixed;
-  top:0;right:-420px;
-  width:380px;
-  max-width:100%;
-  height:100vh;
-  background:#fff;
-  box-shadow:-6px 0 20px rgba(0,0,0,.15);
-  z-index:2000;
-  transition:.35s;
-  display:flex;
-  flex-direction:column;
-}
-.cart-drawer.open{right:0}
-.cart-header{
-  padding:18px;
-  border-bottom:1px solid #eee;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.cart-header h3{font-size:1.2rem}
-.cart-body{
-  padding:18px;
-  overflow-y:auto;
-  flex:1;
-}
-.cart-item{
-  display:flex;
-  gap:12px;
-  margin-bottom:14px;
-  border-bottom:1px solid #f1f1f1;
-  padding-bottom:12px;
-}
-.cart-item img{
-  width:64px;
-  height:64px;
-  object-fit:cover;
-}
-.cart-item-info{
-  flex:1;
-}
-.cart-item-info h5{
-  font-size:.9rem;
-  margin-bottom:4px;
-}
-.cart-item-info span{
-  font-size:.85rem;
-  font-weight:600;
-}
-.remove-btn{
-  background:none;
-  color:#e63946;
-  font-weight:700;
-  font-size:.8rem;
-  padding:0;
-}
-.cart-footer{
-  padding:18px;
-  border-top:1px solid #eee;
-}
-.cart-total{
-  display:flex;
-  justify-content:space-between;
-  font-weight:700;
-  margin-bottom:14px;
-}
+    .lang-switch select {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background: #fff;
+    }
 
-/* REVIEWS */
-.reviews-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
-  margin-top:36px;
-}
-.review-card{
-  background:#fff;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:20px;
-}
-.review-header{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:10px;
-}
-.review-header img{
-  width:46px;height:46px;
-  border-radius:50%;
-  object-fit:cover;
-}
-.review-stars{
-  color:#f4a261;
-  font-size:.85rem;
-}
+    .cart-btn {
+      position: relative;
+      background: var(--secondary);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
 
-/* AMIGO */
-.amigo-section{
-  background:
-    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80")
-    center/cover no-repeat;
-  color:#fff;
-  text-align:center;
-}
-.amigo-logo{
-  max-width:220px;
-  margin:0 auto 18px;
-}
-.amigo-features{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:26px;
-  margin-top:36px;
-}
-.amigo-card{
-  background:rgba(255,255,255,.12);
-  border-radius:var(--radius);
-  padding:22px;
-  backdrop-filter:blur(6px);
-}
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: red;
+      color: #fff;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
 
-/* HOW IT WORKS */
-.steps{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:26px;
-  margin-top:36px;
-}
-.step{
-  background:#fff;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:22px;
-  text-align:center;
-}
-.step-number{
-  width:46px;height:46px;
-  border-radius:50%;
-  background:var(--secondary);
-  color:#fff;
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 10px;
-}
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")
+        center/cover no-repeat;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
 
-/* FOOTER */
-footer{
-  background:#081c2e;
-  color:#fff;
-  padding:60px 7% 30px;
-}
-.footer-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:40px;
-  margin-bottom:40px;
-}
-footer h4{margin-bottom:12px}
-footer p,footer a{
-  font-size:.85rem;
-  opacity:.85;
-}
-footer a:hover{opacity:1}
+    .hero-content {
+      max-width: 850px;
+      animation: fadeUp 1s ease forwards;
+    }
 
-/* UTILITIES */
-.hidden{display:none}
-.center{text-align:center}
-.mt{margin-top:40px}
-.mb{margin-bottom:40px}
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
 
-@media(max-width:720px){
-  .hero h1{font-size:2.4rem}
-  .nav-menu{display:none}
-}
-</style>
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      opacity: 0.95;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--secondary);
+      color: #fff;
+      padding: 14px 26px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    /* ===== ICON STRIP ===== */
+    .icon-strip {
+      background: #fff;
+      padding: 30px 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+      margin-top: -60px;
+      position: relative;
+      z-index: 5;
+      border-radius: 18px;
+      max-width: 1150px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 18px;
+      text-align: center;
+    }
+
+    .icon-card {
+      padding: 14px 10px;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .icon-card:hover {
+      background: var(--light);
+      transform: translateY(-4px);
+    }
+
+    .icon-card i {
+      font-size: 28px;
+      color: var(--secondary);
+      margin-bottom: 6px;
+    }
+
+    .icon-card span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #333;
+    }
+
+    /* ===== SECTION GENERAL ===== */
+    section {
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .section-title p {
+      color: #666;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    /* ===== DESTINATIONS ===== */
+    .country-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .country-card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      background: #000;
+    }
+
+    .country-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .country-card img {
+      height: 260px;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+      transition: transform 0.4s ease;
+    }
+
+    .country-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .country-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1));
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    .country-overlay h3 {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    /* ===== CITY MODAL ===== */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 18px;
+      max-width: 1100px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 30px;
+      animation: fadeUp 0.4s ease forwards;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    .close-btn {
+      background: #eee;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .city-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .city-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      background: #fff;
+    }
+
+    .city-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .city-card img {
+      height: 160px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .city-card .city-info {
+      padding: 14px;
+    }
+
+    .city-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+      color: var(--primary);
+    }
+
+    .city-card p {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    /* ===== SERVICES ===== */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .service-card {
+      background: var(--card);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .service-card img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .service-content {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .service-content h4 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .service-content p {
+      font-size: 0.9rem;
+      color: #555;
+      flex: 1;
+    }
+
+    .service-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .add-btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      transition: background 0.3s ease;
+    }
+
+    .add-btn:hover {
+      background: #073058;
+    }
+
+    /* ===== CART SIDEBAR ===== */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 360px;
+      max-width: 90vw;
+      height: 100vh;
+      background: #fff;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+      z-index: 3000;
+      transition: right 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-sidebar.active {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 18px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 10px;
+    }
+
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-info h5 {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    .cart-item-info span {
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    .remove-btn {
+      background: transparent;
+      color: red;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .cart-footer {
+      padding: 18px;
+      border-top: 1px solid #eee;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: var(--secondary);
+      color: #fff;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* ===== REVIEWS ===== */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .review-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .review-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .stars {
+      color: #ffc107;
+      font-size: 0.9rem;
+    }
+
+    .review-text {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .review-form {
+      max-width: 600px;
+      margin: 50px auto 0;
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    }
+
+    .review-form h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .review-form input,
+    .review-form textarea,
+    .review-form select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    .review-form textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .review-form button {
+      background: var(--secondary);
+      color: #fff;
+      padding: 12px;
+      width: 100%;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      color: #ccc;
+      padding: 60px 20px 30px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+
+    .footer-col a {
+      display: block;
+      margin-bottom: 8px;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--secondary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
-<nav>
-  <div class="nav-inner">
-    <div class="nav-left">
-      <img src="https://raw.githubusercontent.com/leixerzzz/horizonventura/main/logo.png" alt="Horizon Ventura Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/854/854878.png'">
-      <span>Horizon Ventura</span>
-    </div>
-    <div class="nav-menu">
-      <a href="#home">Home</a>
-      <a href="#destinations">Destinations</a>
-      <a href="#amigo">AmiGo</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="nav-actions">
-      <select class="lang-select" id="langSelect">
-        <option value="en">EN</option>
-        <option value="es">ES</option>
-      </select>
-      <button class="cart-btn" onclick="toggleCart()">
-        Cart 🛒
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </div>
-  </div>
-</nav>
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <div class="nav-container">
+      <div class="brand">
+        <!-- Puedes cambiar este logo por el tuyo -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Globe_icon.svg/1024px-Globe_icon.svg.png" alt="Horizon Ventura Logo">
+        <span>Horizon Ventura</span>
+      </div>
 
-<!-- ================= HERO ================= -->
-<section class="hero" id="home">
-  <div class="hero-content">
-    <span class="badge">Global Experience Platform</span>
-    <h1>Build Your Experience. Anywhere.</h1>
-    <p>Design your entire trip online. Pay in CAD. Arrive stress-free. Live the real world — upgraded.</p>
-    <div class="hero-cta">
-      <button onclick="scrollToSection('destinations')">Start Your Trip</button>
-      <button class="secondary" onclick="scrollToSection('amigo')">Explore AmiGo</button>
-    </div>
-  </div>
-</section>
+      <div class="nav-links">
+        <a href="#destinations">Destinations</a>
+        <a href="#services">Experiences</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
 
-<!-- ================= FEATURE BAR ================= -->
-<div class="features-bar">
-  <div class="feature-item">
-    <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png">
-    Stay
-  </div>
-  <div class="feature-item">
-    <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
-    Food
-  </div>
-  <div class="feature-item">
-    <img src="https://cdn-icons-png.flaticon.com/512/854/854894.png">
-    Adventures
-  </div>
-  <div class="feature-item">
-    <img src="https://cdn-icons-png.flaticon.com/512/854/854866.png">
-    Wellness
-  </div>
-  <div class="feature-item">
-    <img src="https://cdn-icons-png.flaticon.com/512/892/892692.png">
-    Style
-  </div>
-  <div class="feature-item">
-    <img src="https://cdn-icons-png.flaticon.com/512/854/854872.png">
-    Kids
-  </div>
-  <div class="feature-item">
-    <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png">
-    Exchange
-  </div>
-  <div class="feature-item">
-    <img src="https://cdn-icons-png.flaticon.com/512/854/854900.png">
-    Events
-  </div>
-</div>
-
-<!-- ================= WHY HORIZON ================= -->
-<section id="why">
-  <div class="center">
-    <h2>Why Horizon Ventura</h2>
-    <p>The world’s first all-in-one experience marketplace. One platform. One checkout. Zero stress.</p>
-  </div>
-
-  <div class="why-grid">
-    <div class="why-card">
-      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80">
-      <h4>Couple Escape</h4>
-      <p>Romantic stays, sunset cruises, private dinners and unforgettable moments.</p>
-    </div>
-    <div class="why-card">
-      <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80">
-      <h4>Family Adventure</h4>
-      <p>Safe, fun experiences for kids and parents — stress-free travel for everyone.</p>
-    </div>
-    <div class="why-card">
-      <img src="https://images.unsplash.com/photo-1519821172141-b5d8dcff6bb0?auto=format&fit=crop&w=800&q=80">
-      <h4>VIP Experiences</h4>
-      <p>Private drivers, premium stays, concierge services and elite adventures.</p>
-    </div>
-    <div class="why-card">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80">
-      <h4>Events & Parties</h4>
-      <p>Beach parties, nightlife, festivals and unforgettable group experiences.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= DESTINATIONS ================= -->
-<section id="destinations">
-  <div class="destinations-header">
-    <h2>Destinations</h2>
-    <p>Select your country. Choose your city. Build your experience.</p>
-  </div>
-
-  <!-- FLAGS -->
-  <div class="flags-grid" id="flagsGrid">
-    <div class="flag-card" onclick="openCountry('cuba')">
-      <img src="https://flagcdn.com/w320/cu.png">
-      <h4>Cuba</h4>
-      <p>Beaches • Culture • Adventure</p>
-    </div>
-    <div class="flag-card" onclick="openCountry('mexico')">
-      <img src="https://flagcdn.com/w320/mx.png">
-      <h4>Mexico</h4>
-      <p>Food • History • Coast</p>
-    </div>
-    <div class="flag-card" onclick="openCountry('trinidad')">
-      <img src="https://flagcdn.com/w320/tt.png">
-      <h4>Trinidad & Tobago</h4>
-      <p>Caribbean • Diving • Nature</p>
-    </div>
-    <div class="flag-card" onclick="openCountry('spain')">
-      <img src="https://flagcdn.com/w320/es.png">
-      <h4>Spain</h4>
-      <p>Culture • Nightlife • Beaches</p>
-    </div>
-    <div class="flag-card" onclick="openCountry('uk')">
-      <img src="https://flagcdn.com/w320/gb.png">
-      <h4>United Kingdom</h4>
-      <p>City • Culture • Events</p>
-    </div>
-    <div class="flag-card" onclick="openCountry('germany')">
-      <img src="https://flagcdn.com/w320/de.png">
-      <h4>Germany</h4>
-      <p>Culture • Nature • Wellness</p>
-    </div>
-  </div>
-
-  <!-- ================= CUBA CITIES ================= -->
-  <div class="city-section" id="cubaCities">
-    <div class="services-header">
-      <h3>Cuba Destinations</h3>
-      <button onclick="backToCountries()">← Back to Countries</button>
-    </div>
-    <div class="city-grid">
-      <div class="city-card" onclick="openCity('guardalavaca')">
-        <img src="https://images.unsplash.com/photo-1600047508788-78648f6ec16f?auto=format&fit=crop&w=800&q=80">
-        <div class="city-card-content">
-          <h4>Guardalavaca</h4>
-          <p>Beach paradise • Nature • Authentic Cuba</p>
+      <div class="nav-actions">
+        <div class="lang-switch">
+          <select id="languageSelect">
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+          </select>
         </div>
+        <button class="cart-btn" onclick="toggleCart()">
+          Cart
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
       </div>
-      <div class="city-card">
-        <img src="https://images.unsplash.com/photo-1562599938-7f0c3a57b5cb?auto=format&fit=crop&w=800&q=80">
-        <div class="city-card-content">
-          <h4>Havana (Coming Soon)</h4>
-          <p>Culture • History • Nightlife</p>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 id="heroTitle">Build Your Experience. Anywhere.</h1>
+      <p id="heroSubtitle">
+        Design your entire trip — stays, food, adventures, transport, wellness and nightlife — all paid online before you arrive.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="scrollToSection('destinations')">Start Your Trip</button>
+        <button class="btn-outline" onclick="scrollToSection('reviews')">See Reviews</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ICON STRIP ===== -->
+  <div class="icon-strip">
+    <div class="icon-grid">
+      <div class="icon-card" onclick="openServiceCategory('stays')">
+        <i class="fas fa-bed"></i>
+        <span>Stays</span>
+      </div>
+      <div class="icon-card" onclick="openServiceCategory('food')">
+        <i class="fas fa-utensils"></i>
+        <span>Food</span>
+      </div>
+      <div class="icon-card" onclick="openServiceCategory('adventures')">
+        <i class="fas fa-water"></i>
+        <span>Adventures</span>
+      </div>
+      <div class="icon-card" onclick="openServiceCategory('transport')">
+        <i class="fas fa-car"></i>
+        <span>Transport</span>
+      </div>
+      <div class="icon-card" onclick="openServiceCategory('kids')">
+        <i class="fas fa-child"></i>
+        <span>Kids</span>
+      </div>
+      <div class="icon-card" onclick="openServiceCategory('beauty')">
+        <i class="fas fa-cut"></i>
+        <span>Style</span>
+      </div>
+      <div class="icon-card" onclick="openServiceCategory('health')">
+        <i class="fas fa-tooth"></i>
+        <span>Health</span>
+      </div>
+      <div class="icon-card" onclick="openServiceCategory('money')">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Exchange</span>
+      </div>
+      <div class="icon-card" onclick="openServiceCategory('events')">
+        <i class="fas fa-glass-cheers"></i>
+        <span>Events</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DESTINATIONS ===== -->
+  <section id="destinations">
+    <div class="container">
+      <div class="section-title">
+        <h2>Destinations</h2>
+        <p>Select a country, then choose your city and experiences.</p>
+      </div>
+
+      <div class="country-grid">
+        <div class="country-card" onclick="openCountry('cuba')">
+          <img src="https://images.unsplash.com/photo-1585136917975-5474b2e9c2c7?auto=format&fit=crop&w=800&q=80" alt="Cuba">
+          <div class="country-overlay">
+            <h3>🇨🇺 Cuba</h3>
+          </div>
         </div>
-      </div>
-      <div class="city-card">
-        <img src="https://images.unsplash.com/photo-1553531580-0e03c83d5f0b?auto=format&fit=crop&w=800&q=80">
-        <div class="city-card-content">
-          <h4>Varadero (Coming Soon)</h4>
-          <p>Resorts • Beaches • Parties</p>
+
+        <div class="country-card" onclick="openCountry('mexico')">
+          <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80" alt="Mexico">
+          <div class="country-overlay">
+            <h3>🇲🇽 Mexico</h3>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ================= GUARDALAVACA SERVICES ================= -->
-  <div class="services-section" id="guardalavacaServices">
-    <div class="services-header">
-      <div>
-        <h3>Guardalavaca Experience™</h3>
-        <p>Build Your Dream Cuba Trip — Pay Online. Live Offline.</p>
-      </div>
-      <button onclick="backToCities()">← Back to Cities</button>
-    </div>
-
-    <div class="service-grid" id="serviceGrid"></div>
-  </div>
-
-  <!-- ================= OTHER COUNTRIES PLACEHOLDERS ================= -->
-  <div class="city-section" id="mexicoCities">
-    <div class="services-header">
-      <h3>Mexico Destinations</h3>
-      <button onclick="backToCountries()">← Back to Countries</button>
-    </div>
-    <p>Coming soon.</p>
-  </div>
-
-  <div class="city-section" id="trinidadCities">
-    <div class="services-header">
-      <h3>Trinidad & Tobago Destinations</h3>
-      <button onclick="backToCountries()">← Back to Countries</button>
-    </div>
-    <p>Coming soon.</p>
-  </div>
-
-  <div class="city-section" id="spainCities">
-    <div class="services-header">
-      <h3>Spain Destinations</h3>
-      <button onclick="backToCountries()">← Back to Countries</button>
-    </div>
-    <p>Coming soon.</p>
-  </div>
-
-  <div class="city-section" id="ukCities">
-    <div class="services-header">
-      <h3>United Kingdom Destinations</h3>
-      <button onclick="backToCountries()">← Back to Countries</button>
-    </div>
-    <p>Coming soon.</p>
-  </div>
-
-  <div class="city-section" id="germanyCities">
-    <div class="services-header">
-      <h3>Germany Destinations</h3>
-      <button onclick="backToCountries()">← Back to Countries</button>
-    </div>
-    <p>Coming soon.</p>
-  </div>
-
-</section>
-
-<!-- ================= AMIGO ================= -->
-<section id="amigo" class="amigo-section">
-  <img class="amigo-logo" src="https://raw.githubusercontent.com/leixerzzz/horizonventura/main/amigo.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1998/1998610.png'">
-  <h2>AmiGo™ Experiences</h2>
-  <p>Fun happens here. Social adventures. Group energy. Real moments.</p>
-
-  <div class="amigo-features">
-    <div class="amigo-card">
-      <h4>Beach Parties</h4>
-      <p>From $35 CAD — Sunset vibes, music, drinks, social energy.</p>
-    </div>
-    <div class="amigo-card">
-      <h4>Snorkel Tours</h4>
-      <p>From $35 CAD — Coral reefs, fish, crystal waters.</p>
-    </div>
-    <div class="amigo-card">
-      <h4>ATV Adventures</h4>
-      <p>From $35 CAD — Jungle trails, adrenaline rides.</p>
-    </div>
-    <div class="amigo-card">
-      <h4>Sunset Cruises</h4>
-      <p>From $35 CAD — Ocean breeze, golden skies.</p>
-    </div>
-  </div>
-
-  <button class="mt" onclick="scrollToSection('destinations')">Join the Adventure</button>
-</section>
-
-<!-- ================= HOW IT WORKS ================= -->
-<section id="how">
-  <div class="center">
-    <h2>How It Works</h2>
-    <p>Travel made simple. One platform. One checkout. One perfect experience.</p>
-  </div>
-
-  <div class="steps">
-    <div class="step">
-      <div class="step-number">1</div>
-      <h4>Choose Destination</h4>
-      <p>Select your country, city and dates.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">2</div>
-      <h4>Build Your Trip</h4>
-      <p>Add stays, food, adventures and services.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">3</div>
-      <h4>Pay Online</h4>
-      <p>Secure checkout in CAD before you arrive.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">4</div>
-      <h4>Enjoy Offline</h4>
-      <p>Arrive stress-free. Everything already booked.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= REVIEWS ================= -->
-<section id="reviews">
-  <div class="center">
-    <h2>Traveler Reviews</h2>
-    <p>Real people. Real experiences. Real memories.</p>
-  </div>
-
-  <div class="reviews-grid" id="reviewsGrid">
-    <div class="review-card">
-      <div class="review-header">
-        <img src="https://randomuser.me/api/portraits/women/45.jpg">
-        <div>
-          <strong>Sophia M.</strong>
-          <div class="review-stars">★★★★★</div>
+        <div class="country-card" onclick="openCountry('spain')">
+          <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=80" alt="Spain">
+          <div class="country-overlay">
+            <h3>🇪🇸 Spain</h3>
+          </div>
         </div>
-      </div>
-      <p>“Best trip of my life. Everything was booked before we landed. Zero stress. Pure vibes.”</p>
-    </div>
-    <div class="review-card">
-      <div class="review-header">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg">
-        <div>
-          <strong>Daniel R.</strong>
-          <div class="review-stars">★★★★★</div>
+
+        <div class="country-card" onclick="openCountry('england')">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="England">
+          <div class="country-overlay">
+            <h3>🇬🇧 England</h3>
+          </div>
         </div>
-      </div>
-      <p>“Private drivers, amazing food, snorkeling — Horizon Ventura nailed everything.”</p>
-    </div>
-    <div class="review-card">
-      <div class="review-header">
-        <img src="https://randomuser.me/api/portraits/women/68.jpg">
-        <div>
-          <strong>Emily T.</strong>
-          <div class="review-stars">★★★★★</div>
+
+        <div class="country-card" onclick="openCountry('germany')">
+          <img src="https://images.unsplash.com/photo-1542736667-069246bdbc6d?auto=format&fit=crop&w=800&q=80" alt="Germany">
+          <div class="country-overlay">
+            <h3>🇩🇪 Germany</h3>
+          </div>
         </div>
+
       </div>
-      <p>“It felt like having a personal concierge in another country. Unreal.”</p>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES SECTION (dynamic) ===== -->
+  <section id="services" style="display:none;">
+    <div class="container">
+      <div class="section-title">
+        <h2 id="servicesTitle">Services</h2>
+        <p id="servicesSubtitle">Choose experiences and add them to your trip.</p>
+      </div>
+
+      <div class="service-grid" id="serviceGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-title">
+        <h2>Real Reviews</h2>
+        <p>Verified experiences from real travelers.</p>
+      </div>
+
+      <div class="reviews-grid" id="reviewsGrid">
+        <!-- Reviews loaded by JS -->
+      </div>
+
+      <div class="review-form">
+        <h3>Leave a Review</h3>
+        <input type="text" id="reviewName" placeholder="Your name" />
+        <select id="reviewRating">
+          <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+          <option value="4">⭐⭐⭐⭐ (4)</option>
+          <option value="3">⭐⭐⭐ (3)</option>
+          <option value="2">⭐⭐ (2)</option>
+          <option value="1">⭐ (1)</option>
+        </select>
+        <textarea id="reviewText" placeholder="Write your experience..."></textarea>
+        <button onclick="submitReview()">Submit Review</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Horizon Ventura</h4>
+        <p>Build your experience anywhere. Real travel, done right.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#destinations">Destinations</a>
+        <a href="#services">Experiences</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">Stays</a>
+        <a href="#">Food</a>
+        <a href="#">Adventures</a>
+        <a href="#">Transport</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:info@horizonventura.com">info@horizonventura.com</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Horizon Ventura. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- ===== CITY MODAL ===== -->
+  <div class="modal" id="cityModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Select a City</h3>
+        <div class="close-btn" onclick="closeCityModal()">×</div>
+      </div>
+      <div class="city-grid" id="cityGrid"></div>
     </div>
   </div>
-</section>
 
-<!-- ================= CONTACT ================= -->
-<section id="contact">
-  <div class="center">
-    <h2>Contact Horizon Ventura</h2>
-    <p>Ready to build your experience? Let’s talk.</p>
-  </div>
-
-  <div class="center mt">
-    <p><strong>Email:</strong> info@horizonventura.com</p>
-    <p><strong>WhatsApp:</strong> +1 (437) 605-0912</p>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <h4>Horizon Ventura™</h4>
-      <p>Build your experience anywhere. One platform. One checkout. Zero stress.</p>
+  <!-- ===== CART SIDEBAR ===== -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <span>Your Trip</span>
+      <div class="close-btn" onclick="toggleCart()">×</div>
     </div>
-    <div>
-      <h4>Explore</h4>
-      <p><a href="#destinations">Destinations</a></p>
-      <p><a href="#amigo">AmiGo</a></p>
-      <p><a href="#how">How It Works</a></p>
-      <p><a href="#reviews">Reviews</a></p>
-    </div>
-    <div>
-      <h4>Services</h4>
-      <p>Stays</p>
-      <p>Food</p>
-      <p>Adventures</p>
-      <p>Transport</p>
-      <p>Wellness</p>
-      <p>Events</p>
-    </div>
-    <div>
-      <h4>Legal</h4>
-      <p>Terms & Conditions</p>
-      <p>Privacy Policy</p>
-      <p>Refund Policy</p>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">$0 CAD</span>
+      </div>
+      <button class="checkout-btn">Checkout</button>
     </div>
   </div>
 
-  <div class="center">
-    <p>© 2026 Horizon Ventura™. All rights reserved.</p>
-  </div>
-</footer>
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    /* =====================
+       DATA STRUCTURE
+    ===================== */
 
-<!-- ================= CART DRAWER ================= -->
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cart-header">
-    <h3>Your Cart</h3>
-    <button onclick="toggleCart()">✕</button>
-  </div>
-  <div class="cart-body" id="cartItems"></div>
-  <div class="cart-footer">
-    <div class="cart-total">
-      <span>Total</span>
-      <span id="cartTotal">$0 CAD</span>
-    </div>
-    <button style="width:100%">Checkout</button>
-  </div>
-</div>
+    const data = {
+      cuba: {
+        name: "Cuba",
+        cities: [
+          {
+            id: "guardalavaca",
+            name: "Guardalavaca / Holguín",
+            image: "https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=900&q=80",
+            services: {
+              stays: [
+                {
+                  title: "Basic Stay",
+                  price: "45–65 CAD / night",
+                  img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+                  desc: "Private room, hot water, limited WiFi"
+                },
+                {
+                  title: "Comfort Stay",
+                  price: "75–110 CAD / night",
+                  img: "https://images.unsplash.com/photo-1560448075-bb4bfc19cd12?auto=format&fit=crop&w=800&q=80",
+                  desc: "Full house, kitchen access, daily cleaning"
+                },
+                {
+                  title: "Premium Experience Stay",
+                  price: "120–160 CAD / night",
+                  img: "https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?auto=format&fit=crop&w=800&q=80",
+                  desc: "Full house + breakfast + concierge + welcome drinks"
+                }
+              ],
+              food: [
+                {
+                  title: "Cuban Breakfast",
+                  price: "$10–18 CAD",
+                  img: "https://images.unsplash.com/photo-1493770348161-369560ae357d?auto=format&fit=crop&w=800&q=80",
+                  desc: "Traditional Cuban breakfast experience"
+                },
+                {
+                  title: "Local Lunch",
+                  price: "$15–25 CAD",
+                  img: "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=800&q=80",
+                  desc: "Authentic Cuban lunch with locals"
+                },
+                {
+                  title: "Authentic Cuban Dinner",
+                  price: "$30–60 CAD",
+                  img: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80",
+                  desc: "Full Cuban dinner with music and drinks"
+                },
+                {
+                  title: "Cuban Family Party",
+                  price: "$120–180 CAD",
+                  img: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80",
+                  desc: "Private family party with food, music & drinks"
+                }
+              ],
+              adventures: [
+                {
+                  title: "Snorkeling Tour",
+                  price: "$40–85 CAD",
+                  img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+                  desc: "Explore coral reefs and tropical fish"
+                },
+                {
+                  title: "Beginner Scuba Diving",
+                  price: "$80–150 CAD",
+                  img: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80",
+                  desc: "Certified scuba diving for beginners"
+                },
+                {
+                  title: "Shark Experience",
+                  price: "$120–230 CAD",
+                  img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80",
+                  desc: "Controlled shark diving experience"
+                },
+                {
+                  title: "Windsurf / Paddleboard",
+                  price: "$35–75 CAD",
+                  img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
+                  desc: "Water sports at tropical beaches"
+                },
+                {
+                  title: "Deep Sea Fishing",
+                  price: "$220–320 CAD",
+                  img: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80",
+                  desc: "Private deep sea fishing excursion"
+                }
+              ],
+              transport: [
+                {
+                  title: "Airport Pickup",
+                  price: "$70–140 CAD",
+                  img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+                  desc: "Private airport transfer service"
+                },
+                {
+                  title: "Private Driver Half Day",
+                  price: "$100–140 CAD",
+                  img: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80",
+                  desc: "Private driver for half day"
+                },
+                {
+                  title: "Private Driver Full Day",
+                  price: "$180–260 CAD",
+                  img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+                  desc: "Private driver for full day"
+                },
+                {
+                  title: "Classic Car Experience",
+                  price: "$200–320 CAD",
+                  img: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=800&q=80",
+                  desc: "Ride in iconic Cuban classic cars"
+                }
+              ],
+              kids: [
+                {
+                  title: "Swimming Lessons",
+                  price: "$25–40 CAD",
+                  img: "https://images.unsplash.com/photo-1508873699372-7aeab60b44e3?auto=format&fit=crop&w=800&q=80",
+                  desc: "Private swimming lessons for kids"
+                },
+                {
+                  title: "Volleyball Training",
+                  price: "$20–35 CAD",
+                  img: "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=800&q=80",
+                  desc: "Beach volleyball training sessions"
+                },
+                {
+                  title: "Mini Diving",
+                  price: "$40–70 CAD",
+                  img: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80",
+                  desc: "Safe diving experience for children"
+                },
+                {
+                  title: "Weekly Kids Pack",
+                  price: "$120–200 CAD",
+                  img: "https://images.unsplash.com/photo-1520975918318-7b11b3ef5e15?auto=format&fit=crop&w=800&q=80",
+                  desc: "Full weekly activity pack for kids"
+                }
+              ],
+              beauty: [
+                {
+                  title: "Haircut",
+                  price: "$15–25 CAD",
+                  img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80",
+                  desc: "Professional barber haircut"
+                },
+                {
+                  title: "Fade + Beard",
+                  price: "$30–50 CAD",
+                  img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80",
+                  desc: "Fade haircut and beard grooming"
+                },
+                {
+                  title: "Nails",
+                  price: "$20–35 CAD",
+                  img: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80",
+                  desc: "Manicure and nail services"
+                },
+                {
+                  title: "Hair Styling",
+                  price: "$25–45 CAD",
+                  img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80",
+                  desc: "Professional hair styling"
+                },
+                {
+                  title: "Small Tattoo",
+                  price: "$60–100 CAD",
+                  img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80",
+                  desc: "Custom small tattoo design"
+                },
+                {
+                  title: "Medium Tattoo",
+                  price: "$120–200 CAD",
+                  img: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=800&q=80",
+                  desc: "Medium size tattoo"
+                },
+                {
+                  title: "Large Custom Tattoo",
+                  price: "$250–500 CAD",
+                  img: "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80",
+                  desc: "Large custom tattoo project"
+                }
+              ],
+              health: [
+                {
+                  title: "Dental Checkup + Cleaning",
+                  price: "$90–130 CAD",
+                  img: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a7?auto=format&fit=crop&w=800&q=80",
+                  desc: "Professional dental checkup and cleaning"
+                },
+                {
+                  title: "Basic Medical Procedures",
+                  price: "$120–400 CAD",
+                  img: "https://images.unsplash.com/photo-1580281657521-3f5c9cba1b68?auto=format&fit=crop&w=800&q=80",
+                  desc: "Basic medical and wellness treatments"
+                }
+              ],
+              money: [
+                {
+                  title: "Private Money Exchange",
+                  price: "Better than street rates",
+                  img: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=800&q=80",
+                  desc: "Instant, safe, discreet currency exchange"
+                }
+              ],
+              events: [
+                {
+                  title: "Nightclub Transport + Entry",
+                  price: "$60–130 CAD",
+                  img: "https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?auto=format&fit=crop&w=800&q=80",
+                  desc: "Nightclub transport and VIP entry"
+                },
+                {
+                  title: "Cuban Family Party",
+                  price: "$120–200 CAD",
+                  img: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80",
+                  desc: "Private Cuban family celebration"
+                },
+                {
+                  title: "Private Beach Party",
+                  price: "$250–450 CAD",
+                  img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+                  desc: "Private beach party experience"
+                }
+              ]
+            }
+          }
+        ]
+      },
 
-<!-- ================= JAVASCRIPT ================= -->
-<script>
-// ================= DATA =================
-const servicesData = [
-  // STAYS
-  {
-    category: "Stays",
-    title: "Basic Stay",
-    desc: "Private room, hot water, limited WiFi",
-    price: "45 – 65 CAD / night",
-    img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Stays",
-    title: "Comfort Stay",
-    desc: "Full house, kitchen access, daily cleaning",
-    price: "75 – 110 CAD / night",
-    img: "https://images.unsplash.com/photo-1505691723518-36a5ac3b0f14?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Stays",
-    title: "Premium Experience Stay",
-    desc: "Full house + breakfast + concierge + welcome drinks",
-    price: "120 – 160 CAD / night",
-    img: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
-  },
+      mexico: {
+        name: "Mexico",
+        cities: [
+          {
+            id: "cancun",
+            name: "Cancún",
+            image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=900&q=80",
+            services: {}
+          }
+        ]
+      },
 
-  // FOOD
-  {
-    category: "Food",
-    title: "Cuban Breakfast",
-    desc: "Fresh fruit, eggs, coffee, Cuban bread",
-    price: "10 – 18 CAD",
-    img: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Food",
-    title: "Local Lunch",
-    desc: "Authentic Cuban dishes with locals",
-    price: "15 – 25 CAD",
-    img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Food",
-    title: "Authentic Cuban Dinner",
-    desc: "Traditional meals with drinks and dessert",
-    price: "30 – 60 CAD",
-    img: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Food",
-    title: "Cuban Family Party",
-    desc: "Live music, food, drinks, dancing",
-    price: "120 – 180 CAD",
-    img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
-  },
+      spain: {
+        name: "Spain",
+        cities: [
+          {
+            id: "barcelona",
+            name: "Barcelona",
+            image: "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=900&q=80",
+            services: {}
+          }
+        ]
+      },
 
-  // WATER & ADVENTURE
-  {
-    category: "Water & Adventure",
-    title: "Snorkeling Tour",
-    desc: "Coral reefs, tropical fish, clear waters",
-    price: "40 – 85 CAD",
-    img: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Water & Adventure",
-    title: "Beginner Scuba Diving",
-    desc: "Certified instructors, safe introduction",
-    price: "80 – 150 CAD",
-    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Water & Adventure",
-    title: "Shark Experience",
-    desc: "Professional guided shark dive",
-    price: "120 – 230 CAD",
-    img: "https://images.unsplash.com/photo-1504470695779-75300268aa1c?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Water & Adventure",
-    title: "Windsurf / Paddleboard",
-    desc: "Beach equipment rental and lessons",
-    price: "35 – 75 CAD",
-    img: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4a?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Water & Adventure",
-    title: "Deep Sea Fishing",
-    desc: "Private boat, equipment, captain",
-    price: "220 – 320 CAD",
-    img: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80"
-  },
+      england: {
+        name: "England",
+        cities: [
+          {
+            id: "london",
+            name: "London",
+            image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80",
+            services: {}
+          }
+        ]
+      },
 
-  // TRANSPORT
-  {
-    category: "Transport",
-    title: "Airport Pickup",
-    desc: "Private driver from airport to stay",
-    price: "70 – 140 CAD",
-    img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Transport",
-    title: "Private Driver Half Day",
-    desc: "4 hours, flexible itinerary",
-    price: "100 – 140 CAD",
-    img: "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Transport",
-    title: "Private Driver Full Day",
-    desc: "8 hours, full freedom",
-    price: "180 – 260 CAD",
-    img: "https://images.unsplash.com/photo-1518443895471-22c8bbce37d3?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Transport",
-    title: "Classic Car Experience",
-    desc: "Vintage Cuban cars with driver",
-    price: "200 – 320 CAD",
-    img: "https://images.unsplash.com/photo-1549921296-3ecf3f1e7e2f?auto=format&fit=crop&w=800&q=80"
-  },
+      germany: {
+        name: "Germany",
+        cities: [
+          {
+            id: "berlin",
+            name: "Berlin",
+            image: "https://images.unsplash.com/photo-1542736667-069246bdbc6d?auto=format&fit=crop&w=900&q=80",
+            services: {}
+          }
+        ]
+      }
+    };
 
-  // TOURS
-  {
-    category: "Tours & Excursions",
-    title: "Beach Escape Tour",
-    desc: "Hidden beaches and natural pools",
-    price: "45 – 100 CAD",
-    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Tours & Excursions",
-    title: "Holguín City Tour",
-    desc: "Museums, culture, local food",
-    price: "60 – 120 CAD",
-    img: "https://images.unsplash.com/photo-1523906630133-f6934a1ab1b3?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Tours & Excursions",
-    title: "Sierra Cristal Nature Tour",
-    desc: "Mountains, waterfalls, hiking",
-    price: "80 – 170 CAD",
-    img: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Tours & Excursions",
-    title: "VIP Full Day Adventure",
-    desc: "Private tour, food, transport included",
-    price: "140 – 320 CAD",
-    img: "https://images.unsplash.com/photo-1519821172141-b5d8dcff6bb0?auto=format&fit=crop&w=800&q=80"
-  },
+    /* =====================
+       GLOBAL STATE
+    ===================== */
 
-  // KIDS
-  {
-    category: "Kids",
-    title: "Swimming Lessons",
-    desc: "Certified instructors, safe pools",
-    price: "25 – 40 CAD",
-    img: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Kids",
-    title: "Volleyball Training",
-    desc: "Beach training sessions",
-    price: "20 – 35 CAD",
-    img: "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Kids",
-    title: "Mini Diving",
-    desc: "Safe introduction to diving",
-    price: "40 – 70 CAD",
-    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Kids",
-    title: "Weekly Kids Pack",
-    desc: "Multiple activities bundle",
-    price: "120 – 200 CAD",
-    img: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80"
-  },
+    let selectedCountry = null;
+    let selectedCity = null;
+    let selectedCategory = null;
+    let cart = [];
 
-  // BEAUTY
-  {
-    category: "Beauty & Style",
-    title: "Haircut",
-    desc: "Professional barber service",
-    price: "15 – 25 CAD",
-    img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Beauty & Style",
-    title: "Fade + Beard",
-    desc: "Full grooming service",
-    price: "30 – 50 CAD",
-    img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Beauty & Style",
-    title: "Nails",
-    desc: "Manicure & pedicure",
-    price: "20 – 35 CAD",
-    img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Beauty & Style",
-    title: "Hair Styling",
-    desc: "Professional styling",
-    price: "25 – 45 CAD",
-    img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Beauty & Style",
-    title: "Small Tattoo",
-    desc: "Custom design",
-    price: "60 – 100 CAD",
-    img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Beauty & Style",
-    title: "Medium Tattoo",
-    desc: "Custom medium size",
-    price: "120 – 200 CAD",
-    img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Beauty & Style",
-    title: "Large Custom Tattoo",
-    desc: "Full custom artwork",
-    price: "250 – 500 CAD",
-    img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80"
-  },
+    /* =====================
+       NAV / UI FUNCTIONS
+    ===================== */
 
-  // MEDICAL
-  {
-    category: "Medical & Wellness",
-    title: "Dental Checkup + Cleaning",
-    desc: "Professional dental care",
-    price: "90 – 130 CAD",
-    img: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Medical & Wellness",
-    title: "Basic Procedures",
-    desc: "Consultation & treatment",
-    price: "120 – 400 CAD",
-    img: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80"
-  },
-
-  // MONEY
-  {
-    category: "Money Exchange",
-    title: "Private Money Exchange",
-    desc: "Better-than-street rates. Safe & discreet.",
-    price: "$300 CAD → +$40–$60 value",
-    img: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=800&q=80"
-  },
-
-  // NIGHTLIFE
-  {
-    category: "Nightlife & Events",
-    title: "Nightclub Transport + Entry",
-    desc: "VIP access and private driver",
-    price: "60 – 130 CAD",
-    img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Nightlife & Events",
-    title: "Cuban Family Party",
-    desc: "Music, dancing, food, drinks",
-    price: "120 – 200 CAD",
-    img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    category: "Nightlife & Events",
-    title: "Private Beach Party",
-    desc: "Exclusive beach celebration",
-    price: "250 – 450 CAD",
-    img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
-  }
-];
-
-// ================= GLOBAL STATE =================
-let cart = [];
-let currentCountry = null;
-let currentCity = null;
-
-// ================= NAV FUNCTIONS =================
-function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-// ================= COUNTRY NAV =================
-function openCountry(country){
-  hideAllCitySections();
-  hideServices();
-  document.getElementById("flagsGrid").style.display = "none";
-  if(country === "cuba") document.getElementById("cubaCities").style.display = "block";
-  if(country === "mexico") document.getElementById("mexicoCities").style.display = "block";
-  if(country === "trinidad") document.getElementById("trinidadCities").style.display = "block";
-  if(country === "spain") document.getElementById("spainCities").style.display = "block";
-  if(country === "uk") document.getElementById("ukCities").style.display = "block";
-  if(country === "germany") document.getElementById("germanyCities").style.display = "block";
-}
-
-function backToCountries(){
-  hideAllCitySections();
-  hideServices();
-  document.getElementById("flagsGrid").style.display = "grid";
-}
-
-function hideAllCitySections(){
-  document.querySelectorAll(".city-section").forEach(sec=>sec.style.display="none");
-}
-
-// ================= CITY NAV =================
-function openCity(city){
-  hideAllCitySections();
-  if(city === "guardalavaca"){
-    renderServices();
-    document.getElementById("guardalavacaServices").style.display = "block";
-  }
-}
-
-function backToCities(){
-  hideServices();
-  document.getElementById("cubaCities").style.display = "block";
-}
-
-function hideServices(){
-  document.getElementById("guardalavacaServices").style.display = "none";
-}
-
-// ================= SERVICES RENDER =================
-function renderServices(){
-  const grid = document.getElementById("serviceGrid");
-  grid.innerHTML = "";
-
-  let currentCategory = "";
-
-  servicesData.forEach(service=>{
-    if(service.category !== currentCategory){
-      currentCategory = service.category;
-      const catHeader = document.createElement("div");
-      catHeader.style.gridColumn = "1 / -1";
-      catHeader.innerHTML = `<h3 style="margin:30px 0 10px">${service.category}</h3>`;
-      grid.appendChild(catHeader);
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     }
 
-    const card = document.createElement("div");
-    card.className = "service-card";
-    card.innerHTML = `
-      <img src="${service.img}">
-      <div class="service-card-content">
-        <h4>${service.title}</h4>
-        <p>${service.desc}</p>
-        <div class="price">${service.price}</div>
-        <button onclick='addToCart(${JSON.stringify(service)})'>Add to Cart</button>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-}
+    function toggleCart() {
+      document.getElementById("cartSidebar").classList.toggle("active");
+    }
 
-// ================= CART =================
-function toggleCart(){
-  document.getElementById("cartDrawer").classList.toggle("open");
-}
+    function updateCartCount() {
+      document.getElementById("cartCount").textContent = cart.length;
+    }
 
-function addToCart(service){
-  cart.push(service);
-  updateCartUI();
-  toggleCart();
-}
+    function updateCartUI() {
+      const cartItems = document.getElementById("cartItems");
+      cartItems.innerHTML = "";
 
-function removeFromCart(index){
-  cart.splice(index,1);
-  updateCartUI();
-}
+      let total = 0;
 
-function updateCartUI(){
-  const cartItems = document.getElementById("cartItems");
-  const cartCount = document.getElementById("cartCount");
-  const cartTotal = document.getElementById("cartTotal");
+      cart.forEach((item, index) => {
+        const priceNumber = parseFloat(item.price.replace(/[^\d.]/g, "")) || 0;
+        total += priceNumber;
 
-  cartItems.innerHTML = "";
-  cartCount.textContent = cart.length;
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <img src="${item.img}" />
+          <div class="cart-item-info">
+            <h5>${item.title}</h5>
+            <span>${item.price}</span>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
+        `;
+        cartItems.appendChild(div);
+      });
 
-  let total = 0;
+      document.getElementById("cartTotal").textContent = `$${total.toFixed(2)} CAD`;
+      updateCartCount();
+    }
 
-  cart.forEach((item,i)=>{
-    const priceNumber = extractPrice(item.price);
-    total += priceNumber;
+    function addToCart(item) {
+      cart.push(item);
+      updateCartUI();
+      toggleCart();
+    }
 
-    const div = document.createElement("div");
-    div.className = "cart-item";
-    div.innerHTML = `
-      <img src="${item.img}">
-      <div class="cart-item-info">
-        <h5>${item.title}</h5>
-        <span>${item.price}</span>
-        <br>
-        <button class="remove-btn" onclick="removeFromCart(${i})">Remove</button>
-      </div>
-    `;
-    cartItems.appendChild(div);
-  });
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
 
-  cartTotal.textContent = `$${total.toFixed(0)} CAD`;
-}
+    /* =====================
+       DESTINATIONS / CITIES
+    ===================== */
 
-function extractPrice(priceStr){
-  const match = priceStr.match(/(\d+)(?:\s*–\s*(\d+))?/);
-  if(match){
-    if(match[2]) return (parseInt(match[1]) + parseInt(match[2])) / 2;
-    return parseInt(match[1]);
-  }
-  return 0;
-}
+    function openCountry(countryKey) {
+      selectedCountry = countryKey;
+      const country = data[countryKey];
 
-// ================= LANGUAGE =================
-document.getElementById("langSelect").addEventListener("change",e=>{
-  if(e.target.value === "es"){
-    translateToSpanish();
-  }else{
-    location.reload();
-  }
-});
+      const modal = document.getElementById("cityModal");
+      const cityGrid = document.getElementById("cityGrid");
+      const modalTitle = document.getElementById("modalTitle");
 
-function translateToSpanish(){
-  document.querySelector("h1").textContent = "Construye Tu Experiencia. Donde Sea.";
-  document.querySelector(".hero p").textContent = "Diseña tu viaje completo online. Paga en CAD. Llega sin estrés. Vive el mundo real — mejorado.";
-  document.querySelector(".hero-cta button").textContent = "Comenzar Viaje";
-  document.querySelectorAll("h2")[0].textContent = "Por Qué Horizon Ventura";
-  document.querySelectorAll("h2")[1].textContent = "Destinos";
-  document.querySelectorAll("h2")[2].textContent = "AmiGo™ Experiencias";
-  document.querySelectorAll("h2")[3].textContent = "Cómo Funciona";
-  document.querySelectorAll("h2")[4].textContent = "Reseñas";
-  document.querySelectorAll("h2")[5].textContent = "Contacto";
-}
+      modalTitle.textContent = `${country.name} — Select a City`;
+      cityGrid.innerHTML = "";
 
-// ================= INIT =================
-updateCartUI();
-</script>
+      country.cities.forEach(city => {
+        const div = document.createElement("div");
+        div.className = "city-card";
+        div.innerHTML = `
+          <img src="${city.image}" alt="${city.name}">
+          <div class="city-info">
+            <h4>${city.name}</h4>
+            <p>View experiences</p>
+          </div>
+        `;
+        div.onclick = () => openCity(city.id);
+        cityGrid.appendChild(div);
+      });
+
+      modal.classList.add("active");
+    }
+
+    function closeCityModal() {
+      document.getElementById("cityModal").classList.remove("active");
+    }
+
+    function openCity(cityId) {
+      const country = data[selectedCountry];
+      selectedCity = country.cities.find(c => c.id === cityId);
+
+      closeCityModal();
+      document.getElementById("services").style.display = "block";
+      document.getElementById("servicesTitle").textContent =
+        `${country.name} — ${selectedCity.name}`;
+      document.getElementById("servicesSubtitle").textContent =
+        "Choose services and add them to your trip.";
+
+      selectedCategory = null;
+      renderServices();
+      scrollToSection("services");
+    }
+
+    /* =====================
+       SERVICES / CATEGORIES
+    ===================== */
+
+    function openServiceCategory(category) {
+      selectedCategory = category;
+      renderServices();
+      document.getElementById("services").style.display = "block";
+      scrollToSection("services");
+    }
+
+    function renderServices() {
+      const grid = document.getElementById("serviceGrid");
+      grid.innerHTML = "";
+
+      if (!selectedCity || !selectedCity.services) {
+        grid.innerHTML = "<p style='grid-column:1/-1;text-align:center;'>Select a destination and city first.</p>";
+        return;
+      }
+
+      const services = selectedCity.services;
+      const categories = selectedCategory ? [selectedCategory] : Object.keys(services);
+
+      categories.forEach(cat => {
+        if (!services[cat]) return;
+
+        services[cat].forEach(item => {
+          const card = document.createElement("div");
+          card.className = "service-card";
+          card.innerHTML = `
+            <img src="${item.img}" alt="${item.title}">
+            <div class="service-content">
+              <h4>${item.title}</h4>
+              <p>${item.desc}</p>
+              <div class="service-meta">
+                <span class="price">${item.price}</span>
+                <button class="add-btn">Add to Trip</button>
+              </div>
+            </div>
+          `;
+          card.querySelector(".add-btn").onclick = () => addToCart(item);
+          grid.appendChild(card);
+        });
+      });
+    }
+
+    /* =====================
+       REVIEWS SYSTEM
+    ===================== */
+
+    let reviews = JSON.parse(localStorage.getItem("reviews")) || [
+      {
+        name: "Sarah M.",
+        rating: 5,
+        text: "Best travel experience I've ever had. Everything was organized before arrival. Cuba felt easy, safe and magical."
+      },
+      {
+        name: "Daniel R.",
+        rating: 5,
+        text: "Private drivers, amazing food, and real local experiences. Horizon Ventura is next level travel."
+      },
+      {
+        name: "Camila P.",
+        rating: 5,
+        text: "We stayed in Guardalavaca and everything was perfect. Highly recommend!"
+      }
+    ];
+
+    function renderReviews() {
+      const grid = document.getElementById("reviewsGrid");
+      grid.innerHTML = "";
+
+      reviews.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "review-card";
+        div.innerHTML = `
+          <div class="review-header">
+            <div class="review-avatar">${r.name.charAt(0)}</div>
+            <div>
+              <div class="review-name">${r.name}</div>
+              <div class="stars">${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</div>
+            </div>
+          </div>
+          <div class="review-text">${r.text}</div>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    function submitReview() {
+      const name = document.getElementById("reviewName").value.trim();
+      const rating = parseInt(document.getElementById("reviewRating").value);
+      const text = document.getElementById("reviewText").value.trim();
+
+      if (!name || !text) {
+        alert("Please fill in your name and review.");
+        return;
+      }
+
+      reviews.unshift({ name, rating, text });
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+      renderReviews();
+
+      document.getElementById("reviewName").value = "";
+      document.getElementById("reviewText").value = "";
+
+      alert("Thank you for your review!");
+    }
+
+    /* =====================
+       LANGUAGE SWITCHER
+    ===================== */
+
+    const translations = {
+      en: {
+        heroTitle: "Build Your Experience. Anywhere.",
+        heroSubtitle:
+          "Design your entire trip — stays, food, adventures, transport, wellness and nightlife — all paid online before you arrive."
+      },
+      es: {
+        heroTitle: "Construye Tu Experiencia. En Cualquier Lugar.",
+        heroSubtitle:
+          "Diseña todo tu viaje — hospedaje, comida, aventuras, transporte, bienestar y fiestas — todo pagado online antes de llegar."
+      }
+    };
+
+    document.getElementById("languageSelect").addEventListener("change", e => {
+      const lang = e.target.value;
+      document.getElementById("heroTitle").textContent = translations[lang].heroTitle;
+      document.getElementById("heroSubtitle").textContent = translations[lang].heroSubtitle;
+    });
+
+    /* =====================
+       INIT
+    ===================== */
+
+    renderReviews();
+  </script>
 
 </body>
 </html>
