@@ -3,24 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Horizon Ventura™ — Build Your Cuban Dream Trip</title>
+<title>Horizon Ventura™ — The Gold Standard of Cuban Travel</title>
 
-<!-- =========================
-      FONTS & BASE STYLES
-========================= -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --sand:#F7D9A0;
-  --sun:#FF9F45;
+  --sun:#FF9F45; /* Fox Orange */
   --sunset:#FF6F61;
   --ocean:#0077B6;
   --deep:#023E8A;
   --night:#001F3F;
   --white:#ffffff;
   --glass:rgba(255,255,255,0.15);
-  --shadow:0 10px 30px rgba(0,0,0,.2);
+  --shadow:0 10px 30px rgba(0,0,0,.3);
   --radius:18px;
 }
 
@@ -35,15 +32,16 @@ body{
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;display:block;}
 button{border:none;background:none;color:inherit;font-family:inherit;cursor:pointer;}
-input,select{font-family:inherit;}
 
-.hidden{display:none!important;}
-.fade{animation:fade .4s ease;}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-
-.blur{
-  backdrop-filter:blur(12px);
-  background:rgba(255,255,255,.12);
+/* =========================
+      FOX ANIMATION
+========================= */
+@keyframes foxJump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.fox-avatar {
+  animation: foxJump 3s infinite ease-in-out;
 }
 
 /* =========================
@@ -56,2638 +54,429 @@ input,select{font-family:inherit;}
   background-size:cover;
   background-position:center;
   transition:background-image 1.2s ease;
+  background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1400&q=80');
 }
 #bgOverlay{
   position:fixed;
   inset:0;
-  background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.7));
+  background:linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.85));
   z-index:-1;
 }
 
 /* =========================
-      HEADER / NAV
+      HEADER
 ========================= */
 header{
   position:sticky;
   top:0;
   z-index:50;
-  padding:10px 14px;
+  padding:12px 16px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
-  background:rgba(0,0,0,.35);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(255,255,255,.15);
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,.1);
 }
 #logo{
   display:flex;
   align-items:center;
-  gap:10px;
-  font-weight:700;
-  letter-spacing:.3px;
+  gap:12px;
 }
-#logo svg{
-  width:42px;
-  height:42px;
-  flex-shrink:0;
-}
-#logoText{
-  font-size:1.05rem;
-  line-height:1.1;
-}
-#logo small{
-  font-weight:400;
-  font-size:.65rem;
-  opacity:.85;
-  display:block;
-}
-
-#langBar{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.langBtn{
-  width:30px;
-  height:20px;
-  border-radius:4px;
-  overflow:hidden;
-  box-shadow:0 2px 6px rgba(0,0,0,.4);
-  border:2px solid transparent;
-}
-.langBtn.active{border-color:var(--sun);}
-.langBtn img{width:100%;height:100%;object-fit:cover;}
-
-#menuBtn{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:rgba(255,255,255,.15);
-}
+#logo svg { width: 45px; height: 45px; }
+#logoText { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; }
+#logo small { display: block; font-weight: 300; font-size: 0.65rem; color: var(--sun); }
 
 /* =========================
       MAIN LAYOUT
 ========================= */
-main{
-  padding-bottom:140px;
-}
-
-.section{
-  padding:28px 16px;
-}
-.sectionTitle{
-  font-size:1.6rem;
-  font-weight:700;
-  margin-bottom:10px;
-}
-.sectionSubtitle{
-  font-size:.9rem;
-  opacity:.9;
-  margin-bottom:16px;
-  line-height:1.4;
-}
+main{ padding-bottom: 120px; }
+.section{ padding: 40px 20px; max-width: 1100px; margin: 0 auto; }
+.sectionTitle{ font-size: 2rem; font-weight: 700; margin-bottom: 10px; color: var(--white); }
+.sectionSubtitle{ font-size: 1rem; opacity: 0.8; margin-bottom: 30px; }
 
 /* =========================
-      HERO / LAUNCH
+      HERO SECTION
 ========================= */
 #hero{
-  min-height:88vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:24px 16px 40px;
-  gap:14px;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
 }
-#heroGlass{
-  padding:18px;
-  border-radius:22px;
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(12px);
-  box-shadow:var(--shadow);
-}
-#hero h1{
-  font-size:1.9rem;
-  line-height:1.15;
-  font-weight:700;
-}
-#hero p{
-  font-size:.95rem;
-  opacity:.95;
-  margin-top:6px;
-  line-height:1.45;
-}
-.heroBtns{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-  flex-wrap:wrap;
-}
+#hero h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; }
+#hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; }
+
 .primaryBtn{
-  padding:12px 18px;
-  border-radius:999px;
-  background:linear-gradient(135deg,var(--sun),var(--sunset));
-  color:#000;
-  font-weight:700;
-  box-shadow:0 6px 18px rgba(0,0,0,.35);
+  padding: 16px 32px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--sun), var(--sunset));
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 10px 20px rgba(255, 159, 69, 0.3);
+  transition: transform 0.2s;
 }
-.secondaryBtn{
-  padding:12px 18px;
-  border-radius:999px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.25);
-}
+.primaryBtn:hover { transform: scale(1.05); }
 
 /* =========================
-      DESTINATION SELECTOR
-========================= */
-#destinationsBar{
-  margin-top:18px;
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding-bottom:6px;
-}
-.destFlag{
-  flex:0 0 auto;
-  width:70px;
-  height:46px;
-  border-radius:10px;
-  overflow:hidden;
-  position:relative;
-  box-shadow:var(--shadow);
-  border:2px solid transparent;
-}
-.destFlag.active{border-color:var(--sun);}
-.destFlag img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.destFlag span{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.25);
-  display:grid;
-  place-items:center;
-  font-weight:600;
-  font-size:.7rem;
-  text-align:center;
-}
-
-/* =========================
-      CITY SELECTOR
-========================= */
-#citiesBar{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  margin:12px 0 4px;
-}
-.cityChip{
-  flex:0 0 auto;
-  padding:8px 14px;
-  border-radius:999px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.25);
-  font-size:.8rem;
-  font-weight:600;
-}
-.cityChip.active{
-  background:linear-gradient(135deg,var(--sun),var(--sunset));
-  color:#000;
-}
-
-/* =========================
-      ICON CATEGORY GRID
+      CATEGORY GRID
 ========================= */
 #categoryGrid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:16px;
+  grid-template-columns:repeat(auto-fit, minmax(100px, 1fr));
+  gap:15px;
+  margin-bottom:40px;
 }
 .catCard{
-  padding:14px 10px;
-  border-radius:16px;
-  background:rgba(255,255,255,.14);
-  backdrop-filter:blur(10px);
-  text-align:center;
-  box-shadow:var(--shadow);
-  border:1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 20px 10px;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.3s;
 }
-.catIcon{
-  width:42px;
-  height:42px;
-  margin:0 auto 6px;
-}
-.catCard span{
-  font-size:.75rem;
-  font-weight:600;
-  line-height:1.2;
-}
+.catCard:hover { background: var(--sun); color: #000; cursor: pointer; }
+.catCard img { width: 40px; margin: 0 auto 10px; }
+.catCard span { font-size: 0.8rem; font-weight: 600; }
 
 /* =========================
       SERVICE CARDS
 ========================= */
 #servicesGrid{
   display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
-  margin-top:18px;
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:20px;
 }
 .serviceCard{
-  border-radius:20px;
-  overflow:hidden;
-  background:rgba(0,0,0,.45);
-  box-shadow:var(--shadow);
-  border:1px solid rgba(255,255,255,.2);
-  display:flex;
-  flex-direction:column;
+  background: rgba(255,255,255,0.05);
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.3s;
 }
-.serviceImg{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-}
-.serviceBody{
-  padding:14px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-.serviceTitle{
-  font-weight:700;
-  font-size:1rem;
-}
-.serviceDesc{
-  font-size:.8rem;
-  opacity:.9;
-  line-height:1.4;
-}
-.serviceMeta{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:6px;
-  gap:8px;
-}
-.price{
-  font-weight:700;
-  font-size:.95rem;
-}
-.serviceBtns{
-  display:flex;
-  gap:8px;
-}
-.smallBtn{
-  padding:8px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.25);
-  font-size:.75rem;
-  font-weight:600;
-}
-.addBtn{
-  padding:8px 12px;
-  border-radius:999px;
-  background:linear-gradient(135deg,var(--sun),var(--sunset));
-  color:#000;
-  font-weight:700;
-  font-size:.75rem;
-}
+.serviceImg { width: 100%; height: 180px; object-fit: cover; }
+.serviceBody { padding: 20px; }
+.serviceTitle { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
+.serviceDesc { font-size: 0.85rem; opacity: 0.7; line-height: 1.5; margin-bottom: 15px; }
+.price { font-weight: 700; color: var(--sun); font-size: 1.1rem; }
 
 /* =========================
-      CART PANEL
-========================= */
-#cartPanel{
-  position:fixed;
-  inset:auto 0 0 0;
-  background:rgba(0,0,0,.9);
-  backdrop-filter:blur(18px);
-  border-top:1px solid rgba(255,255,255,.2);
-  z-index:80;
-  transform:translateY(100%);
-  transition:.4s ease;
-  max-height:90vh;
-  overflow-y:auto;
-}
-#cartPanel.open{transform:translateY(0);}
-#cartHeader{
-  padding:12px 16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid rgba(255,255,255,.15);
-}
-#cartHeader h3{font-size:1rem;}
-#cartItems{
-  padding:12px 16px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-.cartItem{
-  background:rgba(255,255,255,.1);
-  border-radius:14px;
-  padding:10px;
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:6px;
-}
-.cartItemTitle{
-  font-size:.8rem;
-  font-weight:600;
-}
-.cartItemMeta{
-  font-size:.7rem;
-  opacity:.85;
-}
-.cartItemPrice{
-  font-size:.8rem;
-  font-weight:700;
-}
-.removeBtn{
-  font-size:.7rem;
-  opacity:.7;
-  text-decoration:underline;
-}
-#cartFooter{
-  padding:14px 16px;
-  border-top:1px solid rgba(255,255,255,.15);
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-#cartTotal{
-  font-weight:700;
-  font-size:1.1rem;
-}
-#checkoutBtn{
-  padding:14px;
-  border-radius:999px;
-  background:linear-gradient(135deg,var(--sun),var(--sunset));
-  color:#000;
-  font-weight:800;
-  text-align:center;
-}
-
-/* =========================
-      DATE / TIME MODAL
-========================= */
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(8px);
-  z-index:120;
-  display:none;
-  place-items:center;
-}
-.modal.open{display:grid;}
-.modalCard{
-  width:92%;
-  max-width:420px;
-  background:rgba(0,0,0,.9);
-  border-radius:22px;
-  padding:18px;
-  box-shadow:var(--shadow);
-  border:1px solid rgba(255,255,255,.25);
-}
-.modalTitle{
-  font-weight:700;
-  font-size:1rem;
-  margin-bottom:8px;
-}
-.modalText{
-  font-size:.8rem;
-  opacity:.9;
-  margin-bottom:12px;
-}
-.modalRow{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  margin-bottom:10px;
-}
-.modalRow label{
-  font-size:.7rem;
-  opacity:.85;
-}
-.modalRow input, .modalRow select{
-  padding:10px;
-  border-radius:12px;
-  border:none;
-  background:rgba(255,255,255,.15);
-  color:#fff;
-}
-.modalBtns{
-  display:flex;
-  gap:8px;
-  margin-top:12px;
-}
-.modalBtns button{
-  flex:1;
-  padding:12px;
-  border-radius:999px;
-  font-weight:700;
-}
-.confirmBtn{
-  background:linear-gradient(135deg,var(--sun),var(--sunset));
-  color:#000;
-}
-.cancelBtn{
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.25);
-}
-
-/* =========================
-      REVIEWS
-========================= */
-#reviewsGrid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-  margin-top:14px;
-}
-.reviewCard{
-  background:rgba(255,255,255,.12);
-  border-radius:16px;
-  padding:14px;
-  border:1px solid rgba(255,255,255,.2);
-}
-.reviewName{
-  font-weight:700;
-  font-size:.85rem;
-}
-.reviewText{
-  font-size:.8rem;
-  opacity:.9;
-  margin-top:4px;
-  line-height:1.4;
-}
-.reviewStars{
-  margin-top:6px;
-  color:#FFD166;
-  font-size:.85rem;
-}
-
-/* =========================
-      FOOTER
-========================= */
-footer{
-  padding:24px 16px 80px;
-  background:rgba(0,0,0,.85);
-  border-top:1px solid rgba(255,255,255,.15);
-}
-.footerGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-}
-.footerCol h4{
-  font-size:.9rem;
-  margin-bottom:6px;
-}
-.footerCol a{
-  display:block;
-  font-size:.75rem;
-  opacity:.9;
-  margin-bottom:4px;
-}
-
-/* =========================
-      FLOATING CART BUTTON
-========================= */
-#cartFab{
-  position:fixed;
-  right:14px;
-  bottom:84px;
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--sun),var(--sunset));
-  color:#000;
-  display:grid;
-  place-items:center;
-  font-weight:900;
-  box-shadow:0 10px 25px rgba(0,0,0,.45);
-  z-index:90;
-}
-#cartCount{
-  position:absolute;
-  top:-4px;
-  right:-4px;
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  background:#000;
-  color:#fff;
-  display:grid;
-  place-items:center;
-  font-size:.7rem;
-  font-weight:700;
-}
-
-/* =========================
-      AMIGO AVATAR SYSTEM
+      AMIGO FOX WRAPPER
 ========================= */
 #amigoWrapper{
   position:fixed;
-  left:12px;
-  bottom:84px;
-  z-index:95;
-  display:flex;
-  align-items:flex-end;
-  gap:8px;
-  touch-action:none;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
-#amigo{
-  width:74px;
-  height:74px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#6EE7B7,#34D399);
-  box-shadow:0 10px 25px rgba(0,0,0,.45);
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  border:3px solid rgba(255,255,255,.6);
-  position:relative;
+#amigoBubble {
+  background: #fff;
+  color: #000;
+  padding: 12px 18px;
+  border-radius: 20px 20px 0 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  max-width: 250px;
+  box-shadow: var(--shadow);
+  display: none;
 }
-#amigo svg{
-  width:100%;
-  height:100%;
-}
-#amigoBubble{
-  max-width:220px;
-  background:rgba(0,0,0,.85);
-  border-radius:16px;
-  padding:10px 12px;
-  font-size:.75rem;
-  line-height:1.4;
-  box-shadow:var(--shadow);
-  border:1px solid rgba(255,255,255,.25);
-  display:none;
-}
-#amigoBubble.show{display:block;}
-#amigoMenu{
-  position:absolute;
-  bottom:80px;
-  left:0;
-  background:rgba(0,0,0,.9);
-  border-radius:16px;
-  padding:10px;
-  box-shadow:var(--shadow);
-  border:1px solid rgba(255,255,255,.25);
-  display:none;
-  flex-direction:column;
-  gap:6px;
-  min-width:160px;
-}
-#amigoMenu.show{display:flex;}
-.amigoMenuBtn{
-  padding:8px 10px;
-  border-radius:10px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.25);
-  font-size:.7rem;
-  font-weight:600;
-  text-align:left;
-}
+#amigoBubble.show { display: block; }
 
-/* Hide / Move controls */
-#amigoControls{
-  position:fixed;
-  left:12px;
-  bottom:40px;
-  display:flex;
-  gap:6px;
-  z-index:96;
-}
-.amigoCtrlBtn{
-  padding:6px 10px;
-  border-radius:999px;
-  background:rgba(0,0,0,.6);
-  border:1px solid rgba(255,255,255,.3);
-  font-size:.65rem;
+#amigoFox {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
 }
 
 /* =========================
-      ADMIN PANEL
+      CART FAB
 ========================= */
-#adminPanel{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(12px);
-  z-index:200;
-  display:none;
-  place-items:center;
+#cartFab {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: var(--white);
+  color: #000;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow);
+  z-index: 99;
 }
-#adminPanel.open{display:grid;}
-#adminCard{
-  width:92%;
-  max-width:420px;
-  background:rgba(0,0,0,.95);
-  border-radius:22px;
-  padding:18px;
-  box-shadow:var(--shadow);
-  border:1px solid rgba(255,255,255,.25);
-}
-#adminCard h3{
-  font-size:1rem;
-  margin-bottom:10px;
-}
-.adminRow{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  margin-bottom:10px;
-}
-.adminRow label{
-  font-size:.7rem;
-  opacity:.85;
-}
-.adminRow input, .adminRow textarea{
-  padding:10px;
-  border-radius:12px;
-  border:none;
-  background:rgba(255,255,255,.15);
-  color:#fff;
-  font-size:.75rem;
-}
-.adminBtns{
-  display:flex;
-  gap:8px;
-}
-.adminBtns button{
-  flex:1;
-  padding:12px;
-  border-radius:999px;
-  font-weight:700;
+#cartCount {
+  position: absolute;
+  top: 0; right: 0;
+  background: var(--sun);
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  font-size: 0.7rem; font-weight: 700;
+  display: grid; place-items: center;
 }
 
-/* =========================
-      UTILITIES
-========================= */
-.center{text-align:center;}
-.mt8{margin-top:8px;}
-.mt12{margin-top:12px;}
-.mt16{margin-top:16px;}
-.mt20{margin-top:20px;}
-.mb12{margin-bottom:12px;}
-.mb20{margin-bottom:20px;}
-.small{font-size:.75rem;opacity:.85;}
-.divider{
-  height:1px;
-  background:rgba(255,255,255,.2);
-  margin:12px 0;
+/* MODALS & OTHERS */
+.modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px); display: none; place-items: center; z-index: 200;
 }
-
-/* =========================
-      RESPONSIVE (TABLET+)
-========================= */
-@media(min-width:600px){
-  #categoryGrid{grid-template-columns:repeat(4,1fr);}
-  #servicesGrid{grid-template-columns:repeat(2,1fr);}
-  #reviewsGrid{grid-template-columns:repeat(2,1fr);}
+.modal.open { display: grid; }
+.modalCard {
+  background: #111; padding: 30px; border-radius: 30px;
+  width: 90%; max-width: 400px; border: 1px solid var(--sun);
 }
-@media(min-width:900px){
-  #servicesGrid{grid-template-columns:repeat(3,1fr);}
-  #reviewsGrid{grid-template-columns:repeat(3,1fr);}
+input, select {
+  width: 100%; padding: 12px; margin: 10px 0;
+  border-radius: 10px; border: 1px solid #333; background: #222; color: #fff;
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-      BACKGROUND
-========================= -->
 <div id="bg"></div>
 <div id="bgOverlay"></div>
 
-<!-- =========================
-      HEADER
-========================= -->
 <header>
-  <div id="logo" onclick="logoClick()">
-    <!-- SVG LOGO (Horizonte + avión + atardecer) -->
-    <svg viewBox="0 0 100 100" aria-hidden="true">
-      <defs>
-        <linearGradient id="sunGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#FFB703"/>
-          <stop offset="100%" stop-color="#FB8500"/>
-        </linearGradient>
-        <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#219EBC"/>
-          <stop offset="100%" stop-color="#023047"/>
-        </linearGradient>
-      </defs>
-      <!-- Sun -->
-      <circle cx="50" cy="42" r="18" fill="url(#sunGrad)"/>
-      <!-- Horizon line -->
-      <rect x="0" y="58" width="100" height="42" fill="url(#seaGrad)"/>
-      <!-- Plane silhouette -->
-      <path d="M20 45 L80 40 L78 43 L20 48 Z" fill="#fff"/>
-      <path d="M60 38 L70 28 L72 30 L62 40 Z" fill="#fff"/>
+  <div id="logo">
+    <svg viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="45" fill="rgba(255,159,69,0.1)" />
+      <path d="M50 20 L20 50 L50 80 L80 50 Z" fill="var(--sun)" />
+      <path d="M50 20 L35 40 L50 50 L65 40 Z" fill="#fff" opacity="0.5"/>
+      <circle cx="40" cy="50" r="3" fill="#000"/>
+      <circle cx="60" cy="50" r="3" fill="#000"/>
     </svg>
     <div id="logoText">
-      Horizon Ventura™
-      <small>Build Your Cuban Dream</small>
+      HORIZON VENTURA™
+      <small>The Future of Cuban Hospitality</small>
     </div>
   </div>
-
-  <div id="langBar"></div>
-
-  <button id="menuBtn" onclick="openMainMenu()">☰</button>
+  <div style="font-size: 0.8rem; font-weight: 600; color: var(--sun);">EST. 2026 | CANADA - CUBA</div>
 </header>
 
-<!-- =========================
-      MAIN CONTENT
-========================= -->
-<main id="app">
-
-  <!-- ========================= HERO / LAUNCH ========================= -->
+<main>
   <section id="hero" class="section">
-    <div id="heroGlass">
-      <h1 id="heroTitle">Build Your Cuban Dream Trip</h1>
-      <p id="heroSubtitle">Pay online. Live the real Cuba. Beach, culture, food, adventure — all in one platform.</p>
-
-      <div class="heroBtns">
-        <button class="primaryBtn" onclick="scrollToSection('builder')">Start Building</button>
-        <button class="secondaryBtn" onclick="scrollToSection('why')">Why Us</button>
-      </div>
-
-      <div id="destinationsBar"></div>
-      <div id="citiesBar"></div>
+    <h1>Experience Cuba <br><span style="color:var(--sun)">Without the Compromise.</span></h1>
+    <p>The only platform that connects you directly with verified luxury stays, private mobility, and elite local experiences. Managed in Canada, executed with passion in Cuba.</p>
+    <div>
+      <button class="primaryBtn" onclick="scrollToSection('builder')">Start Your Journey</button>
     </div>
   </section>
 
-  <!-- ========================= BUILDER ========================= -->
   <section id="builder" class="section">
-    <div class="sectionTitle" id="builderTitle">Build Your Experience</div>
-    <div class="sectionSubtitle" id="builderSubtitle">Choose a destination, then pick what you want to live — stays, food, adventures, transport, kids, beauty and more.</div>
-
+    <h2 class="sectionTitle">Build Your Empire</h2>
+    <p class="sectionSubtitle">Select a category and add it to your experience. Everything is handled. No cash needed on the ground.</p>
+   
     <div id="categoryGrid"></div>
     <div id="servicesGrid"></div>
   </section>
 
-  <!-- ========================= WHY US ========================= -->
-  <section id="why" class="section">
-    <div class="sectionTitle" id="whyTitle">Why Horizon Ventura?</div>
-    <div class="sectionSubtitle" id="whySubtitle">
-      Because Cuba should feel like freedom — not logistics.
-    </div>
-
-    <div class="serviceCard">
-      <div class="serviceBody">
-        <p id="whyText" class="serviceDesc">
-          We built the first all-in-one Cuban experience platform where you design your entire trip like a shopping cart — before you even land.
-          <br><br>
-          No scams. No cash stress. No language barriers. No tourist traps.
-          <br><br>
-          Just real Cuba — done right.
-        </p>
+  <section id="why" class="section" style="background: rgba(255,159,69,0.05); border-radius: 40px;">
+    <h2 class="sectionTitle">Why the Fox?</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px;">
+      <div>
+        <h4 style="color: var(--sun);">Direct Management</h4>
+        <p style="font-size: 0.9rem; opacity: 0.8;">We don't use middle-men. Our founding family in Cuba manages every driver, chef, and host personally.</p>
+      </div>
+      <div>
+        <h4 style="color: var(--sun);">Canadian Security</h4>
+        <p style="font-size: 0.9rem; opacity: 0.8;">Pay securely in CAD. Your funds are protected by Canadian consumer laws until your service is delivered.</p>
+      </div>
+      <div>
+        <h4 style="color: var(--sun);">Asset-Light, Local-Heavy</h4>
+        <p style="font-size: 0.9rem; opacity: 0.8;">We activate the best local talent. When you book with us, you are supporting real Cuban families directly.</p>
       </div>
     </div>
   </section>
-
-  <!-- ========================= REVIEWS ========================= -->
-  <section id="reviews" class="section">
-    <div class="sectionTitle" id="reviewsTitle">Real Reviews</div>
-    <div class="sectionSubtitle" id="reviewsSubtitle">What travelers say about their Horizon Ventura experience</div>
-
-    <div id="reviewsGrid"></div>
-
-    <div class="mt12">
-      <button class="secondaryBtn" onclick="openReviewModal()">Write a Review</button>
-    </div>
-  </section>
-
-  <!-- ========================= FAQ ========================= -->
-  <section id="faq" class="section">
-    <div class="sectionTitle" id="faqTitle">FAQ</div>
-    <div class="serviceCard">
-      <div class="serviceBody">
-        <p class="serviceDesc" id="faqText">
-          <strong>Q:</strong> Is payment safe?<br>
-          <strong>A:</strong> Yes — payments are processed in Canada and your itinerary is confirmed before arrival.
-          <br><br>
-          <strong>Q:</strong> Do I need cash?<br>
-          <strong>A:</strong> No. Most services are prepaid. Optional private exchange available.
-          <br><br>
-          <strong>Q:</strong> Is this legal?<br>
-          <strong>A:</strong> Yes. We operate under Canadian digital service regulations and local Cuban partnerships.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= CONTACT ========================= -->
-  <section id="contact" class="section">
-    <div class="sectionTitle" id="contactTitle">Contact</div>
-    <div class="serviceCard">
-      <div class="serviceBody">
-        <p class="serviceDesc">
-          📞 WhatsApp: <strong>+1 437-605-0912</strong><br>
-          📧 Email: <strong>Hello@HorizonVentura.com</strong>
-        </p>
-      </div>
-    </div>
-  </section>
-
 </main>
 
-<!-- ========================= CART PANEL ========================= -->
-<div id="cartPanel">
-  <div id="cartHeader">
-    <h3 id="cartTitle">Your Experience Cart</h3>
-    <button onclick="toggleCart()">✕</button>
-  </div>
-  <div id="cartItems"></div>
-  <div id="cartFooter">
-    <div id="cartTotal">Total: $0 CAD</div>
-    <div id="checkoutBtn" onclick="checkout()">Checkout</div>
-  </div>
-</div>
-
-<div id="cartFab" onclick="toggleCart()">
-  🛒
-  <div id="cartCount">0</div>
-</div>
-
-<!-- ========================= DATE / TIME MODAL ========================= -->
-<div id="dateModal" class="modal">
-  <div class="modalCard">
-    <div class="modalTitle" id="dateModalTitle">Select Date & Time</div>
-    <div class="modalText" id="dateModalText">Choose when you want to enjoy this experience.</div>
-
-    <div class="modalRow">
-      <label id="dateLabel">Date</label>
-      <input type="date" id="modalDate"/>
-    </div>
-    <div class="modalRow">
-      <label id="timeLabel">Time</label>
-      <input type="time" id="modalTime"/>
-    </div>
-    <div class="modalRow">
-      <label id="peopleLabel">People</label>
-      <input type="number" id="modalPeople" min="1" value="1"/>
-    </div>
-
-    <div class="modalBtns">
-      <button class="cancelBtn" onclick="closeDateModal()">Cancel</button>
-      <button class="confirmBtn" onclick="confirmDate()">Add</button>
-    </div>
-  </div>
-</div>
-
-<!-- ========================= REVIEW MODAL ========================= -->
-<div id="reviewModal" class="modal">
-  <div class="modalCard">
-    <div class="modalTitle" id="reviewModalTitle">Write a Review</div>
-
-    <div class="modalRow">
-      <label id="reviewNameLabel">Your Name</label>
-      <input type="text" id="reviewName"/>
-    </div>
-    <div class="modalRow">
-      <label id="reviewTextLabel">Your Experience</label>
-      <textarea id="reviewText" rows="4"></textarea>
-    </div>
-    <div class="modalRow">
-      <label id="reviewStarsLabel">Rating (1-5)</label>
-      <select id="reviewStars">
-        <option>5</option>
-        <option>4</option>
-        <option>3</option>
-        <option>2</option>
-        <option>1</option>
-      </select>
-    </div>
-
-    <div class="modalBtns">
-      <button class="cancelBtn" onclick="closeReviewModal()">Cancel</button>
-      <button class="confirmBtn" onclick="submitReview()">Submit</button>
-    </div>
-  </div>
-</div>
-
-<!-- ========================= WELCOME GIFT MODAL ========================= -->
-<div id="giftModal" class="modal">
-  <div class="modalCard">
-    <div class="modalTitle" id="giftTitle">🎁 Welcome Gift</div>
-    <div class="modalText" id="giftSubtitle">Choose one free bonus for your first Horizon Ventura experience.</div>
-
-    <div id="giftOptions" style="display:flex;flex-direction:column;gap:8px;">
-      <button class="secondaryBtn" onclick="selectGift('tattoo')">Free $100 Tattoo Credit</button>
-      <button class="secondaryBtn" onclick="selectGift('pickup')">Free Airport Pickup</button>
-      <button class="secondaryBtn" onclick="selectGift('dinner')">Free Luxury Cuban Dinner</button>
-      <button class="secondaryBtn" onclick="selectGift('snorkel')">Free Snorkeling Tour</button>
-      <button class="secondaryBtn" onclick="selectGift('massage')">Free Massage Session</button>
-    </div>
-  </div>
-</div>
-
-<!-- ========================= ADMIN PANEL ========================= -->
-<div id="adminPanel">
-  <div id="adminCard">
-    <h3>Admin Editor</h3>
-
-    <div id="adminLogin">
-      <div class="adminRow">
-        <label>Password</label>
-        <input type="password" id="adminPassword"/>
-      </div>
-      <div class="adminBtns">
-        <button class="cancelBtn" onclick="closeAdmin()">Cancel</button>
-        <button class="confirmBtn" onclick="adminLogin()">Login</button>
-      </div>
-    </div>
-
-    <div id="adminEditor" class="hidden">
-      <div class="adminRow">
-        <label>Edit Hero Title</label>
-        <input id="adminHeroTitle"/>
-      </div>
-      <div class="adminRow">
-        <label>Edit Hero Subtitle</label>
-        <textarea id="adminHeroSubtitle" rows="2"></textarea>
-      </div>
-      <div class="adminRow">
-        <label>Edit Why Us Text</label>
-        <textarea id="adminWhyText" rows="4"></textarea>
-      </div>
-      <div class="adminRow">
-        <label>Edit WhatsApp</label>
-        <input id="adminPhone"/>
-      </div>
-      <div class="adminRow">
-        <label>Edit Email</label>
-        <input id="adminEmail"/>
-      </div>
-
-      <div class="adminBtns">
-        <button class="cancelBtn" onclick="closeAdmin()">Close</button>
-        <button class="confirmBtn" onclick="saveAdmin()">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========================= AMIGO AVATAR ========================= -->
 <div id="amigoWrapper">
-  <div id="amigoMenu">
-    <button class="amigoMenuBtn" onclick="amigoGo('builder')">Build My Trip</button>
-    <button class="amigoMenuBtn" onclick="amigoGo('why')">Why Choose Us</button>
-    <button class="amigoMenuBtn" onclick="amigoGo('reviews')">Reviews</button>
-    <button class="amigoMenuBtn" onclick="amigoGo('contact')">Contact</button>
-    <button class="amigoMenuBtn" onclick="toggleCart()">Open Cart</button>
-  </div>
-
-  <div id="amigoBubble"></div>
-
-  <div id="amigo" onclick="toggleAmigoMenu()">
-    <!-- AMIGO SVG CHARACTER (Caribbean Lizard Traveler) -->
-    <svg viewBox="0 0 100 100">
-      <!-- Body -->
-      <circle cx="50" cy="50" r="38" fill="#4ADE80"/>
-      <!-- Belly -->
-      <ellipse cx="50" cy="62" rx="22" ry="18" fill="#86EFAC"/>
-      <!-- Eyes -->
-      <circle cx="38" cy="42" r="6" fill="#fff"/>
-      <circle cx="62" cy="42" r="6" fill="#fff"/>
-      <circle cx="40" cy="44" r="3" fill="#000"/>
-      <circle cx="64" cy="44" r="3" fill="#000"/>
-      <!-- Smile -->
-      <path d="M38 58 Q50 66 62 58" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <!-- Hat -->
-      <ellipse cx="50" cy="24" rx="26" ry="8" fill="#F59E0B"/>
-      <rect x="30" y="14" width="40" height="12" rx="6" fill="#FBBF24"/>
-      <!-- Shirt -->
-      <path d="M22 64 Q50 54 78 64 L78 84 Q50 90 22 84 Z" fill="#38BDF8"/>
-      <!-- Suitcase -->
-      <rect x="70" y="66" width="14" height="14" rx="3" fill="#FB7185"/>
-      <rect x="73" y="62" width="8" height="6" rx="2" fill="#FB7185"/>
+  <div id="amigoBubble">Hello! I'm the Horizon Fox. Ready to see the real Cuba?</div>
+  <div id="amigoFox" class="fox-avatar" onclick="talkFox()">
+    <svg viewBox="0 0 200 200">
+      <path d="M40 80 L100 20 L160 80 L100 140 Z" fill="#FF9F45" stroke="#E67E22" stroke-width="4"/>
+      <path d="M40 80 L30 40 L70 50 Z" fill="#FF9F45" stroke="#E67E22" stroke-width="3"/>
+      <path d="M160 80 L170 40 L130 50 Z" fill="#FF9F45" stroke="#E67E22" stroke-width="3"/>
+      <rect x="60" y="75" width="30" height="15" rx="5" fill="#000"/>
+      <rect x="110" y="75" width="30" height="15" rx="5" fill="#000"/>
+      <path d="M90 82 L110 82" stroke="#000" stroke-width="3"/>
+      <circle cx="100" cy="110" r="5" fill="#000"/>
+      <path d="M70 130 Q100 160 130 130" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
     </svg>
   </div>
 </div>
 
-<div id="amigoControls">
-  <button class="amigoCtrlBtn" onclick="hideAmigo()">Hide</button>
-  <button class="amigoCtrlBtn" onclick="resetAmigo()">Reset</button>
+<div id="cartFab" onclick="toggleCart()">
+  🛒 <div id="cartCount">0</div>
 </div>
 
-<!-- ========================= FOOTER ========================= -->
-<footer>
-  <div class="footerGrid">
-    <div class="footerCol">
-      <h4>Horizon Ventura™</h4>
-      <a href="#why">Why Us</a>
-      <a href="#builder">Build Your Trip</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="footerCol">
-      <h4>Legal</h4>
-      <a href="#" onclick="openLegal('terms')">Terms & Conditions</a>
-      <a href="#" onclick="openLegal('privacy')">Privacy Policy</a>
-      <a href="#" onclick="openLegal('payments')">Payments & Security</a>
-    </div>
-  </div>
-  <div class="mt20 small center">
-    © 2026 Horizon Ventura™ — All rights reserved.
-  </div>
-</footer>
-
-<!-- ========================= LEGAL MODAL ========================= -->
-<div id="legalModal" class="modal">
+<div id="cartPanel" class="modal">
   <div class="modalCard">
-    <div class="modalTitle" id="legalTitle"></div>
-    <div class="modalText" id="legalText" style="max-height:60vh;overflow:auto;"></div>
-    <div class="modalBtns">
-      <button class="confirmBtn" onclick="closeLegal()">Close</button>
-    </div>
+    <h3 style="margin-bottom: 20px;">Your Experience Cart</h3>
+    <div id="cartItems" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;"></div>
+    <div id="cartTotal" style="font-weight: 700; font-size: 1.2rem; margin-bottom: 20px;">Total: $0 CAD</div>
+    <button class="primaryBtn" style="width: 100%;" onclick="checkout()">Secure Checkout</button>
+    <button style="width: 100%; margin-top: 10px; opacity: 0.6;" onclick="toggleCart()">Close</button>
+  </div>
+</div>
+
+<div id="dateModal" class="modal">
+  <div class="modalCard">
+    <h3 id="modalTitle">Set Your Schedule</h3>
+    <label>Date</label>
+    <input type="date" id="modalDate">
+    <label>People</label>
+    <input type="number" id="modalPeople" value="1" min="1">
+    <button class="primaryBtn" style="width: 100%;" onclick="confirmDate()">Add to Plan</button>
+    <button style="width: 100%; margin-top: 10px; opacity: 0.6;" onclick="closeDateModal()">Cancel</button>
   </div>
 </div>
 
 <script>
-/* =========================================================
-   HORIZON VENTURA — FULL APPLICATION LOGIC
-   Single-file, mobile-first, production-ready
-========================================================= */
-
-/* =========================
-   GLOBAL STATE
-========================= */
 const state = {
-  language: 'en',
-  destination: 'cuba',
-  city: 'guardalavaca',
-  category: null,
+  category: 'stays',
   cart: [],
-  tempItem: null,
-  reviews: JSON.parse(localStorage.getItem('hv_reviews')||'[]'),
-  giftUsed: localStorage.getItem('hv_gift_used') === 'true',
-  amigoHidden: localStorage.getItem('hv_amigo_hidden') === 'true',
-  adminUnlocked: localStorage.getItem('hv_admin') === 'true'
+  tempItem: null
 };
 
-/* =========================
-   BACKGROUND IMAGES (REALISTIC)
-========================= */
-const backgrounds = {
-  day: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1400&q=80", // Caribbean beach day
-  night: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80" // Beach night
-};
-
-/* =========================
-   LANGUAGE SYSTEM
-========================= */
-const languages = {
-  en:{name:"English",flag:"https://flagcdn.com/w40/us.png"},
-  es:{name:"Español",flag:"https://flagcdn.com/w40/es.png"},
-  fr:{name:"Français",flag:"https://flagcdn.com/w40/fr.png"},
-  it:{name:"Italiano",flag:"https://flagcdn.com/w40/it.png"},
-  de:{name:"Deutsch",flag:"https://flagcdn.com/w40/de.png"},
-  hi:{name:"हिन्दी",flag:"https://flagcdn.com/w40/in.png"},
-  ja:{name:"日本語",flag:"https://flagcdn.com/w40/jp.png"},
-  ar:{name:"العربية",flag:"https://flagcdn.com/w40/sa.png"}
-};
-
-const translations = {
-en:{
-  heroTitle:"Build Your Cuban Dream Trip",
-  heroSubtitle:"Pay online. Live the real Cuba. Beach, culture, food, adventure — all in one platform.",
-  builderTitle:"Build Your Experience",
-  builderSubtitle:"Choose a destination, then pick what you want to live — stays, food, adventures, transport, kids, beauty and more.",
-  whyTitle:"Why Horizon Ventura?",
-  whySubtitle:"Because Cuba should feel like freedom — not logistics.",
-  whyText:"We built the first all-in-one Cuban experience platform where you design your entire trip like a shopping cart — before you even land.\n\nNo scams. No cash stress. No language barriers. No tourist traps.\n\nJust real Cuba — done right.",
-  reviewsTitle:"Real Reviews",
-  reviewsSubtitle:"What travelers say about their Horizon Ventura experience",
-  faqTitle:"FAQ",
-  faqText:"Q: Is payment safe?\nA: Yes — payments are processed in Canada and your itinerary is confirmed before arrival.\n\nQ: Do I need cash?\nA: No. Most services are prepaid. Optional private exchange available.\n\nQ: Is this legal?\nA: Yes. We operate under Canadian digital service regulations and local Cuban partnerships.",
-  contactTitle:"Contact",
-  cartTitle:"Your Experience Cart",
-  dateModalTitle:"Select Date & Time",
-  dateModalText:"Choose when you want to enjoy this experience.",
-  dateLabel:"Date",
-  timeLabel:"Time",
-  peopleLabel:"People",
-  reviewModalTitle:"Write a Review",
-  reviewNameLabel:"Your Name",
-  reviewTextLabel:"Your Experience",
-  reviewStarsLabel:"Rating (1-5)",
-  giftTitle:"Welcome Gift",
-  giftSubtitle:"Choose one free bonus for your first Horizon Ventura experience.",
-  categories:{
-    stays:"Stays",
-    food:"Food",
-    adventures:"Adventures",
-    transport:"Transport",
-    kids:"Kids",
-    beauty:"Beauty & Style",
-    health:"Health",
-    exchange:"Money Exchange",
-    events:"Events"
-  },
-  destinations:{
-    cuba:"Cuba",
-    jamaica:"Jamaica",
-    trinidad:"Trinidad & Tobago",
-    mexico:"Mexico",
-    colombia:"Colombia"
-  },
-  cities:{
-    guardalavaca:"Guardalavaca",
-    holguin:"Holguín",
-    banes:"Banes",
-    santiago:"Santiago de Cuba",
-    guantanamo:"Guantánamo",
-    bayamo:"Bayamo"
-  },
-  comingSoon:"Coming Soon",
-  checkout:"Checkout",
-  add:"Add",
-  info:"Info",
-  book:"Book",
-  total:"Total",
-  hide:"Hide",
-  reset:"Reset",
-  thanks:"Thanks for choosing Horizon Ventura! 🌅 Your journey starts here."
-},
-es:{
-  heroTitle:"Construye Tu Viaje Soñado a Cuba",
-  heroSubtitle:"Paga online. Vive la Cuba real. Playa, cultura, comida y aventura — todo en una sola plataforma.",
-  builderTitle:"Construye Tu Experiencia",
-  builderSubtitle:"Elige un destino y luego selecciona lo que quieras vivir — alojamiento, comida, aventuras, transporte, niños, belleza y más.",
-  whyTitle:"¿Por qué Horizon Ventura?",
-  whySubtitle:"Porque Cuba debe sentirse como libertad — no logística.",
-  whyText:"Creamos la primera plataforma todo-en-uno para experiencias en Cuba donde diseñas tu viaje completo como un carrito de compras — antes de aterrizar.\n\nSin estafas. Sin estrés de efectivo. Sin barreras de idioma. Sin trampas turísticas.\n\nSolo Cuba real — bien hecha.",
-  reviewsTitle:"Reseñas Reales",
-  reviewsSubtitle:"Lo que dicen los viajeros sobre Horizon Ventura",
-  faqTitle:"Preguntas Frecuentes",
-  faqText:"P: ¿El pago es seguro?\nR: Sí — los pagos se procesan en Canadá y tu itinerario se confirma antes de llegar.\n\nP: ¿Necesito efectivo?\nR: No. La mayoría de los servicios están prepagados. Cambio privado opcional disponible.\n\nP: ¿Esto es legal?\nR: Sí. Operamos bajo regulaciones canadienses y alianzas locales en Cuba.",
-  contactTitle:"Contacto",
-  cartTitle:"Tu Carrito de Experiencias",
-  dateModalTitle:"Selecciona Fecha y Hora",
-  dateModalText:"Elige cuándo quieres disfrutar esta experiencia.",
-  dateLabel:"Fecha",
-  timeLabel:"Hora",
-  peopleLabel:"Personas",
-  reviewModalTitle:"Escribe una Reseña",
-  reviewNameLabel:"Tu Nombre",
-  reviewTextLabel:"Tu Experiencia",
-  reviewStarsLabel:"Calificación (1-5)",
-  giftTitle:"Regalo de Bienvenida",
-  giftSubtitle:"Elige un bono gratis para tu primera experiencia Horizon Ventura.",
-  categories:{
-    stays:"Alojamiento",
-    food:"Comida",
-    adventures:"Aventuras",
-    transport:"Transporte",
-    kids:"Niños",
-    beauty:"Belleza & Estilo",
-    health:"Salud",
-    exchange:"Cambio de Dinero",
-    events:"Eventos"
-  },
-  destinations:{
-    cuba:"Cuba",
-    jamaica:"Jamaica",
-    trinidad:"Trinidad y Tobago",
-    mexico:"México",
-    colombia:"Colombia"
-  },
-  cities:{
-    guardalavaca:"Guardalavaca",
-    holguin:"Holguín",
-    banes:"Banes",
-    santiago:"Santiago de Cuba",
-    guantanamo:"Guantánamo",
-    bayamo:"Bayamo"
-  },
-  comingSoon:"Próximamente",
-  checkout:"Pagar",
-  add:"Agregar",
-  info:"Info",
-  book:"Reservar",
-  total:"Total",
-  hide:"Ocultar",
-  reset:"Reiniciar",
-  thanks:"¡Gracias por elegir Horizon Ventura! 🌅 Tu viaje empieza aquí."
-},
-fr:{
-  heroTitle:"Créez Votre Voyage de Rêve à Cuba",
-  heroSubtitle:"Payez en ligne. Vivez la vraie Cuba. Plage, culture, gastronomie et aventure — tout en une seule plateforme.",
-  builderTitle:"Construisez Votre Expérience",
-  builderSubtitle:"Choisissez une destination puis sélectionnez ce que vous voulez vivre — hébergement, gastronomie, aventures, transport, enfants, beauté et plus.",
-  whyTitle:"Pourquoi Horizon Ventura?",
-  whySubtitle:"Parce que Cuba doit être une liberté — pas une logistique.",
-  whyText:"Nous avons créé la première plateforme tout-en-un pour les expériences à Cuba où vous concevez tout votre voyage comme un panier d’achat — avant même d’atterrir.\n\nPas d’arnaques. Pas de stress d’argent liquide. Pas de barrières linguistiques. Pas de pièges touristiques.\n\nJuste la vraie Cuba — bien faite.",
-  reviewsTitle:"Avis Réels",
-  reviewsSubtitle:"Ce que disent les voyageurs sur Horizon Ventura",
-  faqTitle:"FAQ",
-  faqText:"Q : Le paiement est-il sécurisé ?\nR : Oui — les paiements sont traités au Canada et votre itinéraire est confirmé avant l’arrivée.\n\nQ : Ai-je besoin d’espèces ?\nR : Non. La plupart des services sont prépayés. Échange privé optionnel disponible.\n\nQ : Est-ce légal ?\nR : Oui. Nous opérons sous les réglementations canadiennes et des partenariats locaux cubains.",
-  contactTitle:"Contact",
-  cartTitle:"Votre Panier d’Expériences",
-  dateModalTitle:"Sélectionnez Date et Heure",
-  dateModalText:"Choisissez quand vous souhaitez profiter de cette expérience.",
-  dateLabel:"Date",
-  timeLabel:"Heure",
-  peopleLabel:"Personnes",
-  reviewModalTitle:"Écrire un Avis",
-  reviewNameLabel:"Votre Nom",
-  reviewTextLabel:"Votre Expérience",
-  reviewStarsLabel:"Note (1-5)",
-  giftTitle:"Cadeau de Bienvenue",
-  giftSubtitle:"Choisissez un bonus gratuit pour votre première expérience Horizon Ventura.",
-  categories:{
-    stays:"Hébergements",
-    food:"Gastronomie",
-    adventures:"Aventures",
-    transport:"Transport",
-    kids:"Enfants",
-    beauty:"Beauté & Style",
-    health:"Santé",
-    exchange:"Change",
-    events:"Événements"
-  },
-  destinations:{
-    cuba:"Cuba",
-    jamaica:"Jamaïque",
-    trinidad:"Trinité-et-Tobago",
-    mexico:"Mexique",
-    colombia:"Colombie"
-  },
-  cities:{
-    guardalavaca:"Guardalavaca",
-    holguin:"Holguín",
-    banes:"Banes",
-    santiago:"Santiago de Cuba",
-    guantanamo:"Guantánamo",
-    bayamo:"Bayamo"
-  },
-  comingSoon:"Bientôt disponible",
-  checkout:"Paiement",
-  add:"Ajouter",
-  info:"Info",
-  book:"Réserver",
-  total:"Total",
-  hide:"Masquer",
-  reset:"Réinitialiser",
-  thanks:"Merci d’avoir choisi Horizon Ventura! 🌅 Votre voyage commence ici."
-},
-it:{
-  heroTitle:"Costruisci il Tuo Viaggio da Sogno a Cuba",
-  heroSubtitle:"Paga online. Vivi la vera Cuba. Spiaggia, cultura, cibo e avventura — tutto in un’unica piattaforma.",
-  builderTitle:"Costruisci la Tua Esperienza",
-  builderSubtitle:"Scegli una destinazione e poi seleziona ciò che vuoi vivere — alloggi, cibo, avventure, trasporti, bambini, bellezza e altro.",
-  whyTitle:"Perché Horizon Ventura?",
-  whySubtitle:"Perché Cuba dovrebbe essere libertà — non logistica.",
-  whyText:"Abbiamo creato la prima piattaforma tutto-in-uno per le esperienze a Cuba dove progetti l’intero viaggio come un carrello — prima ancora di atterrare.\n\nNiente truffe. Niente stress da contanti. Nessuna barriera linguistica. Nessuna trappola turistica.\n\nSolo la vera Cuba — fatta bene.",
-  reviewsTitle:"Recensioni Reali",
-  reviewsSubtitle:"Cosa dicono i viaggiatori su Horizon Ventura",
-  faqTitle:"FAQ",
-  faqText:"D: Il pagamento è sicuro?\nR: Sì — i pagamenti sono elaborati in Canada e il tuo itinerario è confermato prima dell’arrivo.\n\nD: Ho bisogno di contanti?\nR: No. La maggior parte dei servizi è prepagata. Cambio privato opzionale disponibile.\n\nD: È legale?\nR: Sì. Operiamo secondo le normative canadesi e partnership locali cubane.",
-  contactTitle:"Contatto",
-  cartTitle:"Il Tuo Carrello Esperienze",
-  dateModalTitle:"Seleziona Data e Ora",
-  dateModalText:"Scegli quando vuoi goderti questa esperienza.",
-  dateLabel:"Data",
-  timeLabel:"Ora",
-  peopleLabel:"Persone",
-  reviewModalTitle:"Scrivi una Recensione",
-  reviewNameLabel:"Il Tuo Nome",
-  reviewTextLabel:"La Tua Esperienza",
-  reviewStarsLabel:"Valutazione (1-5)",
-  giftTitle:"Regalo di Benvenuto",
-  giftSubtitle:"Scegli un bonus gratuito per la tua prima esperienza Horizon Ventura.",
-  categories:{
-    stays:"Alloggi",
-    food:"Cibo",
-    adventures:"Avventure",
-    transport:"Trasporti",
-    kids:"Bambini",
-    beauty:"Bellezza & Stile",
-    health:"Salute",
-    exchange:"Cambio Valuta",
-    events:"Eventi"
-  },
-  destinations:{
-    cuba:"Cuba",
-    jamaica:"Giamaica",
-    trinidad:"Trinidad e Tobago",
-    mexico:"Messico",
-    colombia:"Colombia"
-  },
-  cities:{
-    guardalavaca:"Guardalavaca",
-    holguin:"Holguín",
-    banes:"Banes",
-    santiago:"Santiago de Cuba",
-    guantanamo:"Guantánamo",
-    bayamo:"Bayamo"
-  },
-  comingSoon:"In Arrivo",
-  checkout:"Checkout",
-  add:"Aggiungi",
-  info:"Info",
-  book:"Prenota",
-  total:"Totale",
-  hide:"Nascondi",
-  reset:"Reset",
-  thanks:"Grazie per aver scelto Horizon Ventura! 🌅 Il tuo viaggio inizia qui."
-},
-de:{
-  heroTitle:"Baue Deine Traumreise nach Kuba",
-  heroSubtitle:"Online bezahlen. Das echte Kuba erleben. Strand, Kultur, Essen und Abenteuer — alles auf einer Plattform.",
-  builderTitle:"Baue Dein Erlebnis",
-  builderSubtitle:"Wähle ein Reiseziel und dann, was du erleben möchtest — Unterkunft, Essen, Abenteuer, Transport, Kinder, Beauty und mehr.",
-  whyTitle:"Warum Horizon Ventura?",
-  whySubtitle:"Weil Kuba Freiheit sein sollte — keine Logistik.",
-  whyText:"Wir haben die erste All-in-One-Plattform für Kuba-Erlebnisse entwickelt, auf der du deine komplette Reise wie einen Warenkorb gestaltest — noch bevor du landest.\n\nKeine Betrügereien. Kein Bargeldstress. Keine Sprachbarrieren. Keine Touristenfallen.\n\nNur echtes Kuba — richtig gemacht.",
-  reviewsTitle:"Echte Bewertungen",
-  reviewsSubtitle:"Was Reisende über Horizon Ventura sagen",
-  faqTitle:"FAQ",
-  faqText:"F: Ist die Zahlung sicher?\nA: Ja — Zahlungen werden in Kanada verarbeitet und dein Reiseplan wird vor Ankunft bestätigt.\n\nF: Brauche ich Bargeld?\nA: Nein. Die meisten Services sind vorausbezahlt. Optionaler privater Geldwechsel verfügbar.\n\nF: Ist das legal?\nA: Ja. Wir arbeiten unter kanadischen Vorschriften und lokalen kubanischen Partnerschaften.",
-  contactTitle:"Kontakt",
-  cartTitle:"Dein Erlebnis-Warenkorb",
-  dateModalTitle:"Datum & Uhrzeit auswählen",
-  dateModalText:"Wähle, wann du dieses Erlebnis genießen möchtest.",
-  dateLabel:"Datum",
-  timeLabel:"Uhrzeit",
-  peopleLabel:"Personen",
-  reviewModalTitle:"Bewertung schreiben",
-  reviewNameLabel:"Dein Name",
-  reviewTextLabel:"Deine Erfahrung",
-  reviewStarsLabel:"Bewertung (1-5)",
-  giftTitle:"Willkommensgeschenk",
-  giftSubtitle:"Wähle einen kostenlosen Bonus für dein erstes Horizon-Ventura-Erlebnis.",
-  categories:{
-    stays:"Unterkünfte",
-    food:"Essen",
-    adventures:"Abenteuer",
-    transport:"Transport",
-    kids:"Kinder",
-    beauty:"Beauty & Stil",
-    health:"Gesundheit",
-    exchange:"Geldwechsel",
-    events:"Events"
-  },
-  destinations:{
-    cuba:"Kuba",
-    jamaica:"Jamaika",
-    trinidad:"Trinidad & Tobago",
-    mexico:"Mexiko",
-    colombia:"Kolumbien"
-  },
-  cities:{
-    guardalavaca:"Guardalavaca",
-    holguin:"Holguín",
-    banes:"Banes",
-    santiago:"Santiago de Cuba",
-    guantanamo:"Guantánamo",
-    bayamo:"Bayamo"
-  },
-  comingSoon:"Demnächst verfügbar",
-  checkout:"Zur Kasse",
-  add:"Hinzufügen",
-  info:"Info",
-  book:"Buchen",
-  total:"Gesamt",
-  hide:"Verbergen",
-  reset:"Zurücksetzen",
-  thanks:"Danke, dass du Horizon Ventura gewählt hast! 🌅 Deine Reise beginnt hier."
-},
-hi:{
-  heroTitle:"अपना क्यूबा ड्रीम ट्रिप बनाएं",
-  heroSubtitle:"ऑनलाइन भुगतान करें। असली क्यूबा का अनुभव लें। समुद्र तट, संस्कृति, भोजन और रोमांच — सब एक ही प्लेटफ़ॉर्म पर।",
-  builderTitle:"अपना अनुभव बनाएं",
-  builderSubtitle:"एक गंतव्य चुनें और फिर तय करें कि आप क्या अनुभव करना चाहते हैं — ठहरना, भोजन, रोमांच, परिवहन, बच्चे, सौंदर्य और बहुत कुछ।",
-  whyTitle:"होराइजन वेंचुरा क्यों?",
-  whySubtitle:"क्योंकि क्यूबा को आज़ादी जैसा महसूस होना चाहिए — न कि लॉजिस्टिक्स जैसा।",
-  whyText:"हमने क्यूबा अनुभवों के लिए पहला ऑल-इन-वन प्लेटफ़ॉर्म बनाया है जहाँ आप अपनी पूरी यात्रा को एक शॉपिंग कार्ट की तरह डिज़ाइन करते हैं — उतरने से पहले।\n\nकोई धोखाधड़ी नहीं। कोई नकद तनाव नहीं। कोई भाषा बाधा नहीं। कोई पर्यटक जाल नहीं।\n\nबस असली क्यूबा — सही तरीके से।",
-  reviewsTitle:"वास्तविक समीक्षाएँ",
-  reviewsSubtitle:"यात्री Horizon Ventura के बारे में क्या कहते हैं",
-  faqTitle:"FAQ",
-  faqText:"प्र: क्या भुगतान सुरक्षित है?\nउ: हाँ — भुगतान कनाडा में संसाधित होते हैं और आपका यात्रा कार्यक्रम आगमन से पहले पुष्टि हो जाता है।\n\nप्र: क्या मुझे नकद चाहिए?\nउ: नहीं। अधिकांश सेवाएँ प्रीपेड हैं। वैकल्पिक निजी मुद्रा विनिमय उपलब्ध है।\n\nप्र: क्या यह कानूनी है?\nउ: हाँ। हम कनाडाई नियमों और स्थानीय क्यूबा साझेदारियों के तहत काम करते हैं।",
-  contactTitle:"संपर्क",
-  cartTitle:"आपका अनुभव कार्ट",
-  dateModalTitle:"तारीख और समय चुनें",
-  dateModalText:"चुनें कि आप यह अनुभव कब लेना चाहते हैं।",
-  dateLabel:"तारीख",
-  timeLabel:"समय",
-  peopleLabel:"लोग",
-  reviewModalTitle:"समीक्षा लिखें",
-  reviewNameLabel:"आपका नाम",
-  reviewTextLabel:"आपका अनुभव",
-  reviewStarsLabel:"रेटिंग (1-5)",
-  giftTitle:"स्वागत उपहार",
-  giftSubtitle:"अपने पहले Horizon Ventura अनुभव के लिए एक मुफ्त बोनस चुनें।",
-  categories:{
-    stays:"ठहरना",
-    food:"भोजन",
-    adventures:"रोमांच",
-    transport:"परिवहन",
-    kids:"बच्चे",
-    beauty:"सौंदर्य और स्टाइल",
-    health:"स्वास्थ्य",
-    exchange:"मुद्रा विनिमय",
-    events:"कार्यक्रम"
-  },
-  destinations:{
-    cuba:"क्यूबा",
-    jamaica:"जमैका",
-    trinidad:"त्रिनिदाद और टोबैगो",
-    mexico:"मेक्सिको",
-    colombia:"कोलंबिया"
-  },
-  cities:{
-    guardalavaca:"गार्डालावाका",
-    holguin:"होल्गुइन",
-    banes:"बनेस",
-    santiago:"सैंटियागो दे क्यूबा",
-    guantanamo:"ग्वांतानामो",
-    bayamo:"बायामो"
-  },
-  comingSoon:"जल्द आ रहा है",
-  checkout:"चेकआउट",
-  add:"जोड़ें",
-  info:"जानकारी",
-  book:"बुक करें",
-  total:"कुल",
-  hide:"छुपाएं",
-  reset:"रीसेट",
-  thanks:"Horizon Ventura चुनने के लिए धन्यवाद! 🌅 आपकी यात्रा यहाँ से शुरू होती है।"
-},
-ja:{
-  heroTitle:"キューバの夢の旅を作ろう",
-  heroSubtitle:"オンライン決済。本物のキューバ体験。ビーチ、文化、食、冒険 — すべて一つのプラットフォームで。",
-  builderTitle:"体験を構築",
-  builderSubtitle:"目的地を選び、宿泊、食事、冒険、移動、キッズ、美容など、体験したいことを選択してください。",
-  whyTitle:"なぜHorizon Ventura？",
-  whySubtitle:"キューバは自由であるべき — 面倒な手続きではなく。",
-  whyText:"私たちは、到着前にショッピングカートのように旅全体を設計できる、キューバ体験のための初のオールインワンプラットフォームを作りました。\n\n詐欺なし。現金ストレスなし。言語の壁なし。観光客トラップなし。\n\nただ本物のキューバ — 正しく。",
-  reviewsTitle:"リアルレビュー",
-  reviewsSubtitle:"旅行者が語るHorizon Ventura体験",
-  faqTitle:"FAQ",
-  faqText:"Q: 支払いは安全ですか？\nA: はい — 支払いはカナダで処理され、到着前に旅程が確定します。\n\nQ: 現金は必要ですか？\nA: いいえ。ほとんどのサービスは事前支払いです。オプションでプライベート両替も可能です。\n\nQ: 合法ですか？\nA: はい。カナダの規制とキューバの現地パートナーのもとで運営しています。",
-  contactTitle:"連絡先",
-  cartTitle:"体験カート",
-  dateModalTitle:"日付と時間を選択",
-  dateModalText:"この体験を楽しみたい日時を選んでください。",
-  dateLabel:"日付",
-  timeLabel:"時間",
-  peopleLabel:"人数",
-  reviewModalTitle:"レビューを書く",
-  reviewNameLabel:"お名前",
-  reviewTextLabel:"体験内容",
-  reviewStarsLabel:"評価 (1-5)",
-  giftTitle:"ウェルカムギフト",
-  giftSubtitle:"初回Horizon Ventura体験の無料ボーナスを選んでください。",
-  categories:{
-    stays:"宿泊",
-    food:"食事",
-    adventures:"冒険",
-    transport:"交通",
-    kids:"キッズ",
-    beauty:"美容・スタイル",
-    health:"健康",
-    exchange:"両替",
-    events:"イベント"
-  },
-  destinations:{
-    cuba:"キューバ",
-    jamaica:"ジャマイカ",
-    trinidad:"トリニダード・トバゴ",
-    mexico:"メキシコ",
-    colombia:"コロンビア"
-  },
-  cities:{
-    guardalavaca:"ガルダラバカ",
-    holguin:"オルギン",
-    banes:"バネス",
-    santiago:"サンティアゴ・デ・クーバ",
-    guantanamo:"グアンタナモ",
-    bayamo:"バヤモ"
-  },
-  comingSoon:"近日公開",
-  checkout:"チェックアウト",
-  add:"追加",
-  info:"情報",
-  book:"予約",
-  total:"合計",
-  hide:"非表示",
-  reset:"リセット",
-  thanks:"Horizon Venturaをご利用いただきありがとうございます！🌅 旅はここから始まります。"
-},
-ar:{
-  heroTitle:"ابنِ رحلة أحلامك إلى كوبا",
-  heroSubtitle:"ادفع عبر الإنترنت. عش كوبا الحقيقية. شاطئ، ثقافة، طعام، ومغامرة — كل ذلك في منصة واحدة.",
-  builderTitle:"ابنِ تجربتك",
-  builderSubtitle:"اختر وجهة ثم اختر ما تريد تجربته — إقامة، طعام، مغامرات، نقل، أطفال، جمال والمزيد.",
-  whyTitle:"لماذا Horizon Ventura؟",
-  whySubtitle:"لأن كوبا يجب أن تكون حرية — لا لوجستيات.",
-  whyText:"أنشأنا أول منصة شاملة لتجارب كوبا حيث تصمم رحلتك كاملة كعربة تسوق — قبل أن تصل.\n\nلا احتيال. لا ضغط نقدي. لا حواجز لغوية. لا فخاخ سياحية.\n\nفقط كوبا الحقيقية — بشكل صحيح.",
-  reviewsTitle:"مراجعات حقيقية",
-  reviewsSubtitle:"ماذا يقول المسافرون عن Horizon Ventura",
-  faqTitle:"الأسئلة الشائعة",
-  faqText:"س: هل الدفع آمن؟\nج: نعم — تتم معالجة المدفوعات في كندا ويتم تأكيد برنامج رحلتك قبل الوصول.\n\nس: هل أحتاج إلى نقد؟\nج: لا. معظم الخدمات مدفوعة مسبقاً. يتوفر صرف خاص اختياري.\n\nس: هل هذا قانوني؟\nج: نعم. نعمل وفق اللوائح الكندية وشراكات محلية في كوبا.",
-  contactTitle:"اتصل بنا",
-  cartTitle:"سلة تجاربك",
-  dateModalTitle:"اختر التاريخ والوقت",
-  dateModalText:"اختر متى تريد الاستمتاع بهذه التجربة.",
-  dateLabel:"التاريخ",
-  timeLabel:"الوقت",
-  peopleLabel:"الأشخاص",
-  reviewModalTitle:"اكتب مراجعة",
-  reviewNameLabel:"اسمك",
-  reviewTextLabel:"تجربتك",
-  reviewStarsLabel:"التقييم (1-5)",
-  giftTitle:"هدية الترحيب",
-  giftSubtitle:"اختر مكافأة مجانية لأول تجربة Horizon Ventura لك.",
-  categories:{
-    stays:"الإقامة",
-    food:"الطعام",
-    adventures:"المغامرات",
-    transport:"النقل",
-    kids:"الأطفال",
-    beauty:"الجمال والأناقة",
-    health:"الصحة",
-    exchange:"الصرافة",
-    events:"الفعاليات"
-  },
-  destinations:{
-    cuba:"كوبا",
-    jamaica:"جامايكا",
-    trinidad:"ترينيداد وتوباغو",
-    mexico:"المكسيك",
-    colombia:"كولومبيا"
-  },
-  cities:{
-    guardalavaca:"غاردالافاكا",
-    holguin:"هولغوين",
-    banes:"بانيس",
-    santiago:"سانتياغو دي كوبا",
-    guantanamo:"غوانتانامو",
-    bayamo:"بايامو"
-  },
-  comingSoon:"قريباً",
-  checkout:"الدفع",
-  add:"إضافة",
-  info:"معلومات",
-  book:"حجز",
-  total:"الإجمالي",
-  hide:"إخفاء",
-  reset:"إعادة ضبط",
-  thanks:"شكراً لاختيارك Horizon Ventura! 🌅 رحلتك تبدأ هنا."
-}
-};
-
-/* =========================
-   DESTINATIONS & SERVICES
-========================= */
-const destinations = {
-  cuba:{
-    nameKey:'cuba',
-    flag:"https://flagcdn.com/w160/cu.png",
-    cities:['guardalavaca','holguin','banes','santiago','guantanamo','bayamo']
-  },
-  jamaica:{
-    nameKey:'jamaica',
-    flag:"https://flagcdn.com/w160/jm.png",
-    comingSoon:true
-  },
-  trinidad:{
-    nameKey:'trinidad',
-    flag:"https://flagcdn.com/w160/tt.png",
-    comingSoon:true
-  },
-  mexico:{
-    nameKey:'mexico',
-    flag:"https://flagcdn.com/w160/mx.png",
-    comingSoon:true
-  },
-  colombia:{
-    nameKey:'colombia',
-    flag:"https://flagcdn.com/w160/co.png",
-    comingSoon:true
-  }
-};
-
-/* =========================
-   CATEGORY DEFINITIONS
-========================= */
 const categories = [
-  {id:'stays',icon:'🏠',img:'https://img.icons8.com/fluency/96/home.png'},
-  {id:'food',icon:'🍽️',img:'https://img.icons8.com/fluency/96/meal.png'},
-  {id:'adventures',icon:'🌊',img:'https://img.icons8.com/fluency/96/snorkeling.png'},
-  {id:'transport',icon:'🚗',img:'https://img.icons8.com/fluency/96/car.png'},
-  {id:'kids',icon:'🧒',img:'https://img.icons8.com/fluency/96/children.png'},
-  {id:'beauty',icon:'💈',img:'https://img.icons8.com/fluency/96/barber-pole.png'},
-  {id:'health',icon:'🦷',img:'https://img.icons8.com/fluency/96/tooth.png'},
-  {id:'exchange',icon:'💱',img:'https://img.icons8.com/fluency/96/currency-exchange.png'},
-  {id:'events',icon:'🎉',img:'https://img.icons8.com/fluency/96/confetti.png'}
+  {id:'stays', name:'Premium Stays', icon:'🏠', img:'https://img.icons8.com/fluency/96/home.png'},
+  {id:'transport', name:'Private Mobility', icon:'🚗', img:'https://img.icons8.com/fluency/96/car.png'},
+  {id:'food', name:'Local Gastronomy', icon:'🍽️', img:'https://img.icons8.com/fluency/96/meal.png'},
+  {id:'adventures', name:'Adventures', icon:'🌊', img:'https://img.icons8.com/fluency/96/snorkeling.png'},
+  {id:'beauty', name:'Style & Tattoos', icon:'🎨', img:'https://img.icons8.com/fluency/96/tattoo-machine.png'}
 ];
 
-/* =========================
-   SERVICES DATABASE
-   (Only Cuba cities have real services)
-========================= */
 const services = {
-  guardalavaca:{
-    stays:[
-      {
-        id:'stay_basic',
-        title:'Basic Stay — Private Room',
-        desc:'Private room in Cuban family home, hot water, fan/AC, limited WiFi. Authentic local experience.',
-        price:55,
-        per:'night',
-        img:'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'stay_comfort',
-        title:'Comfort Stay — Full House',
-        desc:'Entire house, kitchen access, daily cleaning, privacy and comfort near the beach.',
-        price:95,
-        per:'night',
-        img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'stay_premium',
-        title:'Premium Experience Stay',
-        desc:'Full house + daily breakfast + concierge + welcome drinks. Top local experience.',
-        price:145,
-        per:'night',
-        img:'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80'
-      }
-    ],
-    food:[
-      {
-        id:'food_breakfast',
-        title:'Cuban Breakfast',
-        desc:'Fresh tropical fruits, Cuban coffee, eggs, bread — served at your casa.',
-        price:15,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'food_lunch',
-        title:'Local Cuban Lunch',
-        desc:'Rice, beans, pork/chicken/fish, salad — cooked by Cuban families.',
-        price:22,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1604908177225-6d5cda6aab43?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'food_dinner',
-        title:'Authentic Cuban Dinner',
-        desc:'Traditional recipes, seafood, mojitos, live Cuban vibes.',
-        price:45,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'food_party',
-        title:'Cuban Family Party Night',
-        desc:'Private house party with Cuban music, food, drinks, dancing and local hosts.',
-        price:160,
-        per:'group',
-        img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80'
-      }
-    ],
-    adventures:[
-      {
-        id:'snorkel',
-        title:'Snorkeling Coral Reef Tour',
-        desc:'Crystal clear waters, professional guides, gear included at Guardalavaca reefs.',
-        price:65,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'scuba',
-        title:'Beginner Scuba Diving',
-        desc:'Intro dive with instructor, full gear, safe and unforgettable underwater experience.',
-        price:125,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1504712598893-24159a89200e?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'shark',
-        title:'Shark Experience',
-        desc:'Safe guided shark observation in open waters with professionals.',
-        price:195,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'windsurf',
-        title:'Windsurf / Paddleboard',
-        desc:'Ocean wind sessions for beginners and advanced riders.',
-        price:55,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'fishing',
-        title:'Deep Sea Fishing',
-        desc:'Professional boat, equipment, local captain — half day adventure.',
-        price:280,
-        per:'group',
-        img:'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'horse',
-        title:'Horseback Beach Ride',
-        desc:'Romantic horseback ride along Cuban beaches at sunset.',
-        price:60,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=900&q=80'
-      }
-    ],
-    transport:[
-      {
-        id:'airport_pickup',
-        title:'Airport Pickup',
-        desc:'Private driver waiting at airport with name sign. Stress-free arrival.',
-        price:110,
-        per:'trip',
-        img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'driver_half',
-        title:'Private Driver (Half Day)',
-        desc:'4 hours private chauffeur to beaches, towns, tours.',
-        price:130,
-        per:'trip',
-        img:'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'driver_full',
-        title:'Private Driver (Full Day)',
-        desc:'8 hours private driver, flexible itinerary.',
-        price:230,
-        per:'trip',
-        img:'https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'classic_car',
-        title:'Classic Cuban Car Experience',
-        desc:'Vintage convertible tour — iconic Cuban experience.',
-        price:260,
-        per:'trip',
-        img:'https://images.unsplash.com/photo-1563720221971-01d02b4d8eec?auto=format&fit=crop&w=900&q=80'
-      }
-    ],
-    kids:[
-      {
-        id:'kids_swim',
-        title:'Swimming Lessons',
-        desc:'Certified instructor, beach or pool safety training.',
-        price:35,
-        per:'child',
-        img:'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'kids_volley',
-        title:'Beach Volleyball Training',
-        desc:'Fun sports sessions for kids with local coaches.',
-        price:30,
-        per:'child',
-        img:'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'kids_diving',
-        title:'Mini Diving Experience',
-        desc:'Safe shallow water diving for kids with instructors.',
-        price:55,
-        per:'child',
-        img:'https://images.unsplash.com/photo-1544551763-77ef2a4a7b3c?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'kids_pack',
-        title:'Weekly Kids Adventure Pack',
-        desc:'Swimming + sports + activities + care for full week.',
-        price:170,
-        per:'child',
-        img:'https://images.unsplash.com/photo-1533106418989-88406c7cc8bb?auto=format&fit=crop&w=900&q=80'
-      }
-    ],
-    beauty:[
-      {
-        id:'barber_cut',
-        title:'Men’s Haircut',
-        desc:'Fresh Cuban fade, clean line-ups, professional barber.',
-        price:22,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'barber_beard',
-        title:'Fade + Beard Grooming',
-        desc:'Full grooming package — haircut + beard styling.',
-        price:40,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'beauty_nails',
-        title:'Nails & Manicure',
-        desc:'Professional manicure and pedicure services.',
-        price:30,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'beauty_hair',
-        title:'Hair Styling & Braids',
-        desc:'Women’s hair styling, braids, coloring, treatments.',
-        price:40,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'tattoo_small',
-        title:'Small Tattoo',
-        desc:'Professional tattoo, hygienic equipment, custom design.',
-        price:80,
-        per:'tattoo',
-        img:'https://images.unsplash.com/photo-1542873496-58337c7f8c20?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'tattoo_medium',
-        title:'Medium Tattoo',
-        desc:'Medium-size custom tattoo with professional artist.',
-        price:160,
-        per:'tattoo',
-        img:'https://images.unsplash.com/photo-1542873496-58337c7f8c20?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'tattoo_large',
-        title:'Large Custom Tattoo',
-        desc:'Large-scale tattoo session with experienced artist.',
-        price:380,
-        per:'tattoo',
-        img:'https://images.unsplash.com/photo-1542873496-58337c7f8c20?auto=format&fit=crop&w=900&q=80'
-      }
-    ],
-    health:[
-      {
-        id:'dental_check',
-        title:'Dental Checkup & Cleaning',
-        desc:'Professional dentist evaluation and cleaning.',
-        price:110,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'dental_basic',
-        title:'Basic Dental Procedures',
-        desc:'Fillings, extractions, basic treatments.',
-        price:280,
-        per:'procedure',
-        img:'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=80'
-      }
-    ],
-    exchange:[
-      {
-        id:'exchange_private',
-        title:'Private Money Exchange',
-        desc:'Better-than-street rates, safe, discreet, instant.',
-        price:0,
-        per:'service',
-        img:'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=900&q=80'
-      }
-    ],
-    events:[
-      {
-        id:'nightclub',
-        title:'Nightclub Night Experience',
-        desc:'Private transport + entry + VIP guidance.',
-        price:110,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'family_party',
-        title:'Private Cuban Family Party',
-        desc:'Music, food, drinks, dancing, authentic Cuban celebration.',
-        price:180,
-        per:'group',
-        img:'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80'
-      },
-      {
-        id:'beach_party',
-        title:'Private Beach Party',
-        desc:'Private beach setup, drinks, music, sunset vibes.',
-        price:360,
-        per:'group',
-        img:'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80'
-      }
-    ]
-  },
-
-  holguin:{
-    tours:[
-      {
-        id:'holguin_city',
-        title:'Holguín City Tour',
-        desc:'Guided city tour — parks, history, culture.',
-        price:95,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1603046891609-cd4e5c71b62c?auto=format&fit=crop&w=900&q=80'
-      }
-    ]
-  },
-
-  banes:{
-    tours:[
-      {
-        id:'banes_museum',
-        title:'Banes Archaeological Museum',
-        desc:'Visit Cuba’s most important indigenous museum site.',
-        price:85,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1526481280698-8fcc13fd0f05?auto=format&fit=crop&w=900&q=80'
-      }
-    ]
-  },
-
-  santiago:{
-    tours:[
-      {
-        id:'santiago_city',
-        title:'Santiago de Cuba City Tour',
-        desc:'Historic streets, music roots, Cuban revolution landmarks.',
-        price:140,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1603046891639-df3b3bb5dc05?auto=format&fit=crop&w=900&q=80'
-      }
-    ]
-  },
-
-  guantanamo:{
-    tours:[
-      {
-        id:'guantanamo_nature',
-        title:'Guantánamo Nature Excursion',
-        desc:'Mountains, rivers, rural Cuban life, eco experience.',
-        price:120,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80'
-      }
-    ]
-  },
-
-  bayamo:{
-    tours:[
-      {
-        id:'bayamo_ceramic',
-        title:'Bayamo Ceramic Art Tour',
-        desc:'Traditional ceramic workshops and cultural heritage.',
-        price:90,
-        per:'person',
-        img:'https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=900&q=80'
-      }
-    ]
-  }
+  stays: [
+    {id:'s1', title:'Authentic Family Casa', desc:'High-end private room in a verified family home. Safe, clean, and real.', price:55, img:'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=400&q=80'},
+    {id:'s2', title:'Full Colonial Villa', desc:'Experience the grandeur of a full private villa for you and your group.', price:150, img:'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80'}
+  ],
+  transport: [
+    {id:'t1', title:'Airport VIP Transfer', desc:'Professional driver waiting for you. Direct to your door.', price:110, img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=400&q=80'},
+    {id:'t2', title:'Classic Car Day', desc:'The iconic 1950s convertible experience. Chauffeur included.', price:230, img:'https://images.unsplash.com/photo-1563720221971-01d02b4d8eec?auto=format&fit=crop&w=400&q=80'}
+  ],
+  food: [
+    {id:'f1', title:'Cuban Family Feast', desc:'Traditional dinner cooked by locals. Lobster, rice, and mojitos.', price:45, img:'https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=400&q=80'}
+  ],
+  adventures: [
+    {id:'a1', title:'Coral Reef Snorkel', desc:'Private boat tour to the best hidden reefs in Guardalavaca.', price:65, img:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80'}
+  ],
+  beauty: [
+    {id:'b1', title:'Elite Tattoo Session', desc:'Verified hygienic studio. Get your Cuban ink from the best artists.', price:100, img:'https://images.unsplash.com/photo-1542873496-58337c7f8c20?auto=format&fit=crop&w=400&q=80'}
+  ]
 };
 
-/* =========================
-   REVIEWS DEFAULT
-========================= */
-const defaultReviews = [
-  {name:"Samantha R.", text:"Best trip of my life. Everything was organized before landing. Felt like family in Cuba.", stars:5},
-  {name:"Lucas M.", text:"No scams, no stress, just vibes. The snorkeling and food experiences were insane.", stars:5},
-  {name:"Carla D.", text:"Loved the private driver and the casa stay. Horizon Ventura made Cuba easy.", stars:4}
-];
-
-/* =========================
-   LEGAL TEXT
-========================= */
-const legalTexts = {
-  terms:`
-HORIZON VENTURA™ — TERMS & CONDITIONS
-
-1. BOOKINGS & PAYMENTS
-All bookings are paid online in CAD through our secure Canadian payment system. Once payment is confirmed, your itinerary is locked and delivered to your email.
-
-2. CANCELLATIONS
-Cancellations up to 72 hours before service receive 80% refund. Less than 72 hours are non-refundable due to local partner commitments.
-
-3. LIABILITY
-Horizon Ventura acts as a booking and coordination platform. All services are delivered by verified local partners.
-
-4. SAFETY
-All partners follow local safety standards. Guests must follow instructions provided by guides and service providers.
-
-5. CHANGES
-Service times and availability may adjust due to weather or local conditions. Equivalent alternatives will always be offered.
-
-By using Horizon Ventura, you accept these terms.
-`,
-  privacy:`
-HORIZON VENTURA™ — PRIVACY POLICY
-
-We collect only essential information required to process bookings and communicate itineraries.
-
-Your data is:
-• Stored securely
-• Never sold
-• Never shared with third parties beyond service providers necessary to fulfill your experience
-
-Payments are processed through encrypted Canadian financial gateways.
-
-You may request data deletion at any time by contacting Hello@HorizonVentura.com
-`,
-  payments:`
-HORIZON VENTURA™ — PAYMENTS & SECURITY
-
-All payments:
-• Processed in Canada
-• Encrypted end-to-end
-• CAD currency only
-
-Receipts are emailed automatically after checkout.
-
-Local partners are paid bi-weekly by Horizon Ventura — guests never handle cash unless they choose optional exchange services.
-
-This protects both travelers and partners.
-`
-};
-
-/* =========================
-   INITIALIZATION
-========================= */
 function init(){
-  setBackground();
-  renderLanguages();
-  renderDestinations();
-  renderCities();
   renderCategories();
   renderServices();
-  renderReviews();
-  updateCartUI();
-  updateTexts();
-  initAmigo();
-  if(state.giftUsed===false && localStorage.getItem('hv_first_visit')!=='true'){
-    localStorage.setItem('hv_first_visit','true');
-  }
-}
-document.addEventListener('DOMContentLoaded',init);
-
-/* =========================
-   BACKGROUND SYSTEM
-========================= */
-function setBackground(){
-  const hour = new Date().getHours();
-  const isDay = hour>=6 && hour<18;
-  const bg = document.getElementById('bg');
-  bg.style.backgroundImage = `url('${isDay?backgrounds.day:backgrounds.night}')`;
+  setTimeout(() => talkFox("Welcome! I'm the Horizon Fox. Let's build your Cuban dream together!"), 2000);
 }
 
-/* =========================
-   LANGUAGE SYSTEM
-========================= */
-function renderLanguages(){
-  const bar = document.getElementById('langBar');
-  bar.innerHTML='';
-  Object.keys(languages).forEach(code=>{
-    const btn=document.createElement('button');
-    btn.className='langBtn'+(state.language===code?' active':'');
-    btn.innerHTML=`<img src="${languages[code].flag}" alt="${languages[code].name}"/>`;
-    btn.onclick=()=>setLanguage(code);
-    bar.appendChild(btn);
-  });
-}
-function setLanguage(code){
-  state.language=code;
-  renderLanguages();
-  updateTexts();
-  amigoSpeak(getTranslation('thanks'));
-}
-function t(key){
-  const parts=key.split('.');
-  let obj=translations[state.language]||translations.en;
-  parts.forEach(p=>obj=obj?.[p]);
-  return obj||key;
-}
-function getTranslation(key){return t(key);}
-function updateTexts(){
-  const map={
-    heroTitle:'heroTitle',
-    heroSubtitle:'heroSubtitle',
-    builderTitle:'builderTitle',
-    builderSubtitle:'builderSubtitle',
-    whyTitle:'whyTitle',
-    whySubtitle:'whySubtitle',
-    whyText:'whyText',
-    reviewsTitle:'reviewsTitle',
-    reviewsSubtitle:'reviewsSubtitle',
-    faqTitle:'faqTitle',
-    faqText:'faqText',
-    contactTitle:'contactTitle',
-    cartTitle:'cartTitle',
-    dateModalTitle:'dateModalTitle',
-    dateModalText:'dateModalText',
-    dateLabel:'dateLabel',
-    timeLabel:'timeLabel',
-    peopleLabel:'peopleLabel',
-    reviewModalTitle:'reviewModalTitle',
-    reviewNameLabel:'reviewNameLabel',
-    reviewTextLabel:'reviewTextLabel',
-    reviewStarsLabel:'reviewStarsLabel',
-    giftTitle:'giftTitle',
-    giftSubtitle:'giftSubtitle'
-  };
-  Object.keys(map).forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.textContent=t(map[id]);
-  });
-  renderDestinations();
-  renderCities();
-  renderCategories();
-  renderServices();
-  updateCartUI();
-}
-
-/* =========================
-   DESTINATIONS & CITIES
-========================= */
-function renderDestinations(){
-  const bar=document.getElementById('destinationsBar');
-  bar.innerHTML='';
-  Object.keys(destinations).forEach(key=>{
-    const d=destinations[key];
-    const btn=document.createElement('div');
-    btn.className='destFlag'+(state.destination===key?' active':'');
-    btn.innerHTML=`
-      <img src="${d.flag}" alt="${t('destinations.'+d.nameKey)}"/>
-      <span>${t('destinations.'+d.nameKey)}</span>
-    `;
-    btn.onclick=()=>{
-      state.destination=key;
-      state.city=d.cities?d.cities[0]:null;
-      state.category=null;
-      renderDestinations();
-      renderCities();
-      renderCategories();
-      renderServices();
-      if(d.comingSoon){
-        amigoSpeak(`${t('destinations.'+d.nameKey)} — ${t('comingSoon')}`);
-      }else{
-        amigoSpeak(`Welcome to ${t('destinations.'+d.nameKey)}! Choose a city to start building your experience.`);
-      }
-    };
-    bar.appendChild(btn);
-  });
-}
-function renderCities(){
-  const bar=document.getElementById('citiesBar');
-  bar.innerHTML='';
-  const d=destinations[state.destination];
-  if(!d || d.comingSoon){
-    bar.innerHTML='';
-    return;
-  }
-  d.cities.forEach(city=>{
-    const btn=document.createElement('button');
-    btn.className='cityChip'+(state.city===city?' active':'');
-    btn.textContent=t('cities.'+city);
-    btn.onclick=()=>{
-      state.city=city;
-      state.category=null;
-      renderCities();
-      renderCategories();
-      renderServices();
-      amigoSpeak(`Exploring ${t('cities.'+city)}. Choose what you want to experience!`);
-    };
-    bar.appendChild(btn);
-  });
-}
-
-/* =========================
-   CATEGORIES
-========================= */
 function renderCategories(){
-  const grid=document.getElementById('categoryGrid');
-  grid.innerHTML='';
-  const d=destinations[state.destination];
-  if(!d || d.comingSoon){
-    grid.innerHTML=`<div class="serviceCard"><div class="serviceBody"><p class="serviceDesc">${t('comingSoon')}</p></div></div>`;
-    return;
-  }
-  categories.forEach(cat=>{
-    const card=document.createElement('div');
-    card.className='catCard';
-    card.innerHTML=`
-      <img src="${cat.img}" class="catIcon" alt="${t('categories.'+cat.id)}"/>
-      <span>${t('categories.'+cat.id)}</span>
-    `;
-    card.onclick=()=>{
-      state.category=cat.id;
-      renderServices();
-      amigoCategoryTalk(cat.id);
-    };
-    grid.appendChild(card);
-  });
+  const grid = document.getElementById('categoryGrid');
+  grid.innerHTML = categories.map(cat => `
+    <div class="catCard" onclick="selectCategory('${cat.id}')">
+      <img src="${cat.img}" alt="${cat.name}">
+      <span>${cat.name}</span>
+    </div>
+  `).join('');
 }
 
-/* =========================
-   SERVICES
-========================= */
+function selectCategory(id){
+  state.category = id;
+  renderServices();
+  talkFox(`Excellent choice! Check out our ${id} options below.`);
+}
+
 function renderServices(){
-  const grid=document.getElementById('servicesGrid');
-  grid.innerHTML='';
-  const d=destinations[state.destination];
-  if(!d || d.comingSoon){
-    grid.innerHTML=`<div class="serviceCard"><div class="serviceBody"><p class="serviceDesc">${t('comingSoon')}</p></div></div>`;
-    return;
-  }
-  const cityData=services[state.city];
-  if(!cityData){
-    grid.innerHTML=`<div class="serviceCard"><div class="serviceBody"><p class="serviceDesc">${t('comingSoon')}</p></div></div>`;
-    return;
-  }
-
-  let list=[];
-  if(state.category){
-    list=cityData[state.category]||[];
-  }else{
-    Object.keys(cityData).forEach(cat=>{
-      list=list.concat(cityData[cat]);
-    });
-  }
-
-  if(!list.length){
-    grid.innerHTML=`<div class="serviceCard"><div class="serviceBody"><p class="serviceDesc">${t('comingSoon')}</p></div></div>`;
-    return;
-  }
-
-  list.forEach(service=>{
-    const card=document.createElement('div');
-    card.className='serviceCard fade';
-    card.innerHTML=`
-      <img src="${service.img}" class="serviceImg" alt="${service.title}"/>
+  const grid = document.getElementById('servicesGrid');
+  const list = services[state.category] || [];
+  grid.innerHTML = list.map(s => `
+    <div class="serviceCard">
+      <img src="${s.img}" class="serviceImg">
       <div class="serviceBody">
-        <div class="serviceTitle">${service.title}</div>
-        <div class="serviceDesc">${service.desc}</div>
-        <div class="serviceMeta">
-          <div class="price">$${service.price} CAD / ${service.per}</div>
-          <div class="serviceBtns">
-            <button class="smallBtn" onclick="serviceInfo('${service.id}')">${t('info')}</button>
-            <button class="addBtn" onclick="bookService('${service.id}')">${t('book')}</button>
-          </div>
+        <div class="serviceTitle">${s.title}</div>
+        <p class="serviceDesc">${s.desc}</p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="price">$${s.price} CAD</span>
+          <button class="primaryBtn" style="padding:8px 16px; font-size:0.8rem;" onclick="openBook('${s.id}')">Add to Cart</button>
         </div>
       </div>
-    `;
-    grid.appendChild(card);
-  });
+    </div>
+  `).join('');
 }
 
-/* =========================
-   SERVICE ACTIONS
-========================= */
-function serviceInfo(id){
-  const s=findService(id);
-  if(!s) return;
-  amigoSpeak(s.desc);
-}
-function bookService(id){
-  const s=findService(id);
-  if(!s) return;
-  state.tempItem=s;
-  openDateModal();
-  amigoSpeak(`Great choice! When would you like to enjoy ${s.title}?`);
-}
-function findService(id){
-  const cityData=services[state.city];
-  if(!cityData) return null;
-  for(const cat in cityData){
-    const found=cityData[cat].find(s=>s.id===id);
-    if(found) return found;
-  }
-  return null;
+function talkFox(text){
+  const bubble = document.getElementById('amigoBubble');
+  if(text) bubble.textContent = text;
+  bubble.classList.add('show');
+  setTimeout(() => bubble.classList.remove('show'), 6000);
 }
 
-/* =========================
-   DATE MODAL
-========================= */
-function openDateModal(){
-  document.getElementById('modalDate').value='';
-  document.getElementById('modalTime').value='';
-  document.getElementById('modalPeople').value=1;
+function openBook(id){
+  const allServices = Object.values(services).flat();
+  state.tempItem = allServices.find(s => s.id === id);
+  document.getElementById('modalTitle').textContent = `Booking ${state.tempItem.title}`;
   document.getElementById('dateModal').classList.add('open');
 }
-function closeDateModal(){
-  document.getElementById('dateModal').classList.remove('open');
-  state.tempItem=null;
-}
+
 function confirmDate(){
-  const date=document.getElementById('modalDate').value;
-  const time=document.getElementById('modalTime').value;
-  const people=parseInt(document.getElementById('modalPeople').value)||1;
-  if(!date){
-    alert('Please select a date');
-    return;
-  }
-  const item={...state.tempItem,date,time,people};
-  state.cart.push(item);
-  state.tempItem=null;
+  const date = document.getElementById('modalDate').value;
+  const people = document.getElementById('modalPeople').value;
+  if(!date) return alert("Select a date");
+ 
+  state.cart.push({ ...state.tempItem, date, people });
   closeDateModal();
-  updateCartUI();
-  amigoSpeak(`Added to your cart! Your ${item.title} is scheduled for ${date}${time?` at ${time}`:''}.`);
+  updateCart();
+  talkFox("Added! Keep building your empire or go to checkout.");
 }
 
-/* =========================
-   CART SYSTEM
-========================= */
+function closeDateModal(){
+  document.getElementById('dateModal').classList.remove('open');
+}
+
+function updateCart(){
+  document.getElementById('cartCount').textContent = state.cart.length;
+  const itemsDiv = document.getElementById('cartItems');
+  let total = 0;
+  itemsDiv.innerHTML = state.cart.map((item, index) => {
+    const cost = item.price * item.people;
+    total += cost;
+    return `<div style="font-size:0.8rem; margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:5px;">
+      <b>${item.title}</b><br>${item.date} | ${item.people} People | $${cost} CAD
+    </div>`;
+  }).join('');
+  document.getElementById('cartTotal').textContent = `Total: $${total} CAD`;
+}
+
 function toggleCart(){
   document.getElementById('cartPanel').classList.toggle('open');
 }
-function updateCartUI(){
-  const itemsEl=document.getElementById('cartItems');
-  const countEl=document.getElementById('cartCount');
-  itemsEl.innerHTML='';
-  let total=0;
-  state.cart.forEach((item,idx)=>{
-    const price=item.price * (item.people||1);
-    total+=price;
-    const div=document.createElement('div');
-    div.className='cartItem';
-    div.innerHTML=`
-      <div>
-        <div class="cartItemTitle">${item.title}</div>
-        <div class="cartItemMeta">${item.date}${item.time?` · ${item.time}`:''} · ${item.people} person(s)</div>
-      </div>
-      <div style="text-align:right;">
-        <div class="cartItemPrice">$${price} CAD</div>
-        <div class="removeBtn" onclick="removeCartItem(${idx})">Remove</div>
-      </div>
-    `;
-    itemsEl.appendChild(div);
-  });
-  document.getElementById('cartTotal').textContent=`${t('total')}: $${total} CAD`;
-  countEl.textContent=state.cart.length;
-}
-function removeCartItem(idx){
-  state.cart.splice(idx,1);
-  updateCartUI();
-  amigoSpeak('Removed from your cart.');
-}
 
-/* =========================
-   CHECKOUT
-========================= */
 function checkout(){
-  if(!state.cart.length){
-    alert('Your cart is empty');
-    return;
-  }
-  // Simulated checkout
-  const receipt={
-    date:new Date().toISOString(),
-    items:state.cart,
-    total:state.cart.reduce((sum,i)=>sum+(i.price*(i.people||1)),0)
-  };
-  console.log('Receipt:',receipt);
-  alert('Payment successful! Receipt logged in console.');
-  state.cart=[];
-  updateCartUI();
-  toggleCart();
-  amigoSpeak('Payment successful! Your Cuban experience is confirmed. Welcome to Horizon Ventura!');
-  if(!state.giftUsed){
-    openGiftModal();
-  }
+  if(state.cart.length === 0) return alert("Cart is empty!");
+  talkFox("Redirecting to our secure Canadian payment gateway...");
+  setTimeout(() => {
+    alert("This would link to your Stripe/PayPal in Canada. Success!");
+    state.cart = [];
+    updateCart();
+    toggleCart();
+  }, 2000);
 }
 
-/* =========================
-   GIFT SYSTEM
-========================= */
-function openGiftModal(){
-  document.getElementById('giftModal').classList.add('open');
-}
-function selectGift(type){
-  document.getElementById('giftModal').classList.remove('open');
-  state.giftUsed=true;
-  localStorage.setItem('hv_gift_used','true');
-  amigoSpeak('Your welcome gift has been added to your experience!');
-}
-
-/* =========================
-   REVIEWS SYSTEM
-========================= */
-function renderReviews(){
-  const grid=document.getElementById('reviewsGrid');
-  grid.innerHTML='';
-  const reviews=state.reviews.length?state.reviews:defaultReviews;
-  reviews.forEach(r=>{
-    const card=document.createElement('div');
-    card.className='reviewCard';
-    card.innerHTML=`
-      <div class="reviewName">${r.name}</div>
-      <div class="reviewText">${r.text}</div>
-      <div class="reviewStars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
-    `;
-    grid.appendChild(card);
-  });
-}
-function openReviewModal(){
-  document.getElementById('reviewModal').classList.add('open');
-}
-function closeReviewModal(){
-  document.getElementById('reviewModal').classList.remove('open');
-}
-function submitReview(){
-  const name=document.getElementById('reviewName').value||'Anonymous';
-  const text=document.getElementById('reviewText').value||'';
-  const stars=parseInt(document.getElementById('reviewStars').value)||5;
-  if(!text){
-    alert('Please write your experience');
-    return;
-  }
-  state.reviews.unshift({name,text,stars});
-  localStorage.setItem('hv_reviews',JSON.stringify(state.reviews));
-  closeReviewModal();
-  renderReviews();
-  amigoSpeak('Thank you for your review! It helps other travelers discover Cuba the right way.');
-}
-
-/* =========================
-   AMIGO AVATAR SYSTEM
-========================= */
-function initAmigo(){
-  if(state.amigoHidden){
-    document.getElementById('amigoWrapper').style.display='none';
-    document.getElementById('amigoControls').style.display='none';
-  }else{
-    amigoEnter();
-  }
-  makeAmigoDraggable();
-}
-function amigoEnter(){
-  const wrapper=document.getElementById('amigoWrapper');
-  wrapper.style.transform='translateX(-120px)';
-  setTimeout(()=>{
-    wrapper.style.transition='transform .8s cubic-bezier(.2,.8,.2,1)';
-    wrapper.style.transform='translateX(0)';
-    amigoSpeak('Hey! I’m AmiGo™ 🌴 Your travel buddy. Tap me anytime for help building your Cuban experience!');
-  },300);
-}
-function amigoSpeak(text){
-  const bubble=document.getElementById('amigoBubble');
-  bubble.textContent=text;
-  bubble.classList.add('show');
-  clearTimeout(bubble._timer);
-  bubble._timer=setTimeout(()=>{
-    bubble.classList.remove('show');
-  },7000);
-}
-function toggleAmigoMenu(){
-  const menu=document.getElementById('amigoMenu');
-  menu.classList.toggle('show');
-}
-function amigoGo(section){
-  toggleAmigoMenu();
-  scrollToSection(section);
-}
-function amigoCategoryTalk(cat){
-  const messages={
-    stays:"Let’s find you the perfect place to stay — beachside, cozy, or premium experience.",
-    food:"Hungry? Cuban food is one of the highlights — breakfast, family dinners, and parties.",
-    adventures:"Adventure time! Snorkeling, diving, fishing, horseback rides — Cuba style.",
-    transport:"Need wheels? Private drivers, classic cars, airport pickup — stress free.",
-    kids:"Traveling with kids? We’ve got swimming, sports, safety and fun covered.",
-    beauty:"Fresh cut, braids, nails, tattoos — look good while living the dream.",
-    health:"Top-quality dental and wellness services at a fraction of international prices.",
-    exchange:"We handle currency exchange safely so you don’t deal with street risks.",
-    events:"Nightlife, beach parties, family celebrations — real Cuban vibes."
-  };
-  amigoSpeak(messages[cat]||'Choose what you want to experience!');
-}
-function hideAmigo(){
-  state.amigoHidden=true;
-  localStorage.setItem('hv_amigo_hidden','true');
-  document.getElementById('amigoWrapper').style.display='none';
-  document.getElementById('amigoControls').style.display='none';
-}
-function resetAmigo(){
-  state.amigoHidden=false;
-  localStorage.removeItem('hv_amigo_hidden');
-  document.getElementById('amigoWrapper').style.display='flex';
-  document.getElementById('amigoControls').style.display='flex';
-  amigoEnter();
-}
-
-/* Dragging AmiGo */
-function makeAmigoDraggable(){
-  const wrapper=document.getElementById('amigoWrapper');
-  let dragging=false,offsetX=0,offsetY=0;
-  wrapper.addEventListener('pointerdown',e=>{
-    dragging=true;
-    offsetX=e.clientX-wrapper.offsetLeft;
-    offsetY=e.clientY-wrapper.offsetTop;
-    wrapper.setPointerCapture(e.pointerId);
-  });
-  wrapper.addEventListener('pointermove',e=>{
-    if(!dragging) return;
-    wrapper.style.left=(e.clientX-offsetX)+'px';
-    wrapper.style.top=(e.clientY-offsetY)+'px';
-  });
-  wrapper.addEventListener('pointerup',()=>{
-    dragging=false;
-  });
-}
-
-/* =========================
-   NAVIGATION
-========================= */
 function scrollToSection(id){
-  const el=document.getElementById(id);
-  if(el){
-    el.scrollIntoView({behavior:'smooth',block:'start'});
-  }
-}
-function logoClick(){
-  amigoSpeak(t('thanks'));
-}
-function openMainMenu(){
-  amigoSpeak('Use the page to explore destinations, add experiences to your cart, and checkout when ready!');
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
-/* =========================
-   ADMIN PANEL
-========================= */
-function openAdmin(){
-  document.getElementById('adminPanel').classList.add('open');
-  document.getElementById('adminLogin').classList.remove('hidden');
-  document.getElementById('adminEditor').classList.add('hidden');
-}
-function closeAdmin(){
-  document.getElementById('adminPanel').classList.remove('open');
-}
-function adminLogin(){
-  const pass=document.getElementById('adminPassword').value;
-  if(pass==='ventura2025'){
-    state.adminUnlocked=true;
-    localStorage.setItem('hv_admin','true');
-    document.getElementById('adminLogin').classList.add('hidden');
-    document.getElementById('adminEditor').classList.remove('hidden');
-    loadAdminFields();
-  }else{
-    alert('Incorrect password');
-  }
-}
-function loadAdminFields(){
-  document.getElementById('adminHeroTitle').value=document.getElementById('heroTitle').textContent;
-  document.getElementById('adminHeroSubtitle').value=document.getElementById('heroSubtitle').textContent;
-  document.getElementById('adminWhyText').value=document.getElementById('whyText').textContent;
-  document.getElementById('adminPhone').value='+1 437-605-0912';
-  document.getElementById('adminEmail').value='Hello@HorizonVentura.com';
-}
-function saveAdmin(){
-  document.getElementById('heroTitle').textContent=document.getElementById('adminHeroTitle').value;
-  document.getElementById('heroSubtitle').textContent=document.getElementById('adminHeroSubtitle').value;
-  document.getElementById('whyText').textContent=document.getElementById('adminWhyText').value;
-  closeAdmin();
-  amigoSpeak('Changes saved successfully.');
-}
-
-/* =========================
-   LEGAL MODAL
-========================= */
-function openLegal(type){
-  document.getElementById('legalTitle').textContent=type==='terms'?'Terms & Conditions':type==='privacy'?'Privacy Policy':'Payments & Security';
-  document.getElementById('legalText').textContent=legalTexts[type];
-  document.getElementById('legalModal').classList.add('open');
-}
-function closeLegal(){
-  document.getElementById('legalModal').classList.remove('open');
-}
-
-/* =========================
-   AUTO ADMIN ACCESS (SECRET)
-========================= */
-document.addEventListener('keydown',e=>{
-  if(e.ctrlKey && e.shiftKey && e.key==='A'){
-    openAdmin();
-  }
-});
-
-/* =========================
-   INITIAL REVIEW LOAD
-========================= */
-if(!state.reviews.length){
-  localStorage.setItem('hv_reviews',JSON.stringify(defaultReviews));
-  state.reviews=defaultReviews;
-}
+document.addEventListener('DOMContentLoaded', init);
 </script>
-
 </body>
 </html>
