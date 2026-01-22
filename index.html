@@ -1,1543 +1,1044 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Horizonte Ventura — Caribbean Experiences</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Horizon Ventura</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* =====================
-   GLOBAL STYLES
-===================== */
-:root {
-  --primary: #00c2b8;
-  --secondary: #ffb703;
-  --dark: #0a2540;
-  --light: #f7f9fc;
-  --accent: #ff6b35;
-}
-
+/* ===========================
+   RESET + BASE
+=========================== */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
 }
 
 body {
-  background: linear-gradient(180deg, #e0f7fa 0%, #ffffff 40%);
-  color: var(--dark);
-  min-height: 100vh;
+  background:#0b132b;
+  color:white;
+  overflow-x:hidden;
 }
 
-/* =====================
+a {
+  text-decoration:none;
+  color:inherit;
+}
+
+button {
+  border:none;
+  cursor:pointer;
+}
+
+/* ===========================
+   BACKGROUND DAY/NIGHT
+=========================== */
+body.day {
+  background:linear-gradient(to bottom,#6ec6ff,#ffffff);
+  color:#111;
+}
+
+body.night {
+  background:linear-gradient(to bottom,#020024,#090979,#000);
+  color:white;
+}
+
+#bg-image {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  background-size:cover;
+  background-position:center;
+  opacity:0.25;
+}
+
+/* ===========================
+   LAUNCH SCREEN
+=========================== */
+#launch {
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#03001e,#7303c0,#ec38bc,#fdeff9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  flex-direction:column;
+  animation:fadeOut 1s ease forwards;
+  animation-delay:2.5s;
+}
+
+#launch h1 {
+  font-size:2rem;
+  font-weight:700;
+}
+
+#launch p {
+  margin-top:10px;
+  opacity:0.9;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity:0;
+    pointer-events:none;
+  }
+}
+
+/* ===========================
    HEADER
-===================== */
+=========================== */
 header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(6px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 1rem;
-  border-bottom: 1px solid #ddd;
+  position:sticky;
+  top:0;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(10px);
+  padding:10px 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  z-index:1000;
 }
 
-.logo-area {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+#logo {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
 }
 
-.logo {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #00c2b8, #00f5d4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  color: white;
-  font-size: 1.2rem;
+#logo-circle {
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#0a2540,#ff8c00);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:white;
 }
 
-.brand-text {
-  font-weight: 800;
-  font-size: 1.1rem;
+#logo-text {
+  font-weight:700;
+  font-size:1.1rem;
 }
 
-.nav-icons {
-  display: flex;
-  gap: 0.6rem;
+#language-select {
+  background:rgba(255,255,255,0.1);
+  color:white;
+  border-radius:20px;
+  padding:6px 10px;
+  font-size:0.8rem;
 }
 
-.nav-btn {
-  background: none;
-  border: none;
-  font-size: 1.3rem;
-  cursor: pointer;
+/* ===========================
+   HERO
+=========================== */
+#hero {
+  min-height:90vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:20px;
+  text-align:left;
 }
 
-/* =====================
-   HERO SECTION
-===================== */
-.hero {
-  min-height: 82vh;
-  background:
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    url('https://upload.wikimedia.org/wikipedia/commons/6/6b/Playa_Guardalavaca.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+#hero h1 {
+  font-size:2rem;
+  font-weight:700;
+  line-height:1.2;
 }
 
-.hero-content {
-  max-width: 700px;
+#hero p {
+  margin-top:10px;
+  font-size:0.95rem;
+  opacity:0.9;
 }
 
-.hero h1 {
-  font-size: 2.3rem;
-  font-weight: 900;
-  margin-bottom: 0.4rem;
+#hero-actions {
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-.hero p {
-  font-size: 1.05rem;
-  opacity: 0.95;
-  margin-bottom: 1rem;
+.hero-btn {
+  background:linear-gradient(135deg,#ff8c00,#ff3d81);
+  padding:10px 16px;
+  border-radius:20px;
+  font-weight:600;
+  font-size:0.85rem;
 }
 
-.hero-buttons {
-  display: flex;
-  gap: 0.7rem;
-  flex-wrap: wrap;
+/* ===========================
+   AVATAR
+=========================== */
+#avatar-container {
+  position:fixed;
+  bottom:20px;
+  right:15px;
+  z-index:2000;
 }
 
-.btn-primary {
-  background: var(--primary);
-  border: none;
-  padding: 0.7rem 1.1rem;
-  border-radius: 999px;
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
+#avatar {
+  width:70px;
+  height:100px;
+  background:linear-gradient(180deg,#ffe0bd,#ffb347);
+  border-radius:40px 40px 30px 30px;
+  position:relative;
+  animation:walk 4s infinite ease-in-out;
+  box-shadow:0 0 20px rgba(255,140,0,0.6);
+  cursor:pointer;
 }
 
-.btn-secondary {
-  background: white;
-  border: none;
-  padding: 0.7rem 1.1rem;
-  border-radius: 999px;
-  color: var(--dark);
-  font-weight: 700;
-  cursor: pointer;
+#avatar::before {
+  content:"";
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:50px;
+  height:50px;
+  background:#ffe0bd;
+  border-radius:50%;
+  box-shadow:0 4px 0 #ffb347 inset;
 }
 
-/* =====================
-   SECTION BASE
-===================== */
+#avatar-eyes {
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:30px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.eye {
+  width:6px;
+  height:6px;
+  background:#333;
+  border-radius:50%;
+}
+
+#avatar-mouth {
+  position:absolute;
+  top:22px;
+  left:50%;
+  transform:translateX(-50%);
+  width:16px;
+  height:6px;
+  border-bottom:2px solid #333;
+  border-radius:0 0 20px 20px;
+}
+
+@keyframes walk {
+  0% { transform:translateY(0); }
+  50% { transform:translateY(-6px); }
+  100% { transform:translateY(0); }
+}
+
+/* ===========================
+   AVATAR BUBBLE
+=========================== */
+#avatar-bubble {
+  position:absolute;
+  bottom:110px;
+  right:0;
+  background:white;
+  color:black;
+  padding:10px 12px;
+  border-radius:12px;
+  max-width:220px;
+  font-size:0.75rem;
+  display:none;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* ===========================
+   SECTIONS
+=========================== */
 section {
-  padding: 2rem 1rem;
+  padding:30px 15px;
 }
 
 .section-title {
-  font-size: 1.6rem;
-  font-weight: 900;
-  margin-bottom: 0.3rem;
-  text-align: center;
+  font-size:1.3rem;
+  font-weight:700;
+  margin-bottom:15px;
 }
 
-.section-subtitle {
-  text-align: center;
-  color: #555;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
+/* ===========================
+   DESTINATIONS
+=========================== */
+#destinations {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
-/* =====================
-   ICON GRID
-===================== */
-.icon-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1rem;
+.flag {
+  width:70px;
+  height:50px;
+  border-radius:8px;
+  background:#fff;
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:0.7rem;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  cursor:pointer;
 }
 
-.icon-card {
-  background: white;
-  border-radius: 16px;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+/* ===========================
+   CITY SELECT
+=========================== */
+#cities {
+  margin-top:15px;
+  display:none;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-.icon-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+.city {
+  background:rgba(255,255,255,0.15);
+  padding:10px 14px;
+  border-radius:20px;
+  font-size:0.75rem;
+  cursor:pointer;
 }
 
-.icon-card .emoji {
-  font-size: 2rem;
-  margin-bottom: 0.4rem;
-}
-
-.icon-card h4 {
-  font-size: 0.9rem;
-  font-weight: 800;
-}
-
-.icon-card p {
-  font-size: 0.75rem;
-  color: #666;
-}
-
-/* =====================
-   SERVICE CARDS
-===================== */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 1rem;
+/* ===========================
+   SERVICES GRID
+=========================== */
+#services {
+  margin-top:20px;
+  display:none;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
 .service-card {
-  background: white;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
+  background:rgba(255,255,255,0.12);
+  border-radius:16px;
+  padding:12px;
+  font-size:0.75rem;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
 }
 
-.service-card img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
+.service-card strong {
+  font-size:0.8rem;
 }
 
-.service-card .content {
-  padding: 0.7rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.service-card h4 {
-  font-size: 0.95rem;
-  font-weight: 800;
-  margin-bottom: 0.2rem;
-}
-
-.service-card p {
-  font-size: 0.75rem;
-  color: #555;
-  margin-bottom: 0.4rem;
-  flex-grow: 1;
-}
-
-.service-card .price {
-  font-weight: 900;
-  color: var(--primary);
-  margin-bottom: 0.4rem;
-}
-
-.service-card button {
-  background: var(--primary);
-  border: none;
-  color: white;
-  border-radius: 999px;
-  padding: 0.45rem;
-  font-weight: 700;
-  cursor: pointer;
-  font-size: 0.8rem;
-}
-
-/* =====================
-   HOUSE CARDS
-===================== */
-.house-card img {
-  height: 140px;
-}
-
-/* =====================
-   CART DRAWER
-===================== */
-.cart-drawer {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 100%;
-  max-width: 420px;
-  height: 100%;
-  background: white;
-  box-shadow: -6px 0 18px rgba(0,0,0,0.12);
-  z-index: 2000;
-  transition: right 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.cart-drawer.open {
-  right: 0;
-}
-
-.cart-header {
-  padding: 1rem;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cart-body {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 1rem;
-}
-
-.cart-item {
-  display: flex;
-  gap: 0.6rem;
-  margin-bottom: 0.8rem;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 0.6rem;
-}
-
-.cart-item img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.cart-item-info {
-  flex-grow: 1;
-}
-
-.cart-item-info h5 {
-  font-size: 0.85rem;
-  font-weight: 800;
-}
-
-.cart-item-info p {
-  font-size: 0.7rem;
-  color: #666;
-}
-
-.cart-item-info .price {
-  font-weight: 900;
-  color: var(--primary);
-  font-size: 0.85rem;
-}
-
-.cart-item-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.cart-item-actions button {
-  border: none;
-  background: #eee;
-  border-radius: 6px;
-  font-size: 0.7rem;
-  cursor: pointer;
-  padding: 0.2rem;
-}
-
-.cart-footer {
-  padding: 1rem;
-  border-top: 1px solid #ddd;
-}
-
-.cart-total {
-  font-size: 1rem;
-  font-weight: 900;
-  margin-bottom: 0.6rem;
-}
-
-.checkout-btn {
-  width: 100%;
-  background: var(--accent);
-  border: none;
-  color: white;
-  padding: 0.7rem;
-  border-radius: 999px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-/* =====================
-   MODALS
-===================== */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 3000;
-  padding: 1rem;
-}
-
-.modal-overlay.active {
-  display: flex;
-}
-
+/* ===========================
+   MODAL
+=========================== */
 .modal {
-  background: white;
-  border-radius: 20px;
-  max-width: 480px;
-  width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-  padding: 1rem;
-  position: relative;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
 }
 
-.modal h3 {
-  font-weight: 900;
-  margin-bottom: 0.5rem;
+.modal-content {
+  background:#111;
+  border-radius:16px;
+  padding:20px;
+  width:92%;
+  max-width:420px;
+  max-height:85vh;
+  overflow-y:auto;
 }
 
-.modal p {
-  font-size: 0.85rem;
-  margin-bottom: 0.6rem;
-  color: #444;
+.modal-content h3 {
+  margin-bottom:10px;
 }
 
-.modal-close {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.8rem;
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
+.modal-content p {
+  font-size:0.8rem;
+  line-height:1.4;
+  margin-bottom:10px;
 }
 
-/* =====================
-   BOOKING FORM
-===================== */
-.booking-form label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  margin-top: 0.6rem;
-  display: block;
+.modal-content label {
+  font-size:0.7rem;
+  margin-top:8px;
+  display:block;
 }
 
-.booking-form input,
-.booking-form select {
-  width: 100%;
-  padding: 0.45rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-top: 0.2rem;
-  font-size: 0.8rem;
+.modal-content input,
+.modal-content select {
+  width:100%;
+  margin-top:4px;
+  padding:8px;
+  border-radius:8px;
+  border:none;
+  font-size:0.75rem;
 }
 
-.booking-form button {
-  margin-top: 0.8rem;
-  width: 100%;
-  background: var(--primary);
-  border: none;
-  color: white;
-  padding: 0.6rem;
-  border-radius: 999px;
-  font-weight: 800;
-  cursor: pointer;
+.modal-content button {
+  margin-top:12px;
+  background:linear-gradient(135deg,#ff8c00,#ff3d81);
+  color:white;
+  padding:10px;
+  border-radius:20px;
+  width:100%;
+  font-weight:600;
 }
 
-/* =====================
+/* ===========================
+   KIDS SECTION
+=========================== */
+#kids-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.kid-card {
+  background:rgba(255,255,255,0.12);
+  border-radius:16px;
+  padding:12px;
+  font-size:0.75rem;
+}
+
+/* ===========================
    FOOTER
-===================== */
+=========================== */
 footer {
-  background: #0a2540;
-  color: white;
-  padding: 2rem 1rem;
-  text-align: center;
+  padding:25px 15px;
+  background:#000;
+  font-size:0.7rem;
+  text-align:center;
 }
 
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 1rem;
+footer a {
+  color:#ff8c00;
 }
 
-.footer-links button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 0.75rem;
-  cursor: pointer;
-  opacity: 0.85;
+/* ===========================
+   HIDDEN
+=========================== */
+.hidden {
+  display:none;
 }
-
-.footer-links button:hover {
-  opacity: 1;
-}
-
-/* =====================
-   AVATAR (MASCOT)
-===================== */
-.avatar-container {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 4000;
-}
-
-.avatar {
-  width: 74px;
-  height: 74px;
-  background:
-    radial-gradient(circle at 30% 30%, #7dffb3, #00c27a);
-  border-radius: 50%;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
-  animation: avatar-bounce 1.5s infinite ease-in-out;
-}
-
-@keyframes avatar-bounce {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-.avatar-face {
-  position: relative;
-  width: 52px;
-  height: 52px;
-  background: linear-gradient(135deg, #a8ffdc, #4dffb8);
-  border-radius: 50%;
-  box-shadow: inset -3px -3px 8px rgba(0,0,0,0.15);
-}
-
-.avatar-eye {
-  position: absolute;
-  top: 16px;
-  width: 8px;
-  height: 8px;
-  background: #0a2540;
-  border-radius: 50%;
-}
-
-.avatar-eye.left { left: 12px; }
-.avatar-eye.right { right: 12px; }
-
-.avatar-mouth {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 18px;
-  height: 8px;
-  border-bottom: 3px solid #0a2540;
-  border-radius: 0 0 20px 20px;
-}
-
-/* Avatar menu */
-.avatar-menu {
-  position: absolute;
-  bottom: 90px;
-  right: 0;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 8px 26px rgba(0,0,0,0.18);
-  padding: 0.6rem;
-  width: 200px;
-  display: none;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.avatar-menu.open {
-  display: flex;
-}
-
-.avatar-menu button {
-  background: #f2f4f7;
-  border: none;
-  border-radius: 10px;
-  padding: 0.45rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: left;
-}
-
-.avatar-menu button:hover {
-  background: #e4f8f6;
-}
-
-/* =====================
-   COUNTRY BAR
-===================== */
-.country-bar {
-  display: flex;
-  gap: 0.6rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 0.6rem;
-}
-
-.country-pill {
-  background: #f2f4f7;
-  padding: 0.3rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  font-weight: 700;
-}
-
-/* =====================
-   ADMIN PANEL
-===================== */
-.admin-badge {
-  position: fixed;
-  top: 80px;
-  right: 1rem;
-  background: var(--accent);
-  color: white;
-  font-size: 0.65rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 999px;
-  display: none;
-  z-index: 4500;
-}
-
-/* =====================
-   UTILITIES
-===================== */
-.hidden { display: none !important; }
-.text-center { text-align: center; }
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-
 </style>
 </head>
+
 <body>
 
-<!-- =====================
-     ADMIN BADGE
-===================== -->
-<div class="admin-badge" id="adminBadge">ADMIN MODE</div>
+<div id="bg-image"></div>
 
-<!-- =====================
+<!-- ===========================
+     LAUNCH SCREEN
+=========================== -->
+<div id="launch">
+  <h1>Horizon Ventura</h1>
+  <p>Discover your horizon 🌅</p>
+</div>
+
+<!-- ===========================
      HEADER
-===================== -->
+=========================== -->
 <header>
-  <div class="logo-area">
-    <div class="logo">HV</div>
-    <div class="brand-text">Horizonte Ventura</div>
+  <div id="logo">
+    <div id="logo-circle">HV</div>
+    <div id="logo-text">Horizon Ventura</div>
   </div>
-  <div class="nav-icons">
-    <button class="nav-btn" onclick="openModal('languagesModal')">🌐</button>
-    <button class="nav-btn" onclick="toggleCart()">🛒</button>
-  </div>
+
+  <select id="language-select">
+    <option value="es">ES</option>
+    <option value="en">EN</option>
+    <option value="it">IT</option>
+    <option value="fr">FR</option>
+    <option value="de">DE</option>
+    <option value="ja">日本語</option>
+    <option value="hi">हिंदी</option>
+    <option value="ar">العربية</option>
+  </select>
 </header>
 
-<!-- =====================
+<!-- ===========================
      HERO
-===================== -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>La diversión pasa aquí 🌞</h1>
-    <p>Construye tu experiencia perfecta en el Caribe cubano — playas, naturaleza, cultura, aventura y descanso real.</p>
-    <div class="hero-buttons">
-      <button class="btn-primary" onclick="scrollToSection('servicesSection')">Explorar experiencias</button>
-      <button class="btn-secondary" onclick="scrollToSection('housesSection')">Ver alojamientos</button>
-    </div>
+=========================== -->
+<section id="hero">
+  <h1 id="hero-title">Tu horizonte comienza aquí</h1>
+  <p id="hero-sub">Experiencias reales en Guardalavaca, Holguín, Cuba 🇨🇺</p>
+
+  <div id="hero-actions">
+    <div class="hero-btn" onclick="scrollToSection('dest-section')">Destinos</div>
+    <div class="hero-btn" onclick="scrollToSection('kids-section')">Kids</div>
+    <div class="hero-btn" onclick="scrollToSection('about-section')">About Us</div>
   </div>
 </section>
 
-<!-- =====================
+<!-- ===========================
      DESTINATIONS
-===================== -->
-<section>
-  <h2 class="section-title">Destinos activos</h2>
-  <p class="section-subtitle">Servicios disponibles ahora mismo</p>
+=========================== -->
+<section id="dest-section">
+  <div class="section-title" id="dest-title">Destinos</div>
 
-  <div class="icon-grid">
-    <div class="icon-card" onclick="filterCity('Guardalavaca')">
-      <div class="emoji">🏖️</div>
-      <h4>Guardalavaca</h4>
-      <p>Playa & naturaleza</p>
-    </div>
-    <div class="icon-card" onclick="filterCity('Holguín')">
-      <div class="emoji">🌴</div>
-      <h4>Holguín</h4>
-      <p>Cultura & excursiones</p>
-    </div>
-    <div class="icon-card" onclick="filterCity('Banes')">
-      <div class="emoji">🏛️</div>
-      <h4>Banes</h4>
-      <p>Museos & arqueología</p>
-    </div>
-    <div class="icon-card" onclick="filterCity('Santiago')">
-      <div class="emoji">🎶</div>
-      <h4>Santiago</h4>
-      <p>Historia & música</p>
-    </div>
-    <div class="icon-card" onclick="filterCity('Guantánamo')">
-      <div class="emoji">⛰️</div>
-      <h4>Guantánamo</h4>
-      <p>Montañas & ecoturismo</p>
-    </div>
+  <div id="destinations">
+    <div class="flag" onclick="selectCountry('Cuba')">🇨🇺 Cuba</div>
   </div>
 
-  <h3 class="section-title mt-2">Próximamente</h3>
-  <div class="country-bar">
-    <div class="country-pill">🇯🇲 Jamaica — Coming Soon</div>
-    <div class="country-pill">🇹🇹 Trinidad & Tobago — Coming Soon</div>
-    <div class="country-pill">🇲🇽 México — Coming Soon</div>
-    <div class="country-pill">🇨🇴 Colombia — Coming Soon</div>
-  </div>
+  <div id="cities"></div>
+
+  <div id="services"></div>
 </section>
 
-<!-- =====================
-     SERVICES
-===================== -->
-<section id="servicesSection">
-  <h2 class="section-title">Experiencias Horizonte Ventura</h2>
-  <p class="section-subtitle">Solo servicios reales disponibles en Cuba (Guardalavaca, Holguín, Banes, Santiago, Guantánamo)</p>
+<!-- ===========================
+     KIDS
+=========================== -->
+<section id="kids-section">
+  <div class="section-title">Kids & Family</div>
 
-  <div class="card-grid" id="servicesGrid"></div>
-</section>
-
-<!-- =====================
-     HOUSES / ACCOMMODATIONS
-===================== -->
-<section id="housesSection">
-  <h2 class="section-title">Casas & Alojamientos</h2>
-  <p class="section-subtitle">Casas reales, cerca de la playa y los servicios</p>
-
-  <div class="card-grid" id="housesGrid"></div>
-</section>
-
-<!-- =====================
-     KIDS SECTION
-===================== -->
-<section id="kidsSection">
-  <h2 class="section-title">Horizonte Kids 🌈</h2>
-  <p class="section-subtitle">Clases, seguridad y diversión para niños</p>
-
-  <div class="card-grid" id="kidsGrid"></div>
-</section>
-
-<!-- =====================
-     WHY US
-===================== -->
-<section>
-  <h2 class="section-title">Why Horizonte Ventura?</h2>
-  <p class="section-subtitle">No vendemos tours — construimos experiencias reales</p>
-
-  <div class="icon-grid">
-    <div class="icon-card">
-      <div class="emoji">🤝</div>
-      <h4>Atención humana</h4>
-      <p>No eres un número. Diseñamos tu viaje contigo.</p>
+  <div id="kids-grid">
+    <div class="kid-card" onclick="openService(kidsServices[0])">
+      🏊 Natación
     </div>
-    <div class="icon-card">
-      <div class="emoji">🏝️</div>
-      <h4>Experiencias reales</h4>
-      <p>No catálogos falsos. Solo lo que existe de verdad.</p>
+    <div class="kid-card" onclick="openService(kidsServices[1])">
+      🩺 Primeros Auxilios
     </div>
-    <div class="icon-card">
-      <div class="emoji">💰</div>
-      <h4>Precios honestos</h4>
-      <p>Con margen justo y sin cargos escondidos.</p>
+    <div class="kid-card" onclick="openService(kidsServices[2])">
+      ⚽ Fútbol de Playa
     </div>
-    <div class="icon-card">
-      <div class="emoji">🧭</div>
-      <h4>Local knowledge</h4>
-      <p>Vivimos aquí. Sabemos cómo funciona todo.</p>
+    <div class="kid-card" onclick="openService(kidsServices[3])">
+      🏐 Voleibol
+    </div>
+    <div class="kid-card" onclick="openService(kidsServices[4])">
+      🎭 Entretenimiento
     </div>
   </div>
 </section>
 
-<!-- =====================
+<!-- ===========================
+     ABOUT
+=========================== -->
+<section id="about-section">
+  <div class="section-title">About Us</div>
+  <p style="font-size:0.8rem;line-height:1.5;opacity:0.9;">
+    Horizon Ventura es una plataforma creada en Cuba para ofrecer experiencias reales, humanas y seguras
+    a viajeros que buscan más que turismo: buscan conexión, cultura y autenticidad.
+    <br><br>
+    Trabajamos directamente con familias cubanas, guías locales, entrenadores certificados y
+    profesionales del bienestar para crear experiencias que cambian vidas — tanto del visitante
+    como de la comunidad.
+    <br><br>
+    No somos una agencia. Somos un puente entre personas.
+  </p>
+</section>
+
+<!-- ===========================
      FOOTER
-===================== -->
+=========================== -->
 <footer>
-  <div class="footer-links">
-    <button onclick="openModal('aboutModal')">About Us</button>
-    <button onclick="openModal('termsModal')">Terms & Conditions</button>
-    <button onclick="openModal('privacyModal')">Privacy Policy</button>
-    <button onclick="openModal('contactModal')">Contact</button>
-    <button onclick="openModal('supportModal')">Support</button>
-    <button onclick="openModal('adminLoginModal')">Admin</button>
-  </div>
-  <p style="font-size:0.7rem; opacity:0.7;">© 2026 Horizonte Ventura — Caribbean Experiences</p>
+  <p>
+    © Horizon Ventura 2026 — Guardalavaca, Holguín, Cuba 🇨🇺
+    <br>
+    <a href="#" onclick="openLegal('terms')">Terms</a> ·
+    <a href="#" onclick="openLegal('privacy')">Privacy</a>
+  </p>
 </footer>
 
-<!-- =====================
-     CART DRAWER
-===================== -->
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cart-header">
-    <strong>🛒 Tu experiencia</strong>
-    <button onclick="toggleCart()">✕</button>
-  </div>
-  <div class="cart-body" id="cartBody"></div>
-  <div class="cart-footer">
-    <div class="cart-total" id="cartTotal">Total: CAD $0</div>
-    <button class="checkout-btn" onclick="openCheckout()">Checkout</button>
-  </div>
-</div>
-
-<!-- =====================
+<!-- ===========================
      AVATAR
-===================== -->
-<div class="avatar-container">
-  <div class="avatar" onclick="toggleAvatarMenu()" id="avatar">
-    <div class="avatar-face">
-      <div class="avatar-eye left"></div>
-      <div class="avatar-eye right"></div>
-      <div class="avatar-mouth"></div>
+=========================== -->
+<div id="avatar-container">
+  <div id="avatar-bubble"></div>
+  <div id="avatar" onclick="avatarTap()">
+    <div id="avatar-eyes">
+      <div class="eye"></div>
+      <div class="eye"></div>
     </div>
-  </div>
-
-  <div class="avatar-menu" id="avatarMenu">
-    <button onclick="scrollToSection('servicesSection')">🌴 Explorar experiencias</button>
-    <button onclick="scrollToSection('housesSection')">🏠 Ver alojamientos</button>
-    <button onclick="scrollToSection('kidsSection')">👧 Horizonte Kids</button>
-    <button onclick="openModal('offersModal')">🎁 Ofertas activas</button>
-    <button onclick="openModal('aboutModal')">ℹ️ About Us</button>
-    <button onclick="openModal('contactModal')">📞 Contact</button>
-    <button onclick="openModal('supportModal')">🛟 Support</button>
-    <button onclick="sharePage()">🔗 Compartir</button>
+    <div id="avatar-mouth"></div>
   </div>
 </div>
 
-<!-- =====================
-     MODALS
-===================== -->
-
-<!-- About -->
-<div class="modal-overlay" id="aboutModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('aboutModal')">✕</button>
-    <h3>About Horizonte Ventura</h3>
-    <p><strong>Horizonte Ventura</strong> nace en el oriente de Cuba con una misión clara: transformar viajes normales en experiencias humanas reales.</p>
-    <p>No somos una agencia fría ni un catálogo genérico. Somos personas locales, con conocimiento directo de cada playa, cada sendero, cada casa, cada historia.</p>
-    <p>Trabajamos en Guardalavaca, Holguín, Banes, Santiago y Guantánamo — y expandiremos a otros países solo cuando tengamos infraestructura real.</p>
-    <p><strong>Horizonte Ventura = Experiencias honestas, humanas y memorables.</strong></p>
-  </div>
-</div>
-
-<!-- Terms -->
-<div class="modal-overlay" id="termsModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('termsModal')">✕</button>
-    <h3>Terms & Conditions</h3>
-    <p>1. Horizonte Ventura actúa como intermediario entre el cliente y los proveedores locales.</p>
-    <p>2. Todas las reservas están sujetas a disponibilidad.</p>
-    <p>3. Cancelaciones deben realizarse mínimo 24h antes para reembolso parcial.</p>
-    <p>4. Los precios pueden variar por temporada.</p>
-    <p>5. El cliente acepta las condiciones climáticas y logísticas propias de destinos naturales.</p>
-    <p>6. Horizonte Ventura no se responsabiliza por actos fuera de control humano directo.</p>
-  </div>
-</div>
-
-<!-- Privacy -->
-<div class="modal-overlay" id="privacyModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('privacyModal')">✕</button>
-    <h3>Privacy Policy</h3>
-    <p>Respetamos tu privacidad. No vendemos datos. No compartimos información personal con terceros sin consentimiento.</p>
-    <p>Los datos recogidos se usan únicamente para reservas, comunicación y mejora del servicio.</p>
-    <p>Usamos almacenamiento local del navegador para carrito y preferencias.</p>
-  </div>
-</div>
-
-<!-- Contact -->
-<div class="modal-overlay" id="contactModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('contactModal')">✕</button>
-    <h3>Contact</h3>
-    <p>Email: info@horizonteventura.com</p>
-    <p>WhatsApp: +53 XXX XXX XXX</p>
-    <p>Location: Guardalavaca, Holguín, Cuba</p>
-  </div>
-</div>
-
-<!-- Support -->
-<div class="modal-overlay" id="supportModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('supportModal')">✕</button>
-    <h3>Support</h3>
-    <p>¿Problemas con tu reserva? ¿Necesitas ayuda inmediata?</p>
-    <p>Contacta nuestro equipo local 24/7.</p>
-  </div>
-</div>
-
-<!-- Languages -->
-<div class="modal-overlay" id="languagesModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('languagesModal')">✕</button>
-    <h3>Languages</h3>
-    <p>🌎 Multi-language support coming soon:</p>
-    <ul style="font-size:0.8rem; margin-left:1rem;">
-      <li>English</li>
-      <li>Español</li>
-      <li>Français</li>
-      <li>Deutsch</li>
-      <li>Italiano</li>
-      <li>Português</li>
-    </ul>
-  </div>
-</div>
-
-<!-- Offers -->
-<div class="modal-overlay" id="offersModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('offersModal')">✕</button>
-    <h3>🎁 Ofertas activas</h3>
-    <p>Primera reserva → Regalo sorpresa al llegar.</p>
-    <p>Combina 3 experiencias → 10% descuento automático.</p>
-  </div>
-</div>
-
-<!-- Checkout -->
-<div class="modal-overlay" id="checkoutModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('checkoutModal')">✕</button>
-    <h3>Checkout</h3>
-    <div id="checkoutSummary"></div>
-
-    <div class="booking-form">
-      <label>Name</label>
-      <input type="text" id="checkoutName" placeholder="Your name" />
-
-      <label>Email</label>
-      <input type="email" id="checkoutEmail" placeholder="you@email.com" />
-
-      <label>Phone / WhatsApp</label>
-      <input type="text" id="checkoutPhone" placeholder="+1 000 000 0000" />
-
-      <button onclick="completeCheckout()">Confirm Booking</button>
-    </div>
-  </div>
-</div>
-
-<!-- Admin Login -->
-<div class="modal-overlay" id="adminLoginModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('adminLoginModal')">✕</button>
-    <h3>Admin Login</h3>
-    <div class="booking-form">
-      <label>Password</label>
-      <input type="password" id="adminPassword" placeholder="Enter admin password" />
-      <button onclick="loginAdmin()">Login</button>
-    </div>
-  </div>
-</div>
-
-<!-- Admin Edit Modal -->
-<div class="modal-overlay" id="adminEditModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('adminEditModal')">✕</button>
-    <h3>Edit Item</h3>
-    <div class="booking-form">
-      <label>Title</label>
-      <input type="text" id="editTitle" />
-
-      <label>Description</label>
-      <input type="text" id="editDesc" />
-
-      <label>Price (CAD)</label>
-      <input type="number" id="editPrice" />
-
-      <label>Image URL</label>
-      <input type="text" id="editImage" />
-
-      <button onclick="saveAdminEdit()">Save Changes</button>
-    </div>
-  </div>
+<!-- ===========================
+     MODAL
+=========================== -->
+<div class="modal" id="modal">
+  <div class="modal-content" id="modal-content"></div>
 </div>
 
 <script>
-/* =========================
-   GLOBAL STATE
-========================= */
-let cart = JSON.parse(localStorage.getItem("hv_cart")) || [];
-let hasPurchased = JSON.parse(localStorage.getItem("hv_hasPurchased")) || false;
-let adminMode = false;
-let editingItem = null;
-
-/* =========================
-   DATA — SERVICES
-   Only Cuba locations
-========================= */
-const servicesData = [
-  {
-    id: "snorkeling_guardalavaca",
-    city: "Guardalavaca",
-    title: "Snorkeling en arrecifes",
-    desc: "Explora arrecifes cristalinos con guías locales certificados. Equipo incluido.",
-    price: 45,
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/35/Snorkeling_Cuba.jpg",
-    type: "activity"
-  },
-  {
-    id: "windsurf_guardalavaca",
-    city: "Guardalavaca",
-    title: "Windsurfing caribeño",
-    desc: "Aprende o perfecciona windsurfing en aguas tranquilas.",
-    price: 60,
-    image: "https://upload.wikimedia.org/wikipedia/commons/1/12/Windsurfing.jpg",
-    type: "activity"
-  },
-  {
-    id: "horse_beach",
-    city: "Guardalavaca",
-    title: "Paseo a caballo por la playa",
-    desc: "Cabalgata al atardecer por la costa y senderos naturales.",
-    price: 40,
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Horse_riding_beach.jpg",
-    type: "activity"
-  },
-  {
-    id: "jeep_safari",
-    city: "Holguín",
-    title: "Jeep Safari montaña & ríos",
-    desc: "Aventura todo terreno con paradas en ríos, miradores y pueblos rurales.",
-    price: 75,
-    image: "https://upload.wikimedia.org/wikipedia/commons/7/78/Jeep_safari.jpg",
-    type: "activity"
-  },
-  {
-    id: "city_tour_holguin",
-    city: "Holguín",
-    title: "City Tour Holguín",
-    desc: "Historia, parques, miradores y cultura local guiada.",
-    price: 35,
-    image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Holgu%C3%ADn_Cuba.jpg",
-    type: "activity"
-  },
-  {
-    id: "banes_museum",
-    city: "Banes",
-    title: "Museo Indocubano Baní",
-    desc: "Visita al mayor museo arqueológico indígena del Caribe.",
-    price: 25,
-    image: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Banes_Cuba.jpg",
-    type: "activity"
-  },
-  {
-    id: "santiago_history",
-    city: "Santiago",
-    title: "Ruta histórica de Santiago",
-    desc: "Cementerio Santa Ifigenia, Moncada, centro histórico.",
-    price: 70,
-    image: "https://upload.wikimedia.org/wikipedia/commons/5/55/Santiago_de_Cuba_city.jpg",
-    type: "activity"
-  },
-  {
-    id: "guantanamo_nature",
-    city: "Guantánamo",
-    title: "Ecoturismo montaña & cascadas",
-    desc: "Senderismo, ríos, cascadas y reservas naturales.",
-    price: 80,
-    image: "https://upload.wikimedia.org/wikipedia/commons/6/64/Guantanamo_Cuba.jpg",
-    type: "activity"
-  },
-  {
-    id: "night_party",
-    city: "Guardalavaca",
-    title: "Fiesta nocturna local",
-    desc: "Salida nocturna a centros culturales y música cubana en vivo.",
-    price: 30,
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Cuban_music_night.jpg",
-    type: "activity"
-  },
-  {
-    id: "private_dinner",
-    city: "Guardalavaca",
-    title: "Cena privada cubana",
-    desc: "Chef local en casa con menú tradicional personalizado.",
-    price: 55,
-    image: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Cuban_food.jpg",
-    type: "activity"
+/* ===========================
+   DAY / NIGHT SYSTEM
+=========================== */
+function updateBackground() {
+  const hour = new Date().getHours();
+  const bg = document.getElementById('bg-image');
+  if (hour >= 6 && hour < 18) {
+    document.body.classList.add('day');
+    document.body.classList.remove('night');
+    bg.style.backgroundImage = "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')";
+  } else {
+    document.body.classList.add('night');
+    document.body.classList.remove('day');
+    bg.style.backgroundImage = "url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21')";
   }
+}
+updateBackground();
+
+/* ===========================
+   AVATAR SYSTEM
+=========================== */
+const avatarBubble = document.getElementById('avatar-bubble');
+const avatarLines = [
+  "Hola 👋 Soy tu guía. Tócame cuando necesites ayuda.",
+  "¿Buscas actividades? Presiona Destinos 🌍",
+  "Kids section tiene clases, natación y primeros auxilios 👶",
+  "Cada servicio aquí es real y local 🇨🇺",
+  "Reserva segura, humana y directa 🤝",
+  "¿Quieres recomendaciones? Tócame otra vez 😄"
 ];
+let avatarIndex = 0;
 
-/* =========================
-   DATA — HOUSES
-========================= */
-const housesData = [
-  {
-    id: "house_guardalavaca_1",
-    city: "Guardalavaca",
-    title: "Casa Playa Brisa",
-    desc: "A 5 minutos de la playa. Aire acondicionado, WiFi, desayuno incluido.",
-    price: 55,
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/47/Casa_particular_Cuba.jpg",
-    type: "house"
-  },
-  {
-    id: "house_guardalavaca_2",
-    city: "Guardalavaca",
-    title: "Villa Coral",
-    desc: "Casa familiar amplia con terraza y jardín tropical.",
-    price: 65,
-    image: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Cuban_house.jpg",
-    type: "house"
-  },
-  {
-    id: "house_holguin_1",
-    city: "Holguín",
-    title: "Casa Mirador Holguín",
-    desc: "Vista a la ciudad, cerca del centro histórico.",
-    price: 50,
-    image: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Holguin_Cuba_houses.jpg",
-    type: "house"
-  }
-];
-
-/* =========================
-   DATA — KIDS
-========================= */
-const kidsData = [
-  {
-    id: "kids_swimming",
-    city: "Guardalavaca",
-    title: "Clases de natación infantil",
-    desc: "Aprendizaje seguro en piscina o playa con instructores certificados.",
-    price: 25,
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Swimming_lesson_kids.jpg",
-    type: "kids"
-  },
-  {
-    id: "kids_first_aid",
-    city: "Guardalavaca",
-    title: "Primeros auxilios para niños",
-    desc: "Taller básico de seguridad, emergencias y autocuidado.",
-    price: 20,
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/4d/First_aid_training.jpg",
-    type: "kids"
-  },
-  {
-    id: "kids_nature",
-    city: "Holguín",
-    title: "Exploración natural infantil",
-    desc: "Senderismo guiado suave y educación ambiental.",
-    price: 30,
-    image: "https://upload.wikimedia.org/wikipedia/commons/7/74/Nature_walk_children.jpg",
-    type: "kids"
-  }
-];
-
-/* =========================
-   INIT
-========================= */
-renderServices();
-renderHouses();
-renderKids();
-renderCart();
-avatarWelcome();
-
-/* =========================
-   RENDER FUNCTIONS
-========================= */
-function renderServices(cityFilter = null) {
-  const grid = document.getElementById("servicesGrid");
-  grid.innerHTML = "";
-  servicesData
-    .filter(s => !cityFilter || s.city === cityFilter)
-    .forEach(service => {
-      grid.appendChild(createCard(service));
-    });
+function avatarSpeak(text) {
+  avatarBubble.innerText = text;
+  avatarBubble.style.display = 'block';
+  setTimeout(()=> avatarBubble.style.display='none', 4000);
 }
 
-function renderHouses(cityFilter = null) {
-  const grid = document.getElementById("housesGrid");
-  grid.innerHTML = "";
-  housesData
-    .filter(h => !cityFilter || h.city === cityFilter)
-    .forEach(house => {
-      grid.appendChild(createCard(house, true));
-    });
+function avatarTap() {
+  avatarSpeak(avatarLines[avatarIndex]);
+  avatarIndex = (avatarIndex + 1) % avatarLines.length;
 }
 
-function renderKids(cityFilter = null) {
-  const grid = document.getElementById("kidsGrid");
-  grid.innerHTML = "";
-  kidsData
-    .filter(k => !cityFilter || k.city === cityFilter)
-    .forEach(kid => {
-      grid.appendChild(createCard(kid));
-    });
-}
+/* ===========================
+   LOGO CLICK
+=========================== */
+document.getElementById('logo').addEventListener('click', () => {
+  avatarSpeak("Gracias por elegir Horizon Ventura 🌅 Tu viaje empieza aquí.");
+});
 
-function createCard(item, isHouse = false) {
-  const card = document.createElement("div");
-  card.className = "service-card" + (isHouse ? " house-card" : "");
-
-  card.innerHTML = `
-    <img src="${item.image}" alt="${item.title}" />
-    <div class="content">
-      <h4>${item.title}</h4>
-      <p>${item.desc}</p>
-      <div class="price">CAD $${item.price}</div>
-      <button onclick="openBooking('${item.id}')">Book now</button>
-      ${adminMode ? `<button style="margin-top:0.3rem;background:#eee;color:#000;" onclick="openAdminEdit('${item.id}')">✏️ Edit</button>` : ``}
-    </div>
-  `;
-  return card;
-}
-
-/* =========================
-   FILTER
-========================= */
-function filterCity(city) {
-  renderServices(city);
-  renderHouses(city);
-  renderKids(city);
-  scrollToSection("servicesSection");
-}
-
-/* =========================
-   CART
-========================= */
-function toggleCart() {
-  document.getElementById("cartDrawer").classList.toggle("open");
-}
-
-function addToCart(item, bookingData) {
-  const cartItem = {
-    ...item,
-    bookingData,
-    cartId: Date.now()
-  };
-  cart.push(cartItem);
-  saveCart();
-  renderCart();
-  toggleCart();
-}
-
-function removeFromCart(cartId) {
-  cart = cart.filter(i => i.cartId !== cartId);
-  saveCart();
-  renderCart();
-}
-
-function saveCart() {
-  localStorage.setItem("hv_cart", JSON.stringify(cart));
-}
-
-function renderCart() {
-  const body = document.getElementById("cartBody");
-  body.innerHTML = "";
-
-  if (cart.length === 0) {
-    body.innerHTML = "<p style='font-size:0.8rem;color:#666;'>Tu carrito está vacío.</p>";
-  }
-
-  cart.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "cart-item";
-    div.innerHTML = `
-      <img src="${item.image}" />
-      <div class="cart-item-info">
-        <h5>${item.title}</h5>
-        <p>${item.bookingData.summary}</p>
-        <div class="price">CAD $${item.price}</div>
-      </div>
-      <div class="cart-item-actions">
-        <button onclick="removeFromCart(${item.cartId})">❌</button>
-      </div>
-    `;
-    body.appendChild(div);
-  });
-
-  const total = cart.reduce((sum, i) => sum + i.price, 0);
-  document.getElementById("cartTotal").textContent = `Total: CAD $${total}`;
-}
-
-/* =========================
-   BOOKING LOGIC
-========================= */
-function openBooking(itemId) {
-  const item = [...servicesData, ...housesData, ...kidsData].find(i => i.id === itemId);
-  if (!item) return;
-
-  let fields = "";
-
-  if (item.type === "activity") {
-    fields = `
-      <label>Date</label>
-      <input type="date" id="bookingDate" />
-
-      <label>Participants</label>
-      <select id="bookingPeople">
-        <option value="1">1 person</option>
-        <option value="2">2 people</option>
-        <option value="3">3 people</option>
-        <option value="4">4 people</option>
-        <option value="5">5 people</option>
-        <option value="6">6+ people</option>
-      </select>
-
-      <label>Pickup location</label>
-      <input type="text" id="bookingPickup" placeholder="Hotel / Casa / Address" />
-    `;
-  }
-
-  if (item.type === "house") {
-    fields = `
-      <label>Check-in date</label>
-      <input type="date" id="bookingDate" />
-
-      <label>Nights</label>
-      <select id="bookingNights">
-        <option value="1">1 night</option>
-        <option value="2">2 nights</option>
-        <option value="3">3 nights</option>
-        <option value="4">4 nights</option>
-        <option value="5">5 nights</option>
-        <option value="7">7 nights</option>
-      </select>
-
-      <label>Guests</label>
-      <select id="bookingPeople">
-        <option value="1">1 guest</option>
-        <option value="2">2 guests</option>
-        <option value="3">3 guests</option>
-        <option value="4">4 guests</option>
-      </select>
-    `;
-  }
-
-  if (item.type === "kids") {
-    fields = `
-      <label>Date</label>
-      <input type="date" id="bookingDate" />
-
-      <label>Child age</label>
-      <input type="number" id="bookingAge" placeholder="Age" />
-
-      <label>Parent contact</label>
-      <input type="text" id="bookingParent" placeholder="Phone / WhatsApp" />
-    `;
-  }
-
-  const modal = document.getElementById("checkoutModal");
-  modal.classList.add("active");
-  document.getElementById("checkoutSummary").innerHTML = `
-    <h4>${item.title}</h4>
-    <p>${item.desc}</p>
-    <p><strong>Price:</strong> CAD $${item.price}</p>
-
-    <div class="booking-form">
-      ${fields}
-      <button onclick="confirmBooking('${item.id}')">Add to cart</button>
-    </div>
-  `;
-}
-
-function confirmBooking(itemId) {
-  const item = [...servicesData, ...housesData, ...kidsData].find(i => i.id === itemId);
-  if (!item) return;
-
-  let summary = "";
-
-  if (item.type === "activity") {
-    const date = document.getElementById("bookingDate").value;
-    const people = document.getElementById("bookingPeople").value;
-    const pickup = document.getElementById("bookingPickup").value;
-    summary = `Date: ${date || "N/A"}, People: ${people}, Pickup: ${pickup || "N/A"}`;
-  }
-
-  if (item.type === "house") {
-    const date = document.getElementById("bookingDate").value;
-    const nights = document.getElementById("bookingNights").value;
-    const people = document.getElementById("bookingPeople").value;
-    summary = `Check-in: ${date || "N/A"}, Nights: ${nights}, Guests: ${people}`;
-  }
-
-  if (item.type === "kids") {
-    const date = document.getElementById("bookingDate").value;
-    const age = document.getElementById("bookingAge").value;
-    const parent = document.getElementById("bookingParent").value;
-    summary = `Date: ${date || "N/A"}, Age: ${age || "N/A"}, Contact: ${parent || "N/A"}`;
-  }
-
-  addToCart(item, { summary });
-  closeModal("checkoutModal");
-}
-
-/* =========================
-   CHECKOUT
-========================= */
-function openCheckout() {
-  if (cart.length === 0) {
-    alert("Your cart is empty.");
-    return;
-  }
-  const modal = document.getElementById("checkoutModal");
-  modal.classList.add("active");
-  document.getElementById("checkoutSummary").innerHTML = `
-    <h4>Order Summary</h4>
-    ${cart.map(i => `<p>• ${i.title} — CAD $${i.price}</p>`).join("")}
-    <p><strong>Total:</strong> CAD $${cart.reduce((s,i)=>s+i.price,0)}</p>
-  `;
-}
-
-function completeCheckout() {
-  const name = document.getElementById("checkoutName").value;
-  const email = document.getElementById("checkoutEmail").value;
-
-  if (!name || !email) {
-    alert("Please fill name and email.");
-    return;
-  }
-
-  alert("🎉 Booking confirmed! Receipt sent to email.");
-
-  cart = [];
-  saveCart();
-  renderCart();
-  closeModal("checkoutModal");
-
-  if (!hasPurchased) {
-    hasPurchased = true;
-    localStorage.setItem("hv_hasPurchased", JSON.stringify(true));
-    setTimeout(() => {
-      avatarSay("🎁 Welcome gift unlocked! Ask our team when you arrive.");
-    }, 800);
-  }
-}
-
-/* =========================
-   MODALS
-========================= */
-function openModal(id) {
-  document.getElementById(id).classList.add("active");
-}
-function closeModal(id) {
-  document.getElementById(id).classList.remove("active");
-}
-
-/* =========================
+/* ===========================
    SCROLL
-========================= */
+=========================== */
 function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+  avatarSpeak("Buena elección 😉 Te llevo ahí.");
 }
 
-/* =========================
-   AVATAR
-========================= */
-function toggleAvatarMenu() {
-  document.getElementById("avatarMenu").classList.toggle("open");
-}
+/* ===========================
+   DATA SERVICES
+=========================== */
+const citiesData = {
+  "Cuba": ["Guardalavaca, Holguín"]
+};
 
-function avatarSay(text) {
-  const bubble = document.createElement("div");
-  bubble.style.position = "fixed";
-  bubble.style.bottom = "110px";
-  bubble.style.right = "1rem";
-  bubble.style.background = "white";
-  bubble.style.padding = "0.6rem 0.8rem";
-  bubble.style.borderRadius = "14px";
-  bubble.style.boxShadow = "0 6px 20px rgba(0,0,0,0.2)";
-  bubble.style.fontSize = "0.75rem";
-  bubble.style.maxWidth = "240px";
-  bubble.textContent = text;
-  document.body.appendChild(bubble);
+const servicesData = {
+  "Guardalavaca, Holguín": [
+    {
+      category:"Transporte",
+      title:"🚕 Pick-up Aeropuerto",
+      desc:"Recogida privada desde el aeropuerto de Holguín hasta Guardalavaca en vehículo climatizado.",
+      duration:"1h",
+      price:"Desde $40",
+      schedule:"24/7",
+    },
+    {
+      category:"Transporte",
+      title:"🚗 Renta de Auto Clásico",
+      desc:"Alquila un auto clásico cubano con o sin chofer para recorridos turísticos.",
+      duration:"Por día",
+      price:"Desde $70",
+      schedule:"9am - 8pm",
+    },
+    {
+      category:"Transporte",
+      title:"🧑‍✈️ Chofer Privado",
+      desc:"Chofer local certificado para excursiones, viajes largos y recorridos personalizados.",
+      duration:"Flexible",
+      price:"Desde $60/día",
+      schedule:"A coordinar",
+    },
+    {
+      category:"Comida",
+      title:"🍳 Desayuno Cubano en Familia",
+      desc:"Desayuno tradicional cubano preparado en casa familiar: café, frutas, pan, huevos y más.",
+      duration:"1h",
+      price:"$10",
+      schedule:"7am - 11am",
+    },
+    {
+      category:"Comida",
+      title:"🍽️ Almuerzo o Cena Cubana",
+      desc:"Comida típica cubana en ambiente familiar con platos caseros auténticos.",
+      duration:"1.5h",
+      price:"Desde $15",
+      schedule:"12pm - 9pm",
+    },
+    {
+      category:"Comida",
+      title:"🎉 Fiesta Cubana Privada",
+      desc:"Crea tu propia fiesta: música, comida, bebidas, ambiente cubano real. Tú eliges todo.",
+      duration:"3-5h",
+      price:"Desde $80",
+      schedule:"Bajo reserva",
+    },
+    {
+      category:"Actividades",
+      title:"🤿 Snorkeling",
+      desc:"Explora arrecifes coralinos con guía local certificado y equipo incluido.",
+      duration:"2h",
+      price:"$35",
+      schedule:"9am - 4pm",
+    },
+    {
+      category:"Actividades",
+      title:"🎣 Pesca y Pesca Submarina",
+      desc:"Pesca tradicional o submarina en aguas cristalinas con pescadores locales.",
+      duration:"3h",
+      price:"Desde $50",
+      schedule:"6am - 3pm",
+    },
+    {
+      category:"Actividades",
+      title:"🦈 Nado con Tiburones",
+      desc:"Experiencia controlada y segura para nadar con tiburones junto a profesionales.",
+      duration:"2h",
+      price:"Desde $90",
+      schedule:"Bajo reserva",
+    },
+    {
+      category:"Actividades",
+      title:"🐎 Cabalgatas",
+      desc:"Paseos a caballo por playas, senderos naturales y zonas rurales cubanas.",
+      duration:"1-3h",
+      price:"Desde $25",
+      schedule:"8am - 6pm",
+    },
+    {
+      category:"Actividades",
+      title:"💑 Paseo Romántico en Carruaje",
+      desc:"Recorrido en coche de caballos al atardecer para parejas.",
+      duration:"1h",
+      price:"$30",
+      schedule:"5pm - 8pm",
+    },
+    {
+      category:"Viajes",
+      title:"🏛️ Museos y Sitios Históricos",
+      desc:"Visitas guiadas a museos, plazas históricas y lugares patrimoniales.",
+      duration:"4h",
+      price:"Desde $40",
+      schedule:"9am - 5pm",
+    },
+    {
+      category:"Viajes",
+      title:"🐬 Acuario",
+      desc:"Excursión al acuario local con espectáculos y contacto con animales marinos.",
+      duration:"3h",
+      price:"$35",
+      schedule:"10am - 4pm",
+    },
+    {
+      category:"Viajes",
+      title:"🌄 Santiago de Cuba",
+      desc:"Viaje interprovincial a Santiago: cultura, música, historia y gastronomía.",
+      duration:"1 día",
+      price:"Desde $120",
+      schedule:"Bajo reserva",
+    },
+    {
+      category:"Viajes",
+      title:"🏺 Museo de Cerámica Bayamo",
+      desc:"Excursión cultural a Bayamo para explorar arte cerámico tradicional cubano.",
+      duration:"1 día",
+      price:"Desde $110",
+      schedule:"Bajo reserva",
+    },
+    {
+      category:"Viajes",
+      title:"🌴 Guantánamo Natural",
+      desc:"Viaje a zonas naturales y montañosas de Guantánamo con guía local.",
+      duration:"1 día",
+      price:"Desde $130",
+      schedule:"Bajo reserva",
+    },
+    {
+      category:"Estética",
+      title:"💇‍♀️ Peinados y Trenzas",
+      desc:"Peinados, trenzas africanas, coloración y estilismo profesional.",
+      duration:"1-2h",
+      price:"Desde $20",
+      schedule:"10am - 7pm",
+    },
+    {
+      category:"Estética",
+      title:"💈 Corte Hombre & Barba",
+      desc:"Cortes frescos latinos, barbería profesional y arreglos de barba.",
+      duration:"45min",
+      price:"$15",
+      schedule:"10am - 8pm",
+    },
+    {
+      category:"Estética",
+      title:"💅 Manicure & Pedicure",
+      desc:"Arreglo profesional de uñas, manos y pies con productos locales.",
+      duration:"1h",
+      price:"Desde $15",
+      schedule:"10am - 7pm",
+    },
+    {
+      category:"Estética",
+      title:"💆‍♀️ Masajes & Faciales",
+      desc:"Masajes relajantes, terapéuticos y tratamientos faciales naturales.",
+      duration:"1h",
+      price:"Desde $30",
+      schedule:"10am - 7pm",
+    },
+    {
+      category:"Estética",
+      title:"🖋️ Tatuajes",
+      desc:"Tatuajes profesionales. Precio depende del tamaño. Reserva mínima garantizada.",
+      duration:"Variable",
+      price:"Desde $50 (reserva)",
+      schedule:"Bajo reserva",
+    },
+    {
+      category:"Renta",
+      title:"🏠 Casa a 5 minutos de la playa",
+      desc:"Casa segura en barrio céntrico y tranquilo, cero criminalidad histórica.",
+      duration:"Por noche",
+      price:"Desde $60",
+      schedule:"Check-in flexible",
+    }
+  ]
+};
 
-  setTimeout(() => bubble.remove(), 3500);
-}
-
-function avatarWelcome() {
-  setTimeout(() => {
-    avatarSay("🌞 Bienvenido a Horizonte Ventura! ¿Listo para tu experiencia caribeña?");
-  }, 1200);
-}
-
-/* =========================
-   SHARE
-========================= */
-function sharePage() {
-  if (navigator.share) {
-    navigator.share({
-      title: "Horizonte Ventura",
-      text: "Descubre experiencias reales en el Caribe cubano",
-      url: window.location.href
-    });
-  } else {
-    alert("Link copied!");
+const kidsServices = [
+  {
+    title:"🏊 Clases de Natación",
+    desc:"Clases de natación con instructores certificados para niños y adolescentes.",
+    duration:"1h",
+    price:"$15",
+    schedule:"9am - 6pm"
+  },
+  {
+    title:"🩺 Primeros Auxilios",
+    desc:"Clases prácticas de primeros auxilios para niños en ambiente seguro.",
+    duration:"1h",
+    price:"$10",
+    schedule:"10am - 5pm"
+  },
+  {
+    title:"⚽ Fútbol de Playa",
+    desc:"Entrenamientos y juegos recreativos en la playa para niños.",
+    duration:"1h",
+    price:"$10",
+    schedule:"8am - 6pm"
+  },
+  {
+    title:"🏐 Voleibol",
+    desc:"Clases y juegos de voleibol recreativo para niños y jóvenes.",
+    duration:"1h",
+    price:"$10",
+    schedule:"8am - 6pm"
+  },
+  {
+    title:"🎭 Entretenimiento Infantil",
+    desc:"Actividades recreativas supervisadas para niños mientras los padres descansan.",
+    duration:"Flexible",
+    price:"Desde $15",
+    schedule:"9am - 8pm"
   }
+];
+
+/* ===========================
+   DESTINATION FLOW
+=========================== */
+function selectCountry(country) {
+  avatarSpeak("Perfecto 🌍 Selecciona tu destino.");
+  const citiesDiv = document.getElementById('cities');
+  citiesDiv.innerHTML = "";
+  citiesDiv.style.display = "flex";
+  services.style.display = "none";
+
+  citiesData[country].forEach(city => {
+    const div = document.createElement('div');
+    div.className = "city";
+    div.innerText = city;
+    div.onclick = () => selectCity(city);
+    citiesDiv.appendChild(div);
+  });
 }
 
-/* =========================
-   ADMIN
-========================= */
-function loginAdmin() {
-  const pass = document.getElementById("adminPassword").value;
-  if (pass === "admin123") {
-    adminMode = true;
-    document.getElementById("adminBadge").style.display = "block";
-    closeModal("adminLoginModal");
-    renderServices();
-    renderHouses();
-    renderKids();
-    avatarSay("🛠️ Admin mode activated.");
+function selectCity(city) {
+  avatarSpeak("Excelente elección 😎 Aquí están tus opciones.");
+  const servicesDiv = document.getElementById('services');
+  servicesDiv.innerHTML = "";
+  servicesDiv.style.display = "grid";
+
+  servicesData[city].forEach(service => {
+    const card = document.createElement('div');
+    card.className = "service-card";
+    card.innerHTML = `
+      <strong>${service.title}</strong>
+      <span>${service.category}</span>
+      <span>${service.price}</span>
+    `;
+    card.onclick = () => openService(service);
+    servicesDiv.appendChild(card);
+  });
+}
+
+/* ===========================
+   MODAL SERVICE
+=========================== */
+function openService(service) {
+  avatarSpeak("Buena elección 😉 Te explico todo.");
+  const modal = document.getElementById('modal');
+  const content = document.getElementById('modal-content');
+
+  content.innerHTML = `
+    <h3>${service.title}</h3>
+    <p>${service.desc}</p>
+    <p><strong>Duración:</strong> ${service.duration}</p>
+    <p><strong>Precio:</strong> ${service.price}</p>
+    <p><strong>Horario:</strong> ${service.schedule}</p>
+
+    <label>Fecha</label>
+    <input type="date"/>
+
+    <label>Hora</label>
+    <input type="time"/>
+
+    <label>Personas</label>
+    <select>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4+</option>
+    </select>
+
+    <button onclick="confirmBooking('${service.title}')">Reservar Ahora</button>
+    <button style="margin-top:8px;background:#333;" onclick="closeModal()">Cerrar</button>
+  `;
+
+  modal.style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = "none";
+}
+
+function confirmBooking(title) {
+  closeModal();
+  avatarSpeak("✅ Reserva enviada para " + title + ". Te contactaremos pronto.");
+}
+
+/* ===========================
+   LEGAL
+=========================== */
+function openLegal(type) {
+  const modal = document.getElementById('modal');
+  const content = document.getElementById('modal-content');
+
+  if (type === "terms") {
+    content.innerHTML = `
+      <h3>Términos y Condiciones</h3>
+      <p>
+      Horizon Ventura actúa como intermediario entre proveedores locales y clientes.
+      Todas las experiencias son reales, humanas y coordinadas manualmente.
+      Cancelaciones deben realizarse con mínimo 24 horas de antelación.
+      </p>
+      <button onclick="closeModal()">Cerrar</button>
+    `;
   } else {
-    alert("Incorrect password.");
+    content.innerHTML = `
+      <h3>Política de Privacidad</h3>
+      <p>
+      No compartimos datos personales con terceros.
+      La información es utilizada únicamente para reservas y comunicación directa.
+      </p>
+      <button onclick="closeModal()">Cerrar</button>
+    `;
   }
+
+  modal.style.display = "flex";
 }
 
-function openAdminEdit(itemId) {
-  const item = [...servicesData, ...housesData, ...kidsData].find(i => i.id === itemId);
-  if (!item) return;
+/* ===========================
+   LANGUAGE SYSTEM
+=========================== */
+const translations = {
+  es: {
+    heroTitle:"Tu horizonte comienza aquí",
+    heroSub:"Experiencias reales en Guardalavaca, Holguín, Cuba 🇨🇺",
+    destTitle:"Destinos"
+  },
+  en: {
+    heroTitle:"Your horizon starts here",
+    heroSub:"Real experiences in Guardalavaca, Holguín, Cuba 🇨🇺",
+    destTitle:"Destinations"
+  },
+  it: {
+    heroTitle:"Il tuo orizzonte inizia qui",
+    heroSub:"Esperienze reali a Guardalavaca, Holguín, Cuba 🇨🇺",
+    destTitle:"Destinazioni"
+  },
+  fr: {
+    heroTitle:"Votre horizon commence ici",
+    heroSub:"Expériences réelles à Guardalavaca, Holguín, Cuba 🇨🇺",
+    destTitle:"Destinations"
+  },
+  de: {
+    heroTitle:"Dein Horizont beginnt hier",
+    heroSub:"Echte Erlebnisse in Guardalavaca, Holguín, Kuba 🇨🇺",
+    destTitle:"Reiseziele"
+  },
+  ja: {
+    heroTitle:"あなたの地平線はここから始まる",
+    heroSub:"キューバ・ガルダラバカの本物体験 🇨🇺",
+    destTitle:"目的地"
+  },
+  hi: {
+    heroTitle:"आपकी यात्रा यहीं से शुरू होती है",
+    heroSub:"गार्डालावाका, क्यूबा में असली अनुभव 🇨🇺",
+    destTitle:"गंतव्य"
+  },
+  ar: {
+    heroTitle:"رحلتك تبدأ من هنا",
+    heroSub:"تجارب حقيقية في غاردالافاكا، كوبا 🇨🇺",
+    destTitle:"الوجهات"
+  }
+};
 
-  editingItem = item;
-  document.getElementById("editTitle").value = item.title;
-  document.getElementById("editDesc").value = item.desc;
-  document.getElementById("editPrice").value = item.price;
-  document.getElementById("editImage").value = item.image;
-  openModal("adminEditModal");
-}
+document.getElementById('language-select').addEventListener('change', e => {
+  const lang = e.target.value;
+  const t = translations[lang];
+  document.getElementById('hero-title').innerText = t.heroTitle;
+  document.getElementById('hero-sub').innerText = t.heroSub;
+  document.getElementById('dest-title').innerText = t.destTitle;
+  avatarSpeak("Idioma cambiado 🌍");
+});
 
-function saveAdminEdit() {
-  if (!editingItem) return;
-  editingItem.title = document.getElementById("editTitle").value;
-  editingItem.desc = document.getElementById("editDesc").value;
-  editingItem.price = Number(document.getElementById("editPrice").value);
-  editingItem.image = document.getElementById("editImage").value;
-
-  closeModal("adminEditModal");
-  renderServices();
-  renderHouses();
-  renderKids();
-  avatarSay("✅ Changes saved.");
-}
-
-/* =========================
-   INIT CART RENDER
-========================= */
-renderCart();
-
+/* ===========================
+   INIT AVATAR
+=========================== */
+setTimeout(()=> {
+  avatarSpeak("Bienvenido a Horizon Ventura 🌅 ¿Qué te gustaría explorar hoy?");
+}, 3500);
 </script>
 
 </body>
