@@ -1,598 +1,582 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Horizon Ventura — Luxury Caribbean Experiences</title>
-    <style>
-        :root {
-            --navy: #001f2f;
-            --ocean: #005f73;
-            --coral: #ff7f50;
-            --sunset: #ff4e50;
-            --gold: #f9d423;
-            --sand: #f4f1de;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.1);
-            --shadow: 0 8px 32px rgba(0,0,0,0.3);
-            --font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        body {
-            font-family: var(--font);
-            background: var(--navy);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.4;
-        }
-
-        /* --- LOGO SYSTEM (SVG) --- */
-        #mainLogo {
-            width: 180px;
-            height: auto;
-            cursor: pointer;
-        }
-
-        /* --- MOBILE LAYOUT --- */
-        header {
-            position: fixed;
-            top: 0; width: 100%;
-            height: 70px;
-            background: rgba(0, 31, 47, 0.85);
-            backdrop-filter: blur(15px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 15px;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .nav-icons { display: flex; gap: 15px; align-items: center; }
-        .icon-btn { background: none; border: none; font-size: 24px; color: white; position: relative; }
-        #cartBadge {
-            position: absolute; top: -5px; right: -8px;
-            background: var(--sunset); font-size: 10px;
-            padding: 2px 5px; border-radius: 10px; font-weight: bold;
-        }
-
-        #app { padding-top: 80px; padding-bottom: 100px; min-height: 100vh; }
-
-        .container { padding: 0 20px; max-width: 500px; margin: 0 auto; }
-
-        /* --- AMIGO 3D GULL --- */
-        #amigoContainer {
-            position: fixed;
-            bottom: 85px; right: 15px;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            pointer-events: none;
-        }
-        #amigoCanvas {
-            width: 130px; height: 130px;
-            pointer-events: auto;
-            cursor: grab;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
-        }
-        #amigoBubble {
-            background: white; color: var(--navy);
-            padding: 10px 15px; border-radius: 15px;
-            font-size: 13px; font-weight: 600;
-            margin-bottom: 10px; max-width: 200px;
-            box-shadow: var(--shadow);
-            display: none; position: relative;
-            pointer-events: auto;
-        }
-        #amigoBubble::after {
-            content: ''; position: absolute; bottom: -8px; right: 20px;
-            border-left: 8px solid transparent; border-right: 8px solid transparent;
-            border-top: 8px solid white;
-        }
-
-        /* --- HERO & SECTIONS --- */
-        .hero { text-align: center; padding: 40px 0; }
-        .hero h1 { font-size: 28px; margin-bottom: 10px; background: linear-gradient(to right, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-       
-        .section-title { font-size: 22px; margin-bottom: 20px; border-left: 4px solid var(--coral); padding-left: 10px; }
-
-        /* --- CARDS --- */
-        .card-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-       
-        .country-card {
-            height: 180px; border-radius: 20px; overflow: hidden;
-            position: relative; box-shadow: var(--shadow);
-            background-size: cover; background-position: center;
-        }
-        .card-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 15px;
-        }
-
-        .service-card {
-            background: var(--glass); border-radius: 20px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .service-img { height: 160px; background-size: cover; background-position: center; }
-        .service-info { padding: 15px; }
-        .price-tag { color: var(--gold); font-weight: bold; font-size: 18px; }
-
-        /* --- BUTTONS --- */
-        .btn {
-            display: block; width: 100%; padding: 15px; border-radius: 12px;
-            text-align: center; font-weight: bold; border: none; cursor: pointer;
-            font-size: 16px; transition: 0.3s; margin-top: 10px;
-        }
-        .btn-primary { background: linear-gradient(135deg, var(--sunset), var(--coral)); color: white; }
-        .btn-secondary { background: rgba(255,255,255,0.1); color: white; }
-
-        /* --- TABS / NAVIGATION --- */
-        .bottom-nav {
-            position: fixed; bottom: 0; width: 100%;
-            height: 70px; background: var(--navy);
-            display: flex; justify-content: space-around; align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.1); z-index: 1001;
-        }
-
-        /* --- MODALS --- */
-        .modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-            display: none; align-items: center; justify-content: center; z-index: 3000; padding: 20px;
-        }
-        .modal-content {
-            background: #fff; color: #333; width: 100%; max-width: 400px;
-            border-radius: 25px; padding: 25px; max-height: 80vh; overflow-y: auto;
-        }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 12px; margin-bottom: 5px; font-weight: bold; }
-        .form-group input, .form-group select {
-            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd;
-        }
-
-        /* --- UTILS --- */
-        .hidden { display: none !important; }
-        .fade-in { animation: fadeIn 0.4s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-    </style>
-</head>
-<body>
-
-    <div id="loader" style="position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;">
-        <div style="text-align:center;">
-            <div id="loaderLogo"></div>
-            <p style="margin-top:20px; color: var(--gold);">Horizon Ventura...</p>
-        </div>
-    </div>
-
-    <header>
-        <div id="logoContainer">
-            <svg id="mainLogo" viewBox="0 0 250 60">
-                <defs>
-                    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:#ff7e5f" />
-                        <stop offset="100%" style="stop-color:#feb47b" />
-                    </linearGradient>
-                </defs>
-                <circle cx="30" cy="30" r="25" fill="url(#sunGrad)" />
-                <path d="M10,40 Q30,20 50,40" stroke="white" stroke-width="2" fill="none" opacity="0.5"/>
-                <path d="M25,25 L35,22 L32,28 Z" fill="#001f2f" /> <text x="65" y="40" font-family="Arial" font-weight="900" font-size="22" fill="white">HORIZON</text>
-                <text x="65" y="55" font-family="Arial" font-weight="400" font-size="12" fill="#ff7f50" letter-spacing="2">VENTURA</text>
-            </svg>
-        </div>
-        <div class="nav-icons">
-            <button class="icon-btn" onclick="toggleLang()"><span id="langLabel">EN</span></button>
-            <button class="icon-btn" onclick="openCart()">🛒<span id="cartBadge">0</span></button>
-        </div>
-    </header>
-
-    <div id="app">
-        </div>
-
-    <div id="amigoContainer">
-        <div id="amigoBubble">Hello! I'm Gavi, let's explore!</div>
-        <div id="amigoMenu" class="hidden" style="background:white; border-radius:15px; padding:10px; margin-bottom:10px; pointer-events:auto; box-shadow:var(--shadow);">
-            <button class="btn btn-secondary" style="color:black; font-size:12px; padding:5px;" onclick="talkToWA()">Direct WhatsApp</button>
-            <button class="btn btn-secondary" style="color:black; font-size:12px; padding:5px;" onclick="showHelp('tattoos')">Tattoo Info</button>
-        </div>
-        <canvas id="amigoCanvas"></canvas>
-    </div>
-
-    <nav class="bottom-nav">
-        <button class="icon-btn" onclick="renderHome()">🏠</button>
-        <button class="icon-btn" onclick="renderCountries()">🌍</button>
-        <button class="icon-btn" onclick="renderReviews()">⭐</button>
-        <button class="icon-btn" onclick="openAdmin()">⚙️</button>
-    </nav>
-
-    <div id="globalModal" class="modal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div id="modalBody"></div>
-        </div>
-    </div>
+    <title>Horizon Ventura | The Ultimate Caribbean Experience</title>
+   
+    <script src="[https://cdn.tailwindcss.com"></script]https://cdn.tailwindcss.com"></script>
+   
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
-        const state = {
-            lang: 'en',
-            cart: [],
-            currentCountry: null,
-            currentCity: null,
-            giftClaimed: false,
-            admin: false
-        };
-
-        const DATA = {
-            countries: [
-                {
-                    id: 'cuba', name: 'Cuba', img: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=1000',
-                    cities: [
-                        { id: 'holguin', name: 'Holguín (Guardalavaca)', services: ['snorkeling', 'windsurfing', 'classic-car', 'tattoo', 'airport-h'] },
-                        { id: 'havana', name: 'Havana', services: ['classic-car', 'walking-tour', 'nightlife-v', 'tattoo', 'airport-h'] }
-                    ]
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    sans: ['Open Sans', 'sans-serif'],
+                    heading: ['Montserrat', 'sans-serif'],
                 },
-                {
-                    id: 'mexico', name: 'Mexico', img: 'https://images.unsplash.com/photo-1512813588311-547437cc03b2?q=80&w=1000',
-                    cities: [
-                        { id: 'cancun', name: 'Cancún', services: ['cenote', 'snorkeling', 'nightlife-v', 'airport-h'] },
-                        { id: 'playa', name: 'Playa del Carmen', services: ['beach-club', 'tattoo', 'yacht'] }
-                    ]
-                },
-                {
-                    id: 'jamaica', name: 'Jamaica', img: 'https://images.unsplash.com/photo-1549640376-89f1d2c43b99?q=80&w=1000',
-                    cities: [
-                        { id: 'mobay', name: 'Montego Bay', services: ['catamaran', 'falls', 'reggae', 'airport-h'] }
-                    ]
+                extend: {
+                    colors: {
+                        ocean: '#006994',
+                        deepblue: '#002366',
+                        sunset: '#FF7F50',
+                        sand: '#F4E2D8',
+                        gold: '#FFD700'
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(0,35,102,0.6), rgba(0,35,102,0.3)), url('https://images.unsplash.com/photo-1590523741831-ab043b7322bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')",
+                        'history-pattern': "linear-gradient(to right, rgba(0,35,102,0.8), rgba(0,35,102,0.4)), url('https://images.unsplash.com/photo-1570477685590-20839006172a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')"
+                    }
                 }
-            ],
-            services: {
-                'snorkeling': { title: 'Coral Reef Snorkeling', price: 85, img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500', desc: 'Explore the Atlantic reefs with certified guides.' },
-                'windsurfing': { title: 'Pro Windsurfing', price: 150, img: 'https://images.unsplash.com/photo-1504893524553-b8553f071dcb?w=500', desc: 'Equipment and 2h training session.' },
-                'classic-car': { title: '1950s Chevy Tour', price: 210, img: 'https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?w=500', desc: 'Classic car with private chauffeur for 4h.' },
-                'tattoo': { title: 'Pro Tattoo Studio', price: 120, img: 'https://images.unsplash.com/photo-1520974735194-ec3287df86f4?w=500', desc: 'International safety standards and top artists.' },
-                'airport-h': { title: 'Airport Pickup VIP', price: 65, img: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500', desc: 'Private transfer from airport to your hotel.' },
-                'cenote': { title: 'Secret Cenote Swim', price: 95, img: 'https://images.unsplash.com/photo-1518737003272-da4c01a505fd?w=500', desc: 'Private access to sacred Mayan cenotes.' },
-                'catamaran': { title: 'Sunset Catamaran', price: 140, img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500', desc: 'Open bar, DJ, and snorkeling in Jamaica.' }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- CSS MAESTRO PERSONALIZADO --- */
+       
+        /* Animación del Avatar Flotante */
+        @keyframes floatAvatar {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+       
+        .avatar-float {
+            animation: floatAvatar 4s ease-in-out infinite;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+            transition: all 0.5s ease;
+        }
+
+        /* Burbuja de diálogo del Avatar */
+        .amigo-bubble {
+            position: absolute;
+            bottom: 100%;
+            right: 20px;
+            background: white;
+            color: #002366;
+            padding: 12px 20px;
+            border-radius: 20px 20px 0 20px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 40;
+        }
+
+        .amigo-container:hover .amigo-bubble,
+        .amigo-bubble.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Scroll horizontal oculto para carruseles */
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Efecto de cristal para modales */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+    </style>
+</head>
+<body class="bg-sand text-gray-800 overflow-x-hidden">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-deepblue/90 backdrop-blur-md py-4 px-6 sm:px-12 flex justify-between items-center shadow-xl">
+        <div class="flex items-center space-x-3">
+            <svg class="h-10 w-auto" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M150 20 C 200 20, 250 60, 280 90" stroke="#FF7F50" stroke-width="8" stroke-linecap="round"/>
+                <circle cx="150" cy="60" r="30" fill="#FFD700" />
+                <text x="10" y="90" font-family="Montserrat" font-weight="900" font-size="24" fill="white">HORIZON VENTURA</text>
+            </svg>
+        </div>
+       
+        <div class="hidden md:flex space-x-8 font-heading font-bold text-white text-sm uppercase tracking-wider">
+            <a href="#story" class="hover:text-sunset transition">Our Story</a>
+            <a href="#trips" class="hover:text-sunset transition">Trips</a>
+            <a href="#rentals" class="hover:text-sunset transition">Rentals</a>
+            <a href="#food" class="hover:text-sunset transition">Food</a>
+            <a href="#school" class="hover:text-sunset transition">The School</a>
+            <button onclick="toggleModal('contactModal')" class="bg-sunset px-6 py-2 rounded-full hover:bg-orange-600 transition shadow-lg">Book Now</button>
+        </div>
+
+        <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+
+    <div id="mobileMenu" class="fixed inset-0 bg-deepblue z-40 flex flex-col items-center justify-center space-y-8 text-white font-heading text-2xl hidden transition-all">
+        <button class="absolute top-6 right-6 text-4xl" onclick="toggleMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#story" onclick="toggleMobileMenu()">Our Story</a>
+        <a href="#trips" onclick="toggleMobileMenu()">Trips Menu</a>
+        <a href="#rentals" onclick="toggleMobileMenu()">Rentals Menu</a>
+        <a href="#food" onclick="toggleMobileMenu()">Food Menu</a>
+        <a href="#school" onclick="toggleMobileMenu()">Culture School</a>
+        <button onclick="toggleModal('contactModal'); toggleMobileMenu()" class="bg-sunset px-8 py-3 rounded-full mt-8">Start Booking</button>
+    </div>
+
+
+    <header id="home" class="relative h-screen bg-hero-pattern bg-cover bg-center flex items-center justify-center text-center px-4">
+        <div class="max-w-4xl z-10 relative">
+            <h1 class="font-heading font-black text-5xl sm:text-7xl text-white mb-6 leading-tight drop-shadow-2xl">
+                Experience the Caribbean<br>Like a <span class="text-sunset">Local Legend</span>.
+            </h1>
+            <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed">
+                More than just a trip. It's total immersion. Luxury rentals, authentic flavors, and deep history, curated just for you.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#trips" class="font-heading font-bold bg-sunset text-white py-4 px-10 rounded-full text-lg hover:scale-105 transition transform shadow-xl">
+                    Explore Packages
+                </a>
+                <button onclick="amigoHelpClick()" class="font-heading font-bold bg-white text-deepblue py-4 px-10 rounded-full text-lg hover:scale-105 transition transform shadow-xl flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-comments"></i> Ask Amigo
+                </button>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-sand to-transparent"></div>
+    </header>
+
+
+    <section id="story" class="py-24 px-6 sm:px-12 max-w-7xl mx-auto scroll-mt-20">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <div class="absolute -inset-4 bg-sunset/20 rounded-3xl transform -rotate-3"></div>
+                <img src="https://images.unsplash.com/photo-1580657100786-818413308515?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Happy Travelers" class="relative rounded-3xl shadow-2xl hover:scale-[1.02] transition duration-500">
+            </div>
+            <div>
+                <h4 class="font-heading text-sunset font-bold uppercase tracking-widest mb-4">The Horizon Ventura Way</h4>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl text-deepblue mb-8">We Don't Sell Travel.<br>We Craft Memories.</h2>
+                <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                    Forget crowded buses and generic buffets. Horizon Ventura was born from a desire to show you the *real* Caribbean pulse. The hidden beaches, the grandmother's secret recipes, the stories etched into colonial walls.
+                </p>
+                <h3 class="font-heading font-bold text-2xl text-deepblue mb-4">Why Choose Us?</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-sunset text-xl"></i>
+                        <span class="font-semibold">100% Personalized Itineraries.</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-sunset text-xl"></i>
+                        <span class="font-semibold">Local Guides, Global Standards.</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-sunset text-xl"></i>
+                        <span class="font-semibold">24/7 Support via your Amigo Concierge.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="trips" class="py-24 bg-white relative scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-6 sm:px-12">
+            <h2 class="font-heading font-black text-center text-4xl sm:text-5xl text-deepblue mb-16">
+                The Travel Menu
+            </h2>
+           
+            <div class="flex overflow-x-scroll pb-10 hide-scroll-bar gap-8 snap-x snap-mandatory">
+               
+                <div class="snap-center shrink-0 w-[350px] sm:w-[400px] bg-sand rounded-3xl overflow-hidden shadow-xl hover:-translate-y-3 transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1503789146070-2512837063c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Classic Car Havana">
+                        <div class="absolute top-4 right-4 bg-sunset text-white font-bold px-4 py-1 rounded-full">Top Seller</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-heading font-bold text-2xl text-deepblue mb-2">Retro Havana & Beyond</h3>
+                        <p class="text-gray-600 mb-6">Time travel in a '57 Chevy, private salsa lessons, and Hemingway's favorite haunts.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-ocean text-xl">From $899</span>
+                            <button onclick="toggleModal('contactModal')" class="text-sunset font-bold hover:underline">View Details <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="snap-center shrink-0 w-[350px] sm:w-[400px] bg-sand rounded-3xl overflow-hidden shadow-xl hover:-translate-y-3 transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1543965860-82ed7d542cc4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1465&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Varadero Beach">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-heading font-bold text-2xl text-deepblue mb-2">The Crystal Sands Escape</h3>
+                        <p class="text-gray-600 mb-6">All-inclusive luxury on untouched beaches. Catamaran cruises and private island dinners.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-ocean text-xl">From $1,250</span>
+                            <button onclick="toggleModal('contactModal')" class="text-sunset font-bold hover:underline">View Details <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="snap-center shrink-0 w-[350px] sm:w-[400px] bg-sand rounded-3xl overflow-hidden shadow-xl hover:-translate-y-3 transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1600454021972-058918866161?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Vinales Valley">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-heading font-bold text-2xl text-deepblue mb-2">Eco-Adventure Quest</h3>
+                        <p class="text-gray-600 mb-6">Hiking through tobacco fields, exploring ancient caves, and horseback riding at sunset.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-ocean text-xl">From $750</span>
+                            <button onclick="toggleModal('contactModal')" class="text-sunset font-bold hover:underline">View Details <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-gray-500 mt-4 sm:hidden"><i class="fa-solid fa-arrows-left-right"></i> Swipe to explore</p>
+        </div>
+    </section>
+
+
+    <section id="school" class="relative py-24 bg-history-pattern bg-cover bg-fixed bg-center text-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-6 sm:px-12 relative z-10">
+            <div class="md:w-1/2">
+                <h4 class="font-heading text-gold font-bold uppercase tracking-widest mb-4">The Culture School</h4>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl mb-8 leading-tight">
+                    Understand the Soul of the Caribbean.
+                </h2>
+                <p class="text-xl opacity-90 mb-12 leading-relaxed">
+                    It's not just sights; it's deep history. We take you to the forts that guarded empires, the streets where revolutions began, and the workshops where culture is crafted by hand.
+                </p>
+            </div>
+           
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 mt-12">
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1612294094807-4711d88fb82b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Historic Fort">
+                    <div class="absolute inset-0 bg-deepblue/60 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="font-bold text-xl">Colonial Forts</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1585503320475-1d5563394e36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Old Havana Streets">
+                    <div class="absolute inset-0 bg-deepblue/60 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="font-bold text-xl">Historic Centers</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1466378284813-0f7b4736064c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Cigar Making">
+                    <div class="absolute inset-0 bg-deepblue/60 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="font-bold text-xl">Artisan Workshops</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer bg-sunset flex items-center justify-center">
+                   <div class="text-center p-6">
+                       <i class="fa-solid fa-graduation-cap text-5xl mb-4"></i>
+                       <h3 class="font-bold text-xl mb-2">Book a Workshop</h3>
+                       <p class="text-sm">Learn salsa, cooking, or history with locals.</p>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-24 px-6 sm:px-12 max-w-7xl mx-auto scroll-mt-20" id="rentals">
+        <div class="mb-24">
+             <h2 class="font-heading font-black text-center text-4xl sm:text-5xl text-deepblue mb-12">
+                The Rental Fleet
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-b-4 border-ocean">
+                    <img src="https://images.unsplash.com/photo-1533237980938-305b74888243?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="h-56 w-full object-cover" alt="Classic Car">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-deepblue mb-2">Classic Cruisers</h3>
+                        <p class="text-gray-600">Chauffeured vintage convertibles for city tours or daily rental.</p>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-b-4 border-sunset">
+                    <img src="https://images.unsplash.com/photo-1613553507747-5f8d62ad5904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="h-56 w-full object-cover" alt="Luxury Villa">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-deepblue mb-2">Elite Villas</h3>
+                        <p class="text-gray-600">Private homes with pools, staff, and breathtaking ocean views.</p>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-b-4 border-gold">
+                    <img src="https://images.unsplash.com/photo-1566843972142-ec5d5024030b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" class="h-56 w-full object-cover" alt="Yacht Rental">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-deepblue mb-2">Marine Luxe</h3>
+                        <p class="text-gray-600">Catamarans and private yachts for island hopping and sunset parties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="food" class="scroll-mt-28">
+            <h2 class="font-heading font-black text-center text-4xl sm:text-5xl text-deepblue mb-12">
+                The Flavor Menu
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center bg-white p-8 sm:p-12 rounded-[3rem] shadow-2xl">
+                <div class="order-2 md:order-1">
+                    <h3 class="font-heading font-bold text-3xl text-sunset mb-6">Taste Authenticity.</h3>
+                    <p class="text-lg text-gray-700 mb-8">
+                        From street-side *Ropa Vieja* that melts in your mouth to upscale fusion dining overlooking the malecon. We guarantee culinary experiences that are strictly "no tourist traps."
+                    </p>
+                    <ul class="space-y-4 mb-8 font-semibold text-deepblue">
+                        <li><i class="fa-solid fa-utensils mr-3 text-ocean"></i> Private Chef Services</li>
+                        <li><i class="fa-solid fa-utensils mr-3 text-ocean"></i> Authentic Paladar Reservations</li>
+                        <li><i class="fa-solid fa-utensils mr-3 text-ocean"></i> Rum & Cigar Tasting Experiences</li>
+                    </ul>
+                    <button onclick="toggleModal('contactModal')" class="bg-deepblue text-white px-8 py-3 rounded-full hover:bg-ocean transition">Reserve a Table</button>
+                </div>
+                <div class="order-1 md:order-2 relative h-[400px]">
+                     <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-lg rotate-3 hover:rotate-0 transition duration-500" alt="Caribbean Food">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-deepblue text-white pt-20 pb-10 px-6 sm:px-12">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-2">
+                <svg class="h-12 w-auto mb-6" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M150 20 C 200 20, 250 60, 280 90" stroke="#FF7F50" stroke-width="8" stroke-linecap="round"/>
+                    <circle cx="150" cy="60" r="30" fill="#FFD700" />
+                    <text x="10" y="90" font-family="Montserrat" font-weight="900" font-size="24" fill="white">HORIZON VENTURA</text>
+                </svg>
+                <p class="text-gray-300 pr-8">Crafting unparalleled Caribbean experiences for the discerning traveler. Your adventure begins here.</p>
+            </div>
+            <div>
+                <h4 class="font-heading font-bold text-xl mb-6">Quick Links</h4>
+                <ul class="space-y-3 text-gray-300">
+                    <li><a href="#story" class="hover:text-sunset transition">About Us</a></li>
+                    <li><a href="#trips" class="hover:text-sunset transition">Packages</a></li>
+                    <li><button onclick="toggleModal('termsModal')" class="hover:text-sunset transition text-left">Terms & Policies</button></li>
+                    <li><button onclick="toggleModal('contactModal')" class="hover:text-sunset transition text-left">Contact Us</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-heading font-bold text-xl mb-6">Connect</h4>
+                <p class="text-gray-300 mb-4">Follow the adventure daily:</p>
+                <a href="https://instagram.com/hellohorizonventura" target="_blank" class="flex items-center gap-3 text-sunset font-bold text-lg hover:text-white transition">
+                    <i class="fa-brands fa-instagram text-2xl"></i> @hellohorizonventura
+                </a>
+                 <div class="mt-6 flex space-x-4 text-2xl text-gray-400">
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://wa.me/1234567890" class="hover:text-green-500 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+            <p>© 2023 Horizon Ventura. All rights reserved. Built for the masters.</p>
+        </div>
+    </footer>
+
+
+    <div id="amigo-container" class="fixed bottom-8 right-8 z-50 hidden md:block group cursor-pointer">
+        <div id="amigo-bubble" class="amigo-bubble">
+            Psst! I know the best spots. Click me!
+        </div>
+       
+        <div class="relative w-32 h-32 avatar-float transition-transform duration-300 group-hover:scale-110" onclick="toggleAmigoMenu()">
+            <img id="amigo-image" src="https://cdn-icons-png.flaticon.com/512/4392/4392548.png" alt="Amigo Avatar" class="w-full h-full object-contain drop-shadow-2xl">
+            <span class="absolute top-0 right-0 flex h-5 w-5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sunset opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-5 w-5 bg-sunset border-2 border-white"></span>
+            </span>
+        </div>
+
+        <div id="amigo-menu" class="absolute bottom-40 right-0 w-72 bg-white rounded-2xl shadow-2xl p-6 transform scale-90 opacity-0 pointer-events-none transition-all duration-300 origin-bottom-right">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-heading font-bold text-deepblue text-xl">Amigo Concierge</h3>
+                <button onclick="toggleAmigoMenu()" class="text-gray-400 hover:text-sunset"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-sm text-gray-600 mb-6">I'm here to help! What do you need, boss?</p>
+            <div class="space-y-3 font-bold">
+                <a href="https://wa.me/1234567890" target="_blank" class="flex items-center gap-3 w-full p-3 bg-green-100 text-green-700 rounded-xl hover:bg-green-200 transition">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Chat on WhatsApp
+                </a>
+                <button onclick="toggleModal('contactModal'); toggleAmigoMenu()" class="flex items-center gap-3 w-full p-3 bg-sunset/10 text-sunset rounded-xl hover:bg-sunset/20 transition">
+                    <i class="fa-solid fa-calendar-check text-xl"></i> Fast Booking
+                </button>
+                <a href="#trips" onclick="toggleAmigoMenu()" class="flex items-center gap-3 w-full p-3 bg-ocean/10 text-ocean rounded-xl hover:bg-ocean/20 transition">
+                    <i class="fa-solid fa-map-location-dot text-xl"></i> See Top Trips
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="contactModal" class="fixed inset-0 z-[60] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleModal('contactModal')"></div>
+        <div class="bg-white w-full max-w-lg mx-4 rounded-3xl p-8 relative transform scale-95 transition-all duration-300 shadow-2xl">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-sunset" onclick="toggleModal('contactModal')"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <h2 class="font-heading font-bold text-3xl text-deepblue mb-2">Start Your Journey</h2>
+            <p class="text-gray-600 mb-8">Tell us your dream, Amigo will make it happen.</p>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full p-4 bg-gray-50 rounded-xl border-0 focus:ring-2 focus:ring-sunset">
+                <input type="email" placeholder="Email Address" class="w-full p-4 bg-gray-50 rounded-xl border-0 focus:ring-2 focus:ring-sunset">
+                <select class="w-full p-4 bg-gray-50 rounded-xl border-0 focus:ring-2 focus:ring-sunset text-gray-500">
+                    <option>Interested in...</option>
+                    <option>Havana Trip</option>
+                    <option>Beach Escape</option>
+                    <option>Classic Car Rental</option>
+                    <option>Villa Rental</option>
+                </select>
+                <button type="button" class="w-full bg-deepblue text-white font-bold py-4 rounded-xl hover:bg-ocean transition">Send Request</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="termsModal" class="fixed inset-0 z-[60] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleModal('termsModal')"></div>
+        <div class="bg-white w-full max-w-2xl mx-4 rounded-3xl p-8 relative transform scale-95 transition-all duration-300 shadow-2xl max-h-[80vh] overflow-y-auto">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-sunset" onclick="toggleModal('termsModal')"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <h2 class="font-heading font-bold text-3xl text-deepblue mb-6">Terms & Policies</h2>
+            <div class="prose text-gray-700 space-y-4">
+                <h3 class="font-bold text-xl">1. Booking & Payments</h3>
+                <p>All bookings require a deposit to secure dates. Full payment terms will be provided upon confirmation of your personalized itinerary.</p>
+                <h3 class="font-bold text-xl">2. Cancellations</h3>
+                <p>We understand plans change. Our cancellation policy is tiered based on proximity to the trip date to protect both our clients and our local partners.</p>
+                <h3 class="font-bold text-xl">3. Local Respect Policy</h3>
+                <p>Horizon Ventura is committed to sustainable and respectful tourism. We expect our guests to treat local hosts, customs, and environments with the utmost respect.</p>
+                <p class="text-sm text-gray-500 mt-8">Last updated: 2023. For full legal documentation, please contact us directly.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- CONTROL DEL MENÚ MÓVIL ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+
+        // --- CONTROL DE MODALES (Genérico) ---
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('opacity-0');
+            modal.classList.toggle('pointer-events-none');
+            const modalContent = modal.querySelector('div.relative');
+            modalContent.classList.toggle('scale-95');
+            modalContent.classList.toggle('scale-100');
+        }
+
+        // --- CONTROL DEL MENÚ DE AMIGO ---
+        function toggleAmigoMenu() {
+            const menu = document.getElementById('amigo-menu');
+            menu.classList.toggle('opacity-0');
+            menu.classList.toggle('pointer-events-none');
+            menu.classList.toggle('scale-90');
+            menu.classList.toggle('scale-100');
+             // Ocultar burbuja si se abre el menú
+            document.getElementById('amigo-bubble').classList.toggle('active', !menu.classList.contains('scale-100'));
+        }
+
+        // --- CEREBRO DEL AVATAR INTERACTIVO (Scroll Spy) ---
+        // Detecta qué sección estás mirando y cambia la personalidad de Amigo
+       
+        // Configuración de las personalidades (Imágenes placeholder - reemplázalas por tus sprites 3D)
+        const amigoPersonas = {
+            'home': {
+                img: 'https://cdn-icons-png.flaticon.com/512/4392/4392548.png', // Mapache playero base
+                text: "Psst! Ready for paradise? Click me!"
             },
-            trans: {
-                en: { welcome: "Build Your Caribbean Experience", explore: "Explore Destinations", home: "Start Journey" },
-                es: { welcome: "Crea Tu Experiencia Caribeña", explore: "Explorar Destinos", home: "Comenzar" }
+            'story': {
+                img: 'https://cdn-icons-png.flaticon.com/512/4392/4392548.png', // Mismo mapache (podrías ponerle un libro)
+                text: "Our story is incredible. Read this!"
+            },
+            'trips': {
+                img: 'https://cdn-icons-png.flaticon.com/512/2200/2200336.png', // Icono de viaje/maleta
+                text: "These packages sell out fast, boss!"
+            },
+            'rentals': {
+                img: 'https://cdn-icons-png.flaticon.com/512/3085/3085336.png', // Icono de coche clásico
+                text: "Imagine driving that '57 Chevy..."
+            },
+            'food': {
+                img: 'https://cdn-icons-png.flaticon.com/512/1869/1869050.png', // Icono de comida/chef
+                text: "I'm getting hungry looking at this..."
+            },
+            'school': {
+                img: 'https://cdn-icons-png.flaticon.com/512/2013/2013624.png', // Icono de historia/castillo
+                text: "The history here runs deep. Learn more!"
             }
         };
 
-        const app = document.getElementById('app');
+        const amigoImage = document.getElementById('amigo-image');
+        const amigoBubble = document.getElementById('amigo-bubble');
+        let currentSection = 'home';
 
-        // --- CORE LOGIC ---
-        function init() {
+        // Función para chequear el scroll
+        function checkScroll() {
+            const sections = document.querySelectorAll('section, header#home');
+            let scrollPosition = window.scrollY + window.innerHeight / 2;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    if (currentSection !== sectionId && amigoPersonas[sectionId]) {
+                        currentSection = sectionId;
+                        updateAmigo(sectionId);
+                    }
+                }
+            });
+        }
+
+        // Función para actualizar al Amigo
+        function updateAmigo(sectionId) {
+            const persona = amigoPersonas[sectionId];
+           
+            // Animación de salida
+            amigoImage.style.transform = "scale(0.8) rotate(-10deg)";
+            amigoBubble.classList.remove('active');
+           
             setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                renderHome();
-                checkGift();
-            }, 1500);
-            initAmigo();
+                // Cambiar contenido
+                // NOTA: Para producción, usa sprites reales tuyos en lugar de estos iconos de ejemplo
+                // amigoImage.src = persona.img;
+                amigoBubble.innerText = persona.text;
+               
+                // Animación de entrada
+                amigoImage.style.transform = "scale(1) rotate(0deg)";
+                setTimeout(() => {
+                     if (!document.getElementById('amigo-menu').classList.contains('scale-100')) {
+                        amigoBubble.classList.add('active');
+                     }
+                }, 500);
+            }, 300);
         }
 
-        function renderHome() {
-            app.innerHTML = `
-                <div class="container fade-in">
-                    <div class="hero">
-                        <h1>${DATA.trans[state.lang].welcome}</h1>
-                        <p>Luxury travel curated by locals.</p>
-                        <button class="btn btn-primary" onclick="renderCountries()">${DATA.trans[state.lang].explore}</button>
-                    </div>
-                    <div style="margin-top:20px;">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" style="width:100%; border-radius:25px; box-shadow:var(--shadow);">
-                    </div>
-                </div>
-            `;
-            amigoTalk("Welcome! I'm here to help you build the perfect trip.");
-        }
-
-        function renderCountries() {
-            let html = `<div class="container fade-in"><h2 class="section-title">Select Destination</h2><div class="card-grid">`;
-            DATA.countries.forEach(c => {
-                html += `
-                    <div class="country-card" style="background-image:url('${c.img}')" onclick="renderCities('${c.id}')">
-                        <div class="card-overlay">
-                            <h3>${c.name}</h3>
-                        </div>
-                    </div>
-                `;
-            });
-            html += `</div></div>`;
-            app.innerHTML = html;
-            amigoTalk("Where are we going? Cuba and Mexico are very popular right now!");
-        }
-
-        function renderCities(countryId) {
-            const country = DATA.countries.find(c => c.id === countryId);
-            state.currentCountry = country;
-            let html = `<div class="container fade-in"><h2 class="section-title">Cities in ${country.name}</h2><div class="card-grid">`;
-            country.cities.forEach(city => {
-                html += `
-                    <button class="btn btn-secondary" style="text-align:left; padding:20px;" onclick="renderServices('${city.id}')">
-                        📍 ${city.name}
-                    </button>
-                `;
-            });
-            html += `</div><button class="btn btn-secondary" onclick="renderCountries()">Back</button></div>`;
-            app.innerHTML = html;
-        }
-
-        function renderServices(cityId) {
-            const city = state.currentCountry.cities.find(c => c.id === cityId);
-            state.currentCity = city;
-            let html = `<div class="container fade-in"><h2 class="section-title">Available in ${city.name}</h2><div class="card-grid">`;
-            city.services.forEach(sid => {
-                const s = DATA.services[sid];
-                html += `
-                    <div class="service-card">
-                        <div class="service-img" style="background-image:url('${s.img}')"></div>
-                        <div class="service-info">
-                            <h3>${s.title}</h3>
-                            <p>${s.desc}</p>
-                            <div class="price-tag">$${s.price} CAD</div>
-                            <button class="btn btn-primary" onclick="openBooking('${sid}')">Book Now</button>
-                        </div>
-                    </div>
-                `;
-            });
-            html += `</div><button class="btn btn-secondary" onclick="renderCities('${state.currentCountry.id}')">Back</button></div>`;
-            app.innerHTML = html;
-            amigoSetOutfit(cityId === 'holguin' ? 'beach' : 'tourist');
-        }
-
-        // --- BOOKING & CART ---
-        function openBooking(sid) {
-            const s = DATA.services[sid];
-            const body = `
-                <h2 style="color:var(--navy)">${s.title}</h2>
-                <div class="form-group">
-                    <label>How many people?</label>
-                    <input type="number" id="bookQty" value="1" min="1">
-                </div>
-                <div class="form-group">
-                    <label>Start Date</label>
-                    <input type="date" id="bookDateS">
-                </div>
-                <div class="form-group">
-                    <label>End Date</label>
-                    <input type="date" id="bookDateE">
-                </div>
-                <p style="font-size:12px; margin-bottom:10px;">* Price: $${s.price} CAD per person/day.</p>
-                <button class="btn btn-primary" onclick="addToCart('${sid}')">Add to Cart</button>
-                <button class="btn btn-secondary" style="color:black" onclick="closeModal()">Cancel</button>
-            `;
-            showModal(body);
-        }
-
-        function addToCart(sid) {
-            const qty = document.getElementById('bookQty').value;
-            const ds = document.getElementById('bookDateS').value;
-            const de = document.getElementById('bookDateE').value;
-           
-            if(!ds || !de) { alert("Please select dates"); return; }
-
-            const diff = Math.ceil((new Date(de) - new Date(ds)) / (1000 * 60 * 60 * 24)) || 1;
-            const service = DATA.services[sid];
-           
-            state.cart.push({
-                ...service,
-                qty: parseInt(qty),
-                days: diff,
-                total: service.price * qty * diff
-            });
-
-            updateCartBadge();
-            closeModal();
-            amigoTalk("Excellent! Added to your cart. Ready to checkout?");
-        }
-
-        function openCart() {
-            let total = 0;
-            let body = `<h2 style="color:var(--navy)">Your Cart</h2><hr style="margin:10px 0;">`;
-            if(state.cart.length === 0) {
-                body += `<p>Your cart is empty.</p>`;
-            } else {
-                state.cart.forEach((item, idx) => {
-                    total += item.total;
-                    body += `
-                        <div style="margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px;">
-                            <div style="display:flex; justify-content:space-between;">
-                                <strong>${item.title}</strong>
-                                <span>$${item.total}</span>
-                            </div>
-                            <small>${item.qty} guests x ${item.days} days</small>
-                        </div>
-                    `;
+        // Scroll suave para enlaces internos (Safari support)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
-                body += `<div style="display:flex; justify-content:space-between; font-weight:bold; font-size:20px;">
-                            <span>Total</span><span>$${total} CAD</span>
-                         </div>
-                         <button class="btn btn-primary" onclick="checkout()">Confirm Booking</button>`;
-            }
-            body += `<button class="btn btn-secondary" style="color:black" onclick="closeModal()">Close</button>`;
-            showModal(body);
-        }
-
-        function checkout() {
-            const waMsg = encodeURIComponent(`Hello Horizon Ventura! I want to confirm my booking. Total: $${state.cart.reduce((a,b)=>a+b.total,0)} CAD.`);
-            window.open(`https://wa.me/14376050912?text=${waMsg}`, '_blank');
-        }
-
-        // --- AMIGO ENGINE ---
-        let amigoCtx, amigoState = { mood: 'happy', outfit: 'tourist' };
-       
-        function initAmigo() {
-            const canvas = document.getElementById('amigoCanvas');
-            amigoCtx = canvas.getContext('2d');
-            canvas.width = 130; canvas.height = 130;
-            animateAmigo();
-
-            // Click Amigo
-            canvas.addEventListener('click', () => {
-                const menu = document.getElementById('amigoMenu');
-                menu.classList.toggle('hidden');
-                amigoTalk("How can I help you today?");
             });
+        });
+
+        // Activar el espía de scroll y la burbuja inicial
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                 amigoBubble.classList.add('active');
+            }, 2000);
+        });
+
+        function amigoHelpClick() {
+             document.querySelector('#amigo-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+             setTimeout(() => {
+                  toggleAmigoMenu();
+             }, 800);
         }
-
-        function drawGull() {
-            const ctx = amigoCtx;
-            ctx.clearRect(0,0,130,130);
-            const cx = 65, cy = 80;
-
-            // 3D Shadow
-            ctx.beginPath();
-            ctx.ellipse(cx, cy+35, 30, 10, 0, 0, Math.PI*2);
-            ctx.fillStyle = 'rgba(0,0,0,0.2)';
-            ctx.fill();
-
-            // Body (Gull)
-            const bodyGrad = ctx.createRadialGradient(cx-10, cy-10, 5, cx, cy, 50);
-            bodyGrad.addColorStop(0, '#fff');
-            bodyGrad.addColorStop(1, '#e0e0e0');
-            ctx.fillStyle = bodyGrad;
-            ctx.beginPath();
-            ctx.arc(cx, cy, 40, 0, Math.PI*2);
-            ctx.fill();
-
-            // Beak (Orange)
-            ctx.fillStyle = '#ff9800';
-            ctx.beginPath();
-            ctx.moveTo(cx+35, cy);
-            ctx.lineTo(cx+55, cy+5);
-            ctx.lineTo(cx+35, cy+10);
-            ctx.fill();
-
-            // Sunglasses (Cool)
-            ctx.fillStyle = '#222';
-            ctx.fillRect(cx+5, cy-15, 15, 12);
-            ctx.fillRect(cx+22, cy-15, 15, 12);
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(cx+5, cy-15, 15, 12);
-
-            // Hat based on outfit
-            if(amigoState.outfit === 'beach') {
-                ctx.fillStyle = '#f9d423';
-                ctx.fillRect(cx-30, cy-45, 60, 10); // Straw hat
-            } else {
-                ctx.fillStyle = '#005f73';
-                ctx.beginPath();
-                ctx.arc(cx, cy-35, 20, Math.PI, 0); // Cap
-                ctx.fill();
-            }
-
-            // Wing animation
-            const wingY = Math.sin(Date.now()/200)*5;
-            ctx.fillStyle = '#ddd';
-            ctx.beginPath();
-            ctx.ellipse(cx-35, cy+wingY, 20, 10, -0.5, 0, Math.PI*2);
-            ctx.fill();
-        }
-
-        function animateAmigo() {
-            drawGull();
-            requestAnimationFrame(animateAmigo);
-        }
-
-        function amigoTalk(msg) {
-            const bubble = document.getElementById('amigoBubble');
-            bubble.textContent = msg;
-            bubble.style.display = 'block';
-            setTimeout(() => bubble.style.display = 'none', 5000);
-        }
-
-        function amigoSetOutfit(o) { amigoState.outfit = o; }
-
-        // --- UTILS ---
-        function toggleLang() {
-            state.lang = state.lang === 'en' ? 'es' : 'en';
-            document.getElementById('langLabel').textContent = state.lang.toUpperCase();
-            renderHome();
-        }
-
-        function updateCartBadge() {
-            document.getElementById('cartBadge').textContent = state.cart.length;
-        }
-
-        function showModal(content) {
-            document.getElementById('modalBody').innerHTML = content;
-            document.getElementById('globalModal').style.display = 'flex';
-        }
-
-        function closeModal() { document.getElementById('globalModal').style.display = 'none'; }
-
-        function checkGift() {
-            if(!localStorage.getItem('hv_gift')) {
-                const giftHtml = `
-                    <div style="text-align:center;">
-                        <h2 style="color:var(--sunset)">🎁 Welcome Gift!</h2>
-                        <p>Pick a free VIP gift for your first booking:</p>
-                        <button class="btn btn-primary" onclick="claimGift('Tattoo Credit')">$100 Tattoo Credit</button>
-                        <button class="btn btn-primary" onclick="claimGift('Airport Pickup')">Free Airport Pickup</button>
-                        <button class="btn btn-primary" onclick="claimGift('Dinner')">Free Luxury Dinner</button>
-                    </div>
-                `;
-                setTimeout(() => showModal(giftHtml), 2000);
-            }
-        }
-
-        function claimGift(g) {
-            localStorage.setItem('hv_gift', g);
-            closeModal();
-            amigoTalk(`Awesome! I've saved your ${g}. It will be applied at checkout.`);
-        }
-
-        function talkToWA() { window.open('https://wa.me/14376050912', '_blank'); }
-
-        function renderReviews() {
-            let html = `<div class="container fade-in"><h2 class="section-title">Traveler Reviews</h2>`;
-            const reviews = [
-                { name: "John D.", text: "The classic car tour in Havana was magical!", stars: 5 },
-                { name: "Sophie L.", text: "Best snorkeling experience in Guardalavaca.", stars: 5 }
-            ];
-            reviews.forEach(r => {
-                html += `
-                    <div style="background:var(--glass); padding:15px; border-radius:15px; margin-bottom:10px;">
-                        <strong>${r.name}</strong> ${"⭐".repeat(r.stars)}
-                        <p style="font-size:14px; opacity:0.8;">${r.text}</p>
-                    </div>
-                `;
-            });
-            html += `
-                <div style="margin-top:20px;">
-                    <textarea id="revText" style="width:100%; border-radius:10px; padding:10px;" placeholder="Leave a review..."></textarea>
-                    <button class="btn btn-primary" onclick="alert('Review submitted!')">Post Review</button>
-                </div>
-            </div>`;
-            app.innerHTML = html;
-        }
-
-        function openAdmin() {
-            const pass = prompt("Admin Password:");
-            if(pass === "HORIZON2026") {
-                state.admin = true;
-                showModal(`
-                    <h2 style="color:var(--navy)">Admin CMS</h2>
-                    <p>Edit Services & Prices</p>
-                    <div class="form-group">
-                        <label>Base Snorkeling Price</label>
-                        <input type="number" id="admP" value="85">
-                    </div>
-                    <button class="btn btn-primary" onclick="alert('Saved!')">Update Platform</button>
-                `);
-            } else {
-                alert("Unauthorized");
-            }
-        }
-
-        // START
-        init();
 
     </script>
 </body>
