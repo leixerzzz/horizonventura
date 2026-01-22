@@ -2,57 +2,43 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Horizon Ventura — Caribbean Experience Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Horizonte Ventura — Caribbean Travel Experiences</title>
+
+<!-- =========================
+     GLOBAL META
+========================= -->
+<meta name="description" content="Horizonte Ventura — Build your Caribbean experience in Guardalavaca, Holguín, Cuba. Tours, casas particulares, snorkeling, adventures & more." />
+<meta name="theme-color" content="#061a2b" />
+
+<!-- =========================
+     FONTS
+========================= -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- =========================
+     ICONS
+========================= -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-
-/* ======================================================
-   HORIZON VENTURA — MASTER STYLE SYSTEM
-   ====================================================== */
-
-:root {
-  --sunset: #ff7a18;
-  --sunset2: #ffb347;
-  --ocean: #0099cc;
-  --deep-ocean: #004c6d;
-  --sand: #ffe9b5;
-  --palm: #2ecc71;
-  --night: #001f2f;
-  --glass: rgba(255,255,255,0.18);
-  --blur: blur(14px);
-  --radius: 18px;
-  --shadow: 0 10px 40px rgba(0,0,0,0.25);
-  --glow: 0 0 20px rgba(255,122,24,0.4);
-  --speed: 0.45s cubic-bezier(.2,.8,.2,1);
-  --font: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
+/* =========================================================
+   GLOBAL RESET & BASE
+========================================================= */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', system-ui, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font);
-  background: linear-gradient(180deg, #022b3a 0%, #00111a 100%);
-  color: white;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #061a2b 0%, #0b2b47 100%);
+  color: #fff;
   overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-family: inherit;
 }
 
 img {
@@ -60,2782 +46,3035 @@ img {
   display: block;
 }
 
-h1, h2, h3, h4, h5 {
-  margin: 0;
-  font-weight: 700;
-}
-
-p {
-  margin: 0;
-  line-height: 1.6;
-}
-
-/* ======================================================
-   GLOBAL ANIMATIONS
-   ====================================================== */
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-  100% { transform: scale(1); }
-}
-
-@keyframes slideInRight {
-  from { transform: translateX(120%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideInLeft {
-  from { transform: translateX(-120%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes glow {
-  0% { box-shadow: 0 0 0 rgba(255,122,24,0.2); }
-  50% { box-shadow: 0 0 25px rgba(255,122,24,0.6); }
-  100% { box-shadow: 0 0 0 rgba(255,122,24,0.2); }
-}
-
-@keyframes bounceIn {
-  0% { transform: scale(0.5); opacity: 0; }
-  60% { transform: scale(1.1); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-4px); }
-  40% { transform: translateX(4px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(4px); }
-  100% { transform: translateX(0); }
-}
-
-/* ======================================================
-   LOADING SCREEN
-   ====================================================== */
-
-#bootScreen {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at top, #004c6d, #00111a 80%);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
-  animation: fadeUp 0.8s ease;
-}
-
-#bootLogo {
-  width: 120px;
-  height: 120px;
-  border-radius: 30px;
-  background: linear-gradient(135deg, var(--sunset), var(--sunset2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  font-weight: 900;
-  color: white;
-  box-shadow: var(--shadow);
-  animation: pulse 2s infinite;
-}
-
-#bootText {
-  font-size: 20px;
-  opacity: 0.8;
-}
-
-/* ======================================================
-   HEADER / NAVBAR
-   ====================================================== */
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 78px;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-#brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-#logoBox {
-  width: 46px;
-  height: 46px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--sunset), var(--sunset2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 22px;
-  color: white;
-  box-shadow: var(--glow);
-}
-
-#brandName {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-}
-
-#topNav {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.navBtn {
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.1);
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all var(--speed);
-}
-
-.navBtn:hover {
-  background: rgba(255,255,255,0.18);
-  transform: translateY(-2px);
-}
-
-#langSwitcher {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.langFlag {
-  width: 28px;
-  height: 20px;
-  border-radius: 4px;
-  overflow: hidden;
+button {
+  border: none;
+  background: none;
+  color: inherit;
   cursor: pointer;
-  border: 2px solid transparent;
-  transition: all var(--speed);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
-.langFlag img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.langFlag.active {
-  border-color: var(--sunset);
-  box-shadow: var(--glow);
+/* =========================================================
+   VARIABLES
+========================================================= */
+:root {
+  --primary: #0a3d66;
+  --secondary: #00c2ff;
+  --accent: #ffb703;
+  --dark: #061a2b;
+  --dark-soft: #0c2942;
+  --light: #f7fbff;
+  --success: #00d26a;
+  --danger: #ff4d4d;
+  --glass: rgba(255,255,255,0.12);
+  --glass-strong: rgba(255,255,255,0.18);
+  --blur: blur(12px);
+  --radius-xl: 26px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.25);
+  --shadow-strong: 0 18px 60px rgba(0,0,0,0.35);
+  --transition-fast: 0.2s ease;
+  --transition-mid: 0.35s ease;
+  --transition-slow: 0.6s ease;
 }
 
-#cartBtn {
-  position: relative;
+/* =========================================================
+   UTILITIES
+========================================================= */
+.hidden { display: none !important; }
+.flex { display: flex; }
+.center { display: flex; align-items: center; justify-content: center; }
+.col { display: flex; flex-direction: column; }
+.space-between { display: flex; justify-content: space-between; align-items: center; }
+.wrap { flex-wrap: wrap; }
+.gap-4 { gap: 4px; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
+.gap-24 { gap: 24px; }
+.gap-32 { gap: 32px; }
+
+.mt-4 { margin-top: 4px; }
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-40 { margin-top: 40px; }
+
+.mb-4 { margin-bottom: 4px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.bold { font-weight: 600; }
+.semi { font-weight: 500; }
+.light { font-weight: 300; }
+
+.small { font-size: 12px; }
+.medium { font-size: 14px; }
+.large { font-size: 18px; }
+.xlarge { font-size: 22px; }
+.xxlarge { font-size: 28px; }
+
+.rounded { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
 }
 
-#cartCount {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: var(--sunset);
-  color: white;
-  font-size: 11px;
-  font-weight: 800;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
+.glass-strong {
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.shadow-soft { box-shadow: var(--shadow-soft); }
+.shadow-strong { box-shadow: var(--shadow-strong); }
+
+.btn {
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow);
+  gap: 10px;
+  transition: var(--transition-fast);
+  user-select: none;
 }
 
-/* ======================================================
-   MAIN LAYOUT
-   ====================================================== */
+.btn-primary {
+  background: linear-gradient(135deg, #00c2ff, #0077ff);
+  color: #00131f;
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #00d26a, #00b45b);
+  color: #002616;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff5f5f, #e63c3c);
+  color: #240000;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge-success {
+  background: rgba(0,210,106,0.2);
+  color: #00ff9c;
+}
+
+.badge-warning {
+  background: rgba(255,183,3,0.2);
+  color: #ffd166;
+}
+
+.badge-info {
+  background: rgba(0,194,255,0.2);
+  color: #7fe3ff;
+}
+
+.card {
+  border-radius: var(--radius-lg);
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* =========================================================
+   MOBILE-FIRST LAYOUT
+========================================================= */
 
 #app {
-  padding-top: 78px;
   min-height: 100vh;
-}
-
-.section {
-  padding: 80px 20px;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.fadeIn {
-  animation: fadeUp 0.6s ease both;
-}
-
-/* ======================================================
-   HERO SECTION
-   ====================================================== */
-
-#hero {
-  position: relative;
-  min-height: calc(100vh - 78px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-}
-
-#heroBg {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.75)),
-    radial-gradient(circle at top, #00b4db, #004c6d 70%, #00111a 100%);
-  z-index: 0;
-}
-
-#heroSun {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--sunset2), var(--sunset));
-  top: -140px;
-  right: -120px;
-  filter: blur(20px);
-  opacity: 0.7;
-  animation: float 6s ease-in-out infinite;
-}
-
-#heroWave {
-  position: absolute;
-  bottom: -80px;
-  left: 0;
-  right: 0;
-  height: 240px;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.15), transparent 70%);
-  filter: blur(20px);
-}
-
-#heroContent {
-  position: relative;
-  z-index: 1;
-  max-width: 900px;
-  padding: 0 20px;
-  animation: fadeUp 0.8s ease both;
-}
-
-#hero h1 {
-  font-size: clamp(32px, 6vw, 62px);
-  line-height: 1.05;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #fff, #ffdcb0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-#hero p {
-  font-size: clamp(16px, 2vw, 20px);
-  opacity: 0.9;
-  margin-bottom: 36px;
-}
-
-#heroCTA {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.ctaBtn {
-  padding: 14px 26px;
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: 700;
-  transition: all var(--speed);
-  box-shadow: var(--shadow);
-}
-
-.ctaPrimary {
-  background: linear-gradient(135deg, var(--sunset), var(--sunset2));
-  color: #002233;
-}
-
-.ctaPrimary:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: var(--glow);
-}
-
-.ctaGhost {
-  background: rgba(255,255,255,0.15);
-  color: white;
-}
-
-.ctaGhost:hover {
-  background: rgba(255,255,255,0.25);
-  transform: translateY(-3px);
-}
-
-/* ======================================================
-   DESTINATION SELECTOR
-   ====================================================== */
-
-#destinations {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-}
-
-.destinationCard {
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.03));
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: all var(--speed);
-  min-height: 220px;
-}
-
-.destinationCard:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--glow);
-}
-
-.destinationBg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.5;
-  transition: transform 0.6s ease;
-}
-
-.destinationCard:hover .destinationBg {
-  transform: scale(1.1);
-}
-
-.destinationOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.8));
-}
-
-.destinationContent {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-.destinationFlag {
-  width: 46px;
-  height: 30px;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  border: 2px solid rgba(255,255,255,0.5);
-}
-
-.destinationFlag img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.destinationName {
-  font-size: 22px;
-  font-weight: 800;
-  margin-top: auto;
-}
-
-/* ======================================================
-   CITY SELECTOR
-   ====================================================== */
-
-#cities {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.cityCard {
-  border-radius: 20px;
-  padding: 22px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.05));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: all var(--speed);
   position: relative;
-  overflow: hidden;
+  padding-bottom: 120px;
 }
 
-.cityCard::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(255,255,255,0.2), transparent 60%);
-  opacity: 0;
-  transition: opacity var(--speed);
-}
+/* =========================================================
+   TOP BAR
+========================================================= */
 
-.cityCard:hover::before {
-  opacity: 1;
-}
-
-.cityCard:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: var(--glow);
-}
-
-.cityName {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-/* ======================================================
-   CATEGORY ICON GRID
-   ====================================================== */
-
-#categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
-}
-
-.categoryCard {
-  background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
-  backdrop-filter: blur(10px);
-  border-radius: 22px;
-  padding: 22px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: all var(--speed);
-}
-
-.categoryCard:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: var(--glow);
-}
-
-.categoryIcon {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, var(--sunset), var(--sunset2));
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(6,26,43,0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  box-shadow: var(--glow);
-  animation: float 4s ease-in-out infinite;
+  justify-content: space-between;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.3);
 }
 
-.categoryName {
-  font-weight: 700;
-  font-size: 15px;
-}
-
-/* ======================================================
-   SERVICE CARDS
-   ====================================================== */
-
-#services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
-}
-
-.serviceCard {
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: var(--shadow);
-  transition: all var(--speed);
+.logo-wrap {
   display: flex;
-  flex-direction: column;
-}
-
-.serviceCard:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: var(--glow);
-}
-
-.serviceImage {
-  height: 160px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.serviceOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.75));
-}
-
-.serviceContent {
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1;
-}
-
-.serviceTitle {
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.serviceDesc {
-  font-size: 14px;
-  opacity: 0.85;
-  flex: 1;
-}
-
-.servicePrice {
-  font-weight: 800;
-  color: var(--sunset2);
-  font-size: 16px;
-}
-
-.serviceActions {
-  display: flex;
+  align-items: center;
   gap: 10px;
 }
 
-.serviceBtn {
-  flex: 1;
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-size: 13px;
+.logo-svg {
+  width: 42px;
+  height: 42px;
+}
+
+.brand-name {
   font-weight: 700;
-  transition: all var(--speed);
+  letter-spacing: 0.4px;
+  font-size: 16px;
 }
 
-.serviceBtn.info {
-  background: rgba(255,255,255,0.14);
-  color: white;
-}
-
-.serviceBtn.info:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.serviceBtn.book {
-  background: linear-gradient(135deg, var(--sunset), var(--sunset2));
-  color: #002233;
-}
-
-.serviceBtn.book:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: var(--glow);
-}
-
-/* ======================================================
-   CART DRAWER
-   ====================================================== */
-
-#cartDrawer {
-  position: fixed;
-  top: 0;
-  right: -420px;
-  width: 380px;
-  height: 100vh;
-  background: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.95));
-  backdrop-filter: blur(14px);
-  border-left: 1px solid rgba(255,255,255,0.12);
-  z-index: 2000;
+.language-switcher {
   display: flex;
-  flex-direction: column;
-  transition: right var(--speed);
-  box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+  gap: 6px;
 }
 
-#cartDrawer.open {
-  right: 0;
-}
-
-#cartHeader {
-  padding: 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#cartHeader h3 {
-  font-size: 18px;
-  font-weight: 800;
-}
-
-#cartClose {
-  background: rgba(255,255,255,0.1);
-  color: white;
+.lang-btn {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  background: rgba(255,255,255,0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  transition: all var(--speed);
+  font-size: 13px;
+  font-weight: 600;
+  transition: var(--transition-fast);
 }
 
-#cartClose:hover {
-  background: rgba(255,255,255,0.25);
+.lang-btn.active {
+  background: linear-gradient(135deg, #00c2ff, #0077ff);
+  color: #00131f;
 }
 
-#cartItems {
+.lang-btn:active {
+  transform: scale(0.92);
+}
+
+.cart-btn {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffb703, #ff8c00);
+  color: #00131f;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   HERO / LANDING
+========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 88vh;
+  padding: 26px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background:
+    linear-gradient(to bottom, rgba(6,26,43,0.55), rgba(6,26,43,0.85)),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(0,194,255,0.15), transparent 60%);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero-badge {
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.16);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.hero-title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.hero-title span {
+  color: #00c2ff;
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  opacity: 0.95;
+  line-height: 1.5;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   QUICK ICONS
+========================================================= */
+
+.quick-icons {
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.quick-icon {
+  background: rgba(255,255,255,0.14);
+  border-radius: 18px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  transition: var(--transition-fast);
+}
+
+.quick-icon i {
+  font-size: 18px;
+}
+
+.quick-icon:active {
+  transform: scale(0.95);
+  background: rgba(255,255,255,0.2);
+}
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+  padding: 32px 16px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   DESTINATIONS
+========================================================= */
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.destination-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 180px;
+  box-shadow: var(--shadow-soft);
+}
+
+.destination-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.7);
+}
+
+.destination-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6,26,43,0.85), rgba(6,26,43,0.3));
+}
+
+.destination-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.destination-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.destination-subtitle {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.destination-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   SERVICES GRID
+========================================================= */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.service-card {
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+}
+
+.service-image {
+  width: 100%;
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+}
+
+.service-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   flex: 1;
+}
+
+.service-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.service-description {
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.service-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.service-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.service-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00c2ff;
+}
+
+/* =========================================================
+   HOUSES / ACCOMMODATION
+========================================================= */
+
+.houses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.house-card {
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+}
+
+.house-image {
+  width: 100%;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+}
+
+.house-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.house-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.house-description {
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.house-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.house-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.house-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00ff9c;
+}
+
+/* =========================================================
+   WHY US
+========================================================= */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.why-card {
+  border-radius: 20px;
+  padding: 18px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.why-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #00c2ff, #0077ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #00131f;
+}
+
+.why-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.why-text {
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   STORY / ABOUT
+========================================================= */
+
+.story-box {
+  border-radius: 22px;
+  padding: 20px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
+  line-height: 1.55;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  padding: 28px 16px 40px;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  opacity: 0.9;
+}
+
+/* =========================================================
+   MODALS (GENERIC)
+========================================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(10,35,58,0.95);
+  border-radius: 26px;
+  padding: 20px;
+  box-shadow: var(--shadow-strong);
+  position: relative;
+  max-height: 90vh;
   overflow-y: auto;
-  padding: 14px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* =========================================================
+   CART MODAL
+========================================================= */
+
+.cart-items {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.cartItem {
-  background: rgba(255,255,255,0.08);
-  border-radius: 16px;
+.cart-item {
+  background: rgba(255,255,255,0.1);
+  border-radius: 14px;
   padding: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cart-item-image {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.cart-item-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cart-item-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cart-item-meta {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.cart-item-price {
+  font-size: 13px;
+  font-weight: 700;
+  color: #00c2ff;
+}
+
+.cart-item-actions {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  border: 1px solid rgba(255,255,255,0.12);
 }
 
-.cartItemHeader {
+.cart-total-box {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.2);
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
   font-weight: 700;
-  font-size: 14px;
 }
 
-.cartItemMeta {
-  font-size: 12px;
-  opacity: 0.8;
+.checkout-btn {
+  width: 100%;
+  margin-top: 14px;
 }
 
-.cartItemControls {
-  display: flex;
-  gap: 8px;
-  margin-top: 6px;
-}
+/* =========================================================
+   CHECKOUT MODAL
+========================================================= */
 
-.cartItemControls button {
-  flex: 1;
-  padding: 6px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  background: rgba(255,255,255,0.12);
-  color: white;
-  transition: all var(--speed);
-}
-
-.cartItemControls button:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-#cartFooter {
-  padding: 16px;
-  border-top: 1px solid rgba(255,255,255,0.12);
+.form-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
+  margin-bottom: 12px;
 }
 
-#cartTotal {
-  font-size: 18px;
-  font-weight: 900;
-  text-align: center;
+.form-group label {
+  font-size: 12px;
+  opacity: 0.85;
 }
 
-#checkoutBtn {
-  padding: 14px;
-  border-radius: 999px;
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  outline: none;
   font-size: 14px;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--sunset), var(--sunset2));
-  color: #002233;
-  transition: all var(--speed);
-  box-shadow: var(--shadow);
 }
 
-#checkoutBtn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: var(--glow);
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
-/* ======================================================
-   MODALS (CHECKOUT, INFO, REVIEWS, TERMS, PRIVACY)
-   ====================================================== */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(6px);
-  z-index: 3000;
+.form-row {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  animation: fadeUp 0.4s ease both;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.modal.hidden {
-  display: none;
+.form-row .form-group {
+  flex: 1;
 }
 
-.modalBox {
-  background: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.95));
-  border-radius: 26px;
-  box-shadow: var(--shadow);
-  max-width: 560px;
-  width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-  border: 1px solid rgba(255,255,255,0.12);
-  animation: bounceIn 0.5s ease both;
+/* =========================================================
+   RECEIPT MODAL
+========================================================= */
+
+.receipt-box {
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.modalHeader {
-  padding: 18px 22px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+.receipt-line {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  font-size: 13px;
 }
 
-.modalHeader h3 {
-  font-size: 18px;
-  font-weight: 800;
+.receipt-total {
+  font-size: 16px;
+  font-weight: 700;
+  color: #00ff9c;
 }
 
-.modalClose {
-  background: rgba(255,255,255,0.1);
-  color: white;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  transition: all var(--speed);
-}
+/* =========================================================
+   ADMIN PANEL
+========================================================= */
 
-.modalClose:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.modalBody {
-  padding: 20px 22px;
+.admin-panel {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* ======================================================
-   CALENDAR / BOOKING FORM
-   ====================================================== */
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.formGroup label {
-  font-size: 13px;
-  font-weight: 700;
-  opacity: 0.85;
-}
-
-.formGroup input,
-.formGroup select,
-.formGroup textarea {
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.08);
-  color: white;
-  font-family: inherit;
-  font-size: 14px;
-  outline: none;
-  transition: all var(--speed);
-}
-
-.formGroup input:focus,
-.formGroup select:focus,
-.formGroup textarea:focus {
-  border-color: var(--sunset);
-  box-shadow: var(--glow);
-}
-
-.formRow {
-  display: flex;
-  gap: 12px;
-}
-
-.formRow > * {
-  flex: 1;
-}
-
-.primaryBtn {
+.admin-section {
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
   padding: 14px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--sunset), var(--sunset2));
-  color: #002233;
-  transition: all var(--speed);
-  box-shadow: var(--shadow);
 }
 
-.primaryBtn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: var(--glow);
+.admin-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-/* ======================================================
-   REVIEWS
-   ====================================================== */
-
-#reviewsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.reviewCard {
+.admin-item {
   background: rgba(255,255,255,0.08);
-  border-radius: 18px;
-  padding: 16px;
+  border-radius: 12px;
+  padding: 10px;
   display: flex;
-  flex-direction: column;
   gap: 10px;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: var(--shadow);
-}
-
-.reviewHeader {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 700;
-}
-
-.reviewStars {
-  color: gold;
-}
-
-/* ======================================================
-   FOOTER
-   ====================================================== */
-
-footer {
-  background: linear-gradient(180deg, #00111a, #000);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 60px 20px 40px;
-}
-
-.footerGrid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 32px;
-}
-
-.footerCol h4 {
-  font-size: 16px;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-
-.footerCol p,
-.footerCol a {
-  font-size: 14px;
-  opacity: 0.8;
-  line-height: 1.6;
-}
-
-.footerCol a:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-
-.footerBottom {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.6;
-}
-
-/* ======================================================
-   AVATAR SYSTEM (3D-LIKE CHARACTER)
-   ====================================================== */
-
-#amigoWrapper {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 2500;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  transition: all var(--speed);
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-#amigoWrapper.hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.7);
-}
-
-#amigoBubble {
-  max-width: 260px;
-  background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.95));
-  border-radius: 18px;
-  padding: 12px 14px;
-  font-size: 13px;
-  line-height: 1.4;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255,255,255,0.12);
-  animation: fadeUp 0.4s ease both;
-  display: none;
-}
-
-#amigoBubble.show {
-  display: block;
-}
-
-#amigoCanvas {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: radial-gradient(circle at top, #fff3, transparent 70%);
-  box-shadow: var(--shadow);
-  cursor: grab;
-  touch-action: none;
-}
-
-#amigoControls {
-  display: flex;
-  gap: 8px;
-}
-
-.amigoBtn {
+.admin-item input {
   background: rgba(255,255,255,0.12);
-  color: white;
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: 11px;
-  font-weight: 700;
-  transition: all var(--speed);
+  border-radius: 8px;
+  border: none;
+  padding: 6px 8px;
+  color: #fff;
+  width: 80px;
 }
 
-.amigoBtn:hover {
-  background: rgba(255,255,255,0.25);
-}
+/* =========================================================
+   ASSISTANT / MASCOT (3D STYLE)
+========================================================= */
 
-/* ======================================================
-   WELCOME GIFT SCREEN
-   ====================================================== */
-
-#welcomeGift {
+.assistant {
   position: fixed;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
-  backdrop-filter: blur(10px);
-  z-index: 3500;
+  bottom: 20px;
+  right: 16px;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.assistant-avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #9ff, #00c2ff 35%, #0066aa 60%, #022b44 80%);
+  position: relative;
+  box-shadow:
+    0 10px 30px rgba(0,194,255,0.35),
+    inset 0 -8px 18px rgba(0,0,0,0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  animation: fadeUp 0.5s ease both;
-}
-
-#welcomeGift.hidden {
-  display: none;
-}
-
-#welcomeGiftBox {
-  max-width: 560px;
-  width: 100%;
-  border-radius: 28px;
-  background: linear-gradient(135deg, #ff7a18, #ffb347);
-  color: #002233;
-  box-shadow: var(--shadow);
-  padding: 30px 26px;
-  text-align: center;
-  animation: bounceIn 0.6s ease both;
-}
-
-#welcomeGiftBox h2 {
-  font-size: 28px;
-  font-weight: 900;
-  margin-bottom: 12px;
-}
-
-#welcomeGiftBox p {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 22px;
-}
-
-.giftOptions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 14px;
-  margin-bottom: 20px;
-}
-
-.giftOption {
-  background: rgba(255,255,255,0.3);
-  border-radius: 16px;
-  padding: 14px 12px;
-  font-size: 14px;
-  font-weight: 800;
   cursor: pointer;
-  transition: all var(--speed);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  animation: assistantFloat 3.6s ease-in-out infinite;
 }
 
-.giftOption:hover {
-  transform: translateY(-4px) scale(1.04);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+@keyframes assistantFloat {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
 }
 
-#welcomeGiftClose {
-  margin-top: 10px;
+/* Lizard Face */
+.assistant-face {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #caffc1, #00ff9c 40%, #00b45b 70%);
+  box-shadow: inset 0 -6px 12px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assistant-eye {
+  position: absolute;
+  top: 18px;
+  width: 10px;
+  height: 14px;
+  border-radius: 50%;
+  background: #022b44;
+  box-shadow: inset 0 0 4px rgba(255,255,255,0.4);
+}
+
+.assistant-eye.left { left: 14px; }
+.assistant-eye.right { right: 14px; }
+
+.assistant-mouth {
+  position: absolute;
+  bottom: 14px;
+  width: 18px;
+  height: 8px;
+  border-radius: 0 0 12px 12px;
+  background: #044c32;
+}
+
+/* Shirt */
+.assistant-shirt {
+  position: absolute;
+  bottom: -6px;
+  width: 64px;
+  height: 36px;
+  border-radius: 0 0 28px 28px;
+  background: linear-gradient(135deg, #ffb703, #ff8c00);
+  box-shadow: inset 0 -6px 10px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #402200;
+}
+
+/* Assistant Menu */
+.assistant-menu {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.assistant-menu.active {
+  display: flex;
+}
+
+.assistant-option {
+  background: rgba(10,35,58,0.95);
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: var(--shadow-soft);
   font-size: 13px;
-  opacity: 0.7;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
 }
 
-/* ======================================================
-   ADMIN PANEL
-   ====================================================== */
+/* Assistant Chat Bubble */
+.assistant-bubble {
+  background: rgba(10,35,58,0.95);
+  border-radius: 16px;
+  padding: 12px 14px;
+  box-shadow: var(--shadow-soft);
+  font-size: 13px;
+  max-width: 240px;
+  line-height: 1.4;
+}
 
-#adminPanel {
+/* =========================================================
+   GIFT POPUP
+========================================================= */
+
+.gift-popup {
   position: fixed;
-  top: 90px;
-  left: 20px;
-  z-index: 4000;
-  background: rgba(0,0,0,0.85);
-  border-radius: 18px;
-  padding: 14px;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255,255,255,0.12);
-  width: 260px;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1100;
   display: none;
-  animation: slideInLeft 0.5s ease both;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
 }
 
-#adminPanel h4 {
-  font-size: 15px;
-  margin-bottom: 10px;
-  font-weight: 800;
+.gift-popup.active {
+  display: flex;
 }
 
-.adminRow {
+.gift-box {
+  background: linear-gradient(180deg, #0a3d66, #061a2b);
+  border-radius: 28px;
+  padding: 26px 22px;
+  box-shadow: var(--shadow-strong);
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 10px;
+  gap: 14px;
 }
 
-.adminRow input {
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.1);
-  color: white;
-  font-size: 12px;
+.gift-icon {
+  font-size: 42px;
+  color: #ffb703;
 }
 
-.adminRow button {
-  padding: 8px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--sunset), var(--sunset2));
-  color: #002233;
-  font-weight: 800;
-  font-size: 12px;
+.gift-code {
+  background: rgba(255,255,255,0.12);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 15px;
 }
 
-/* ======================================================
-   MOBILE TWEAKS
-   ====================================================== */
+/* =========================================================
+   MEDIA QUERIES (TABLET+)
+========================================================= */
 
-@media (max-width: 700px) {
-  #heroCTA {
-    flex-direction: column;
+@media (min-width: 600px) {
+  .quick-icons {
+    grid-template-columns: repeat(6, 1fr);
   }
-  #cartDrawer {
-    width: 100%;
+
+  .destinations-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  #amigoWrapper {
-    bottom: 16px;
-    right: 16px;
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  #amigoCanvas {
-    width: 100px;
-    height: 100px;
+
+  .houses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+@media (min-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .houses-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 </style>
 </head>
 
 <body>
+<div id="app">
 
-<!-- ======================================================
-     BOOT SCREEN
-====================================================== -->
-<div id="bootScreen">
-  <div id="bootLogo">HV</div>
-  <div id="bootText">Launching Horizon Ventura…</div>
-</div>
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+<header class="top-bar">
+  <div class="logo-wrap">
+    <!-- SVG LOGO GENERATED BY CODE -->
+    <svg class="logo-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background Circle -->
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0a3d66"/>
+          <stop offset="100%" stop-color="#001b33"/>
+        </linearGradient>
+        <linearGradient id="sunset" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ffb703"/>
+          <stop offset="100%" stop-color="#ff6b00"/>
+        </linearGradient>
+      </defs>
+      <circle cx="60" cy="60" r="58" fill="url(#grad1)" />
+      <!-- Moon / Sunset -->
+      <path d="M30 64a30 30 0 1 0 60 0" fill="url(#sunset)" />
+      <!-- Horizon -->
+      <rect x="18" y="64" width="84" height="4" fill="#ffffffaa" />
+      <!-- Plane Silhouette -->
+      <path d="M80 38l18 6-18 6-4 8-4-2 2-8-14-4 14-4-2-8 4-2z" fill="#fff"/>
+    </svg>
 
-<!-- ======================================================
-     HEADER
-====================================================== -->
-<header>
-  <div id="brand">
-    <div id="logoBox">HV</div>
-    <div id="brandName">Horizon Ventura</div>
+    <div class="brand-name">Horizonte Ventura</div>
   </div>
 
-  <div id="topNav">
-    <button class="navBtn" id="navHome">Home</button>
-    <button class="navBtn" id="navDestinations">Destinations</button>
-    <button class="navBtn" id="navExperiences">Experiences</button>
-    <button class="navBtn" id="navReviews">Reviews</button>
-    <button class="navBtn" id="navContact">Contact</button>
-
-    <div id="langSwitcher">
-      <div class="langFlag active" data-lang="en"><img src="https://flagcdn.com/w40/us.png"></div>
-      <div class="langFlag" data-lang="es"><img src="https://flagcdn.com/w40/es.png"></div>
-      <div class="langFlag" data-lang="fr"><img src="https://flagcdn.com/w40/fr.png"></div>
-      <div class="langFlag" data-lang="pt"><img src="https://flagcdn.com/w40/pt.png"></div>
-      <div class="langFlag" data-lang="de"><img src="https://flagcdn.com/w40/de.png"></div>
-      <div class="langFlag" data-lang="it"><img src="https://flagcdn.com/w40/it.png"></div>
-      <div class="langFlag" data-lang="ja"><img src="https://flagcdn.com/w40/jp.png"></div>
-      <div class="langFlag" data-lang="zh"><img src="https://flagcdn.com/w40/cn.png"></div>
+  <div class="space-between gap-12">
+    <div class="language-switcher">
+      <div class="lang-btn active" data-lang="en">EN</div>
+      <div class="lang-btn" data-lang="es">ES</div>
+      <div class="lang-btn" data-lang="fr">FR</div>
+      <div class="lang-btn" data-lang="de">DE</div>
+      <div class="lang-btn" data-lang="it">IT</div>
     </div>
 
-    <button class="navBtn" id="cartBtn">
-      Cart 🛒
-      <span id="cartCount">0</span>
+    <button class="cart-btn" id="cartBtn">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <div class="cart-count" id="cartCount">0</div>
     </button>
   </div>
 </header>
 
-<!-- ======================================================
-     MAIN APP
-====================================================== -->
-<div id="app">
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section class="hero" id="hero">
+  <div class="hero-overlay"></div>
 
-  <!-- HERO -->
-  <section id="hero" class="section">
-    <div id="heroBg"></div>
-    <div id="heroSun"></div>
-    <div id="heroWave"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-i18n="heroBadge">Caribbean Travel Experience</div>
 
-    <div id="heroContent">
-      <h1 id="heroTitle">Build Your Caribbean Experience</h1>
-      <p id="heroSubtitle">Luxury travel, authentic culture, unforgettable moments — curated by locals.</p>
-      <div id="heroCTA">
-        <button class="ctaBtn ctaPrimary" id="startJourneyBtn">Start Your Journey</button>
-        <button class="ctaBtn ctaGhost" id="exploreBtn">Explore Experiences</button>
-      </div>
-    </div>
-  </section>
+    <h1 class="hero-title" data-i18n="heroTitle">
+      Build your <span>dream vacation</span><br/>with Horizonte Ventura
+    </h1>
 
-  <!-- DESTINATIONS -->
-  <section id="destinationsSection" class="section hidden">
-    <h2 id="destinationsTitle">Choose Your Destination</h2>
-    <p id="destinationsSubtitle" style="opacity:0.8;margin:12px 0 28px;">Select a country to unlock cities and experiences.</p>
+    <p class="hero-subtitle" data-i18n="heroSubtitle">
+      Authentic Cuban experiences in Guardalavaca, Holguín — tours, casas particulares, adventures, culture, food and unforgettable memories.
+    </p>
 
-    <div id="destinations"></div>
-  </section>
-
-  <!-- CITIES -->
-  <section id="citiesSection" class="section hidden">
-    <h2 id="citiesTitle">Choose a City</h2>
-    <p id="citiesSubtitle" style="opacity:0.8;margin:12px 0 28px;"></p>
-
-    <div id="cities"></div>
-  </section>
-
-  <!-- CATEGORIES -->
-  <section id="categoriesSection" class="section hidden">
-    <h2 id="categoriesTitle">What Would You Like To Do?</h2>
-    <p id="categoriesSubtitle" style="opacity:0.8;margin:12px 0 28px;">Choose a category to explore experiences.</p>
-
-    <div id="categories"></div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="servicesSection" class="section hidden">
-    <h2 id="servicesTitle">Available Experiences</h2>
-    <p id="servicesSubtitle" style="opacity:0.8;margin:12px 0 28px;"></p>
-
-    <div id="services"></div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section id="reviewsSection" class="section hidden">
-    <h2 id="reviewsTitle">Traveler Reviews</h2>
-    <p id="reviewsSubtitle" style="opacity:0.8;margin:12px 0 28px;">Real experiences from real travelers.</p>
-
-    <div id="reviewsGrid"></div>
-
-    <div style="margin-top:30px;max-width:420px;">
-      <h3 style="margin-bottom:10px;">Leave a Review</h3>
-      <div class="formGroup">
-        <input type="text" id="reviewName" placeholder="Your name">
-      </div>
-      <div class="formGroup">
-        <select id="reviewStars">
-          <option value="5">⭐⭐⭐⭐⭐</option>
-          <option value="4">⭐⭐⭐⭐</option>
-          <option value="3">⭐⭐⭐</option>
-          <option value="2">⭐⭐</option>
-          <option value="1">⭐</option>
-        </select>
-      </div>
-      <div class="formGroup">
-        <textarea id="reviewText" rows="3" placeholder="Your experience..."></textarea>
-      </div>
-      <button class="primaryBtn" id="submitReviewBtn">Submit Review</button>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contactSection" class="section hidden">
-    <h2 id="contactTitle">Contact Horizon Ventura</h2>
-    <p style="opacity:0.8;margin:12px 0 28px;">We're here to build your perfect Caribbean experience.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
-      <div>
-        <h4>WhatsApp</h4>
-        <p><a href="https://wa.me/14376050912" target="_blank">+1 (437) 605-0912</a></p>
-      </div>
-      <div>
-        <h4>Email</h4>
-        <p><a href="mailto:Hello@HorizonVentura.com">Hello@HorizonVentura.com</a></p>
-      </div>
-      <div>
-        <h4>Office</h4>
-        <p>Canada 🇨🇦 — Operations in Caribbean 🌴</p>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<!-- ======================================================
-     CART DRAWER
-====================================================== -->
-<div id="cartDrawer">
-  <div id="cartHeader">
-    <h3>Your Experience Cart</h3>
-    <button id="cartClose">✕</button>
-  </div>
-  <div id="cartItems"></div>
-  <div id="cartFooter">
-    <div id="cartTotal">Total: $0 CAD</div>
-    <button id="checkoutBtn">Proceed to Checkout</button>
-  </div>
-</div>
-
-<!-- ======================================================
-     MODALS
-====================================================== -->
-
-<!-- CHECKOUT MODAL -->
-<div id="checkoutModal" class="modal hidden">
-  <div class="modalBox">
-    <div class="modalHeader">
-      <h3>Complete Your Booking</h3>
-      <button class="modalClose" data-close="checkoutModal">✕</button>
-    </div>
-    <div class="modalBody">
-
-      <div class="formGroup">
-        <label>Full Name</label>
-        <input type="text" id="checkoutName" placeholder="John Doe">
-      </div>
-
-      <div class="formGroup">
-        <label>Email</label>
-        <input type="email" id="checkoutEmail" placeholder="john@email.com">
-      </div>
-
-      <div class="formGroup">
-        <label>Phone (WhatsApp)</label>
-        <input type="tel" id="checkoutPhone" placeholder="+1 555 000 0000">
-      </div>
-
-      <div class="formRow">
-        <div class="formGroup">
-          <label>Start Date</label>
-          <input type="date" id="checkoutStartDate">
-        </div>
-        <div class="formGroup">
-          <label>End Date</label>
-          <input type="date" id="checkoutEndDate">
-        </div>
-      </div>
-
-      <div class="formGroup">
-        <label>Additional Notes</label>
-        <textarea id="checkoutNotes" rows="3" placeholder="Special requests, allergies, kids, etc."></textarea>
-      </div>
-
-      <button class="primaryBtn" id="confirmBookingBtn">Confirm Booking</button>
-
-    </div>
-  </div>
-</div>
-
-<!-- INFO MODAL -->
-<div id="infoModal" class="modal hidden">
-  <div class="modalBox">
-    <div class="modalHeader">
-      <h3 id="infoModalTitle">Experience Info</h3>
-      <button class="modalClose" data-close="infoModal">✕</button>
-    </div>
-    <div class="modalBody" id="infoModalBody"></div>
-  </div>
-</div>
-
-<!-- TERMS MODAL -->
-<div id="termsModal" class="modal hidden">
-  <div class="modalBox">
-    <div class="modalHeader">
-      <h3>Terms & Conditions</h3>
-      <button class="modalClose" data-close="termsModal">✕</button>
-    </div>
-    <div class="modalBody">
-      <p><strong>Booking Policy:</strong> All bookings are processed securely in Canada. Full or partial refunds may apply depending on cancellation timeframe.</p>
-      <p><strong>Payments:</strong> Payments are held and distributed to local partners bi-weekly.</p>
-      <p><strong>Liability:</strong> Horizon Ventura operates as an experience marketplace connecting travelers with verified providers.</p>
-      <p><strong>Health & Safety:</strong> All services follow local and international safety standards.</p>
-      <p><strong>Contact:</strong> Hello@HorizonVentura.com</p>
-    </div>
-  </div>
-</div>
-
-<!-- PRIVACY MODAL -->
-<div id="privacyModal" class="modal hidden">
-  <div class="modalBox">
-    <div class="modalHeader">
-      <h3>Privacy Policy</h3>
-      <button class="modalClose" data-close="privacyModal">✕</button>
-    </div>
-    <div class="modalBody">
-      <p>Your data is protected under Canadian privacy laws.</p>
-      <p>We only collect information required to process bookings.</p>
-      <p>We never sell or share your data with third parties.</p>
-      <p>You may request deletion at any time via Hello@HorizonVentura.com</p>
-    </div>
-  </div>
-</div>
-
-<!-- ======================================================
-     WELCOME GIFT
-====================================================== -->
-<div id="welcomeGift">
-  <div id="welcomeGiftBox">
-    <h2>🎁 Welcome to Horizon Ventura!</h2>
-    <p>Your first booking includes a <strong>FREE VIP GIFT</strong>. Choose one:</p>
-
-    <div class="giftOptions">
-      <div class="giftOption" data-gift="tattoo">🎨 $100 Tattoo Credit</div>
-      <div class="giftOption" data-gift="airport">✈️ Free Airport Pickup</div>
-      <div class="giftOption" data-gift="dinner">🍽️ Free Luxury Dinner</div>
-      <div class="giftOption" data-gift="snorkel">🤿 Free Snorkeling</div>
-      <div class="giftOption" data-gift="tour">🚗 Free City Tour</div>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="scrollToSection('destinationsSection')">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <span data-i18n="exploreBtn">Explore Destinations</span>
+      </button>
+      <button class="btn btn-secondary" onclick="scrollToSection('servicesSection')">
+        <i class="fa-solid fa-suitcase"></i>
+        <span data-i18n="buildTripBtn">Build Your Trip</span>
+      </button>
     </div>
 
-    <div id="welcomeGiftClose">Skip for now</div>
+    <div class="quick-icons">
+      <div class="quick-icon" onclick="scrollToSection('servicesSection')">
+        <i class="fa-solid fa-water"></i>
+        <span data-i18n="iconSnorkeling">Snorkeling</span>
+      </div>
+      <div class="quick-icon" onclick="scrollToSection('servicesSection')">
+        <i class="fa-solid fa-horse"></i>
+        <span data-i18n="iconHorse">Horse Riding</span>
+      </div>
+      <div class="quick-icon" onclick="scrollToSection('housesSection')">
+        <i class="fa-solid fa-house"></i>
+        <span data-i18n="iconHouses">Casas</span>
+      </div>
+      <div class="quick-icon" onclick="scrollToSection('servicesSection')">
+        <i class="fa-solid fa-utensils"></i>
+        <span data-i18n="iconFood">Food</span>
+      </div>
+      <div class="quick-icon" onclick="scrollToSection('servicesSection')">
+        <i class="fa-solid fa-music"></i>
+        <span data-i18n="iconNight">Night Life</span>
+      </div>
+      <div class="quick-icon" onclick="scrollToSection('servicesSection')">
+        <i class="fa-solid fa-tree"></i>
+        <span data-i18n="iconEco">Eco Tours</span>
+      </div>
+      <div class="quick-icon" onclick="scrollToSection('servicesSection')">
+        <i class="fa-solid fa-landmark"></i>
+        <span data-i18n="iconHistory">History</span>
+      </div>
+      <div class="quick-icon" onclick="scrollToSection('servicesSection')">
+        <i class="fa-solid fa-ship"></i>
+        <span data-i18n="iconBoat">Boat Trips</span>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- ======================================================
-     ADMIN PANEL (PRIVATE)
-====================================================== -->
-<div id="adminPanel">
-  <h4>Admin Control</h4>
-  <div class="adminRow">
-    <input type="text" id="adminLogoText" placeholder="Logo Letters (HV)">
-    <button id="updateLogoBtn">Update Logo</button>
-  </div>
-  <div class="adminRow">
-    <input type="password" id="adminPassword" placeholder="Admin Password">
-    <button id="adminLoginBtn">Login</button>
-  </div>
-  <div class="adminRow">
-    <button id="adminLogoutBtn">Logout</button>
-  </div>
-</div>
+<!-- =========================================================
+     DESTINATIONS
+========================================================= -->
+<section class="section" id="destinationsSection">
+  <h2 class="section-title" data-i18n="destinationsTitle">Destinations</h2>
+  <p class="section-subtitle" data-i18n="destinationsSubtitle">
+    Currently available destinations with real local services and trusted partners.
+  </p>
 
-<!-- ======================================================
-     AMIGO AVATAR SYSTEM
-====================================================== -->
-<div id="amigoWrapper">
-  <div id="amigoBubble"></div>
-  <canvas id="amigoCanvas" width="120" height="120"></canvas>
-  <div id="amigoControls">
-    <button class="amigoBtn" id="amigoHideBtn">Hide</button>
-    <button class="amigoBtn" id="amigoResetBtn">Reset</button>
+  <div class="destinations-grid" id="destinationsGrid">
+    <!-- Generated by JS -->
   </div>
-</div>
+</section>
 
-<!-- ======================================================
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+<section class="section" id="servicesSection">
+  <h2 class="section-title" data-i18n="servicesTitle">Experiences & Activities</h2>
+  <p class="section-subtitle" data-i18n="servicesSubtitle">
+    Handpicked local experiences in Guardalavaca, Holguín and surrounding areas — no mass tourism, only real Cuba.
+  </p>
+
+  <div class="services-grid" id="servicesGrid">
+    <!-- Generated by JS -->
+  </div>
+</section>
+
+<!-- =========================================================
+     HOUSES / ACCOMMODATION
+========================================================= -->
+<section class="section" id="housesSection">
+  <h2 class="section-title" data-i18n="housesTitle">Casas Particulares & Stays</h2>
+  <p class="section-subtitle" data-i18n="housesSubtitle">
+    Comfortable, safe and authentic Cuban homes — minutes from the beach, restaurants and activities.
+  </p>
+
+  <div class="houses-grid" id="housesGrid">
+    <!-- Generated by JS -->
+  </div>
+</section>
+
+<!-- =========================================================
+     WHY US
+========================================================= -->
+<section class="section" id="whySection">
+  <h2 class="section-title" data-i18n="whyTitle">Why Horizonte Ventura</h2>
+  <p class="section-subtitle" data-i18n="whySubtitle">
+    We are not a booking site — we are your local connection to real Cuban experiences.
+  </p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-handshake"></i></div>
+      <div class="why-title" data-i18n="why1Title">Local Trust Network</div>
+      <div class="why-text" data-i18n="why1Text">
+        We work directly with Cuban families, guides and businesses — no middlemen, fair prices, real impact.
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-map"></i></div>
+      <div class="why-title" data-i18n="why2Title">Tailor-Made Experiences</div>
+      <div class="why-text" data-i18n="why2Text">
+        Every trip is customized — from snorkeling and eco tours to food routes and nightlife adventures.
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-shield-heart"></i></div>
+      <div class="why-title" data-i18n="why3Title">Safety & Transparency</div>
+      <div class="why-text" data-i18n="why3Text">
+        Clear pricing, trusted partners and real support before, during and after your trip.
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-leaf"></i></div>
+      <div class="why-title" data-i18n="why4Title">Sustainable Tourism</div>
+      <div class="why-text" data-i18n="why4Text">
+        We promote eco-friendly tourism that benefits local communities and preserves Cuban culture.
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-star"></i></div>
+      <div class="why-title" data-i18n="why5Title">Premium Quality</div>
+      <div class="why-text" data-i18n="why5Text">
+        Carefully selected services, clean homes, experienced guides and unforgettable experiences.
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-comments"></i></div>
+      <div class="why-title" data-i18n="why6Title">Real Human Support</div>
+      <div class="why-text" data-i18n="why6Text">
+        Not bots. Not call centers. Real people who know Cuba and care about your experience.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     STORY / ABOUT
+========================================================= -->
+<section class="section" id="storySection">
+  <h2 class="section-title" data-i18n="storyTitle">Our Story</h2>
+  <p class="section-subtitle" data-i18n="storySubtitle">
+    How Horizonte Ventura was born and why we do what we do.
+  </p>
+
+  <div class="story-box" data-i18n="storyText">
+    Horizonte Ventura was born from the idea that travel should be more than hotels and tours — it should be connection, culture, people and real experiences. We saw travelers coming to Cuba without truly experiencing the island, and locals struggling to connect with visitors fairly and safely.
+
+    We created Horizonte Ventura to bridge that gap — connecting travelers directly with trusted Cuban families, guides and experiences in Guardalavaca, Holguín and surrounding areas. No mass tourism. No fake experiences. Only authentic Cuba — its beaches, people, food, history, nature and rhythm.
+
+    Our mission is simple: build unforgettable journeys while creating real economic impact for local communities. Every booking supports Cuban families, local guides and sustainable tourism.
+
+    This is not just travel. This is Horizonte Ventura.
+  </div>
+</section>
+
+<!-- =========================================================
      FOOTER
-====================================================== -->
-<footer>
-  <div class="footerGrid">
-    <div class="footerCol">
-      <h4>Horizon Ventura</h4>
-      <p>Luxury Caribbean experiences curated by locals. Real culture. Real adventures.</p>
-    </div>
-    <div class="footerCol">
-      <h4>Explore</h4>
-      <p><a href="#" id="footerDestinations">Destinations</a></p>
-      <p><a href="#" id="footerExperiences">Experiences</a></p>
-      <p><a href="#" id="footerReviews">Reviews</a></p>
-    </div>
-    <div class="footerCol">
-      <h4>Legal</h4>
-      <p><a href="#" id="footerTerms">Terms & Conditions</a></p>
-      <p><a href="#" id="footerPrivacy">Privacy Policy</a></p>
-    </div>
-    <div class="footerCol">
-      <h4>Contact</h4>
-      <p>WhatsApp: +1 (437) 605-0912</p>
-      <p>Email: Hello@HorizonVentura.com</p>
-    </div>
+========================================================= -->
+<footer class="footer">
+  <div>© <span id="currentYear"></span> Horizonte Ventura. All rights reserved.</div>
+
+  <div class="footer-links">
+    <a href="#" onclick="openPoliciesModal('privacy')" data-i18n="privacyPolicy">Privacy Policy</a>
+    <a href="#" onclick="openPoliciesModal('terms')" data-i18n="termsConditions">Terms & Conditions</a>
+    <a href="#" onclick="openPoliciesModal('cookies')" data-i18n="cookiesPolicy">Cookies</a>
+    <a href="#" onclick="openContactModal()" data-i18n="contactUs">Contact Us</a>
   </div>
 
-  <div class="footerBottom">
-    © 2026 Horizon Ventura. All rights reserved.
+  <div data-i18n="footerNote">
+    Authentic Cuban Experiences — Guardalavaca, Holguín, Cuba 🇨🇺
   </div>
 </footer>
 
+</div><!-- END APP -->
+
+<!-- =========================================================
+     CART MODAL
+========================================================= -->
+<div class="modal-overlay" id="cartModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+    <h3 data-i18n="cartTitle">Your Trip Cart</h3>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-total-box">
+      <span data-i18n="totalLabel">Total</span>
+      <span id="cartTotal">$0 CAD</span>
+    </div>
+
+    <button class="btn btn-primary checkout-btn" onclick="openCheckout()" data-i18n="checkoutBtn">
+      Proceed to Checkout
+    </button>
+  </div>
+</div>
+
+<!-- =========================================================
+     CHECKOUT MODAL
+========================================================= -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeCheckout()"><i class="fa-solid fa-xmark"></i></button>
+    <h3 data-i18n="checkoutTitle">Booking Details</h3>
+
+    <form id="checkoutForm">
+      <div class="form-group">
+        <label data-i18n="fullName">Full Name</label>
+        <input type="text" id="checkoutName" required />
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="email">Email</label>
+        <input type="email" id="checkoutEmail" required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="phone">Phone</label>
+          <input type="tel" id="checkoutPhone" required />
+        </div>
+        <div class="form-group">
+          <label data-i18n="country">Country</label>
+          <input type="text" id="checkoutCountry" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="specialRequests">Special Requests / Notes</label>
+        <textarea id="checkoutNotes"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success checkout-btn" data-i18n="confirmBookingBtn">
+        Confirm Booking
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- =========================================================
+     RECEIPT MODAL
+========================================================= -->
+<div class="modal-overlay" id="receiptModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeReceipt()"><i class="fa-solid fa-xmark"></i></button>
+    <h3 data-i18n="receiptTitle">Booking Confirmation</h3>
+
+    <div class="receipt-box" id="receiptBox"></div>
+
+    <button class="btn btn-primary checkout-btn" onclick="closeReceipt()" data-i18n="doneBtn">
+      Done
+    </button>
+  </div>
+</div>
+
+<!-- =========================================================
+     ADMIN LOGIN MODAL
+========================================================= -->
+<div class="modal-overlay" id="adminLoginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAdminLogin()"><i class="fa-solid fa-xmark"></i></button>
+    <h3 data-i18n="adminLoginTitle">Admin Login</h3>
+
+    <div class="form-group">
+      <label data-i18n="adminPassword">Password</label>
+      <input type="password" id="adminPasswordInput" />
+    </div>
+
+    <button class="btn btn-primary checkout-btn" onclick="loginAdmin()" data-i18n="loginBtn">
+      Login
+    </button>
+  </div>
+</div>
+
+<!-- =========================================================
+     ADMIN PANEL MODAL
+========================================================= -->
+<div class="modal-overlay" id="adminPanelModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAdminPanel()"><i class="fa-solid fa-xmark"></i></button>
+    <h3 data-i18n="adminPanelTitle">Admin Panel</h3>
+
+    <div class="admin-panel" id="adminPanelContent">
+      <!-- Generated by JS -->
+    </div>
+
+    <button class="btn btn-success checkout-btn" onclick="saveAdminChanges()" data-i18n="saveChangesBtn">
+      Save Changes
+    </button>
+  </div>
+</div>
+
+<!-- =========================================================
+     POLICIES MODAL
+========================================================= -->
+<div class="modal-overlay" id="policiesModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closePoliciesModal()"><i class="fa-solid fa-xmark"></i></button>
+    <h3 id="policiesTitle"></h3>
+    <div id="policiesContent" style="font-size:13px; line-height:1.6; opacity:0.95;"></div>
+  </div>
+</div>
+
+<!-- =========================================================
+     CONTACT MODAL
+========================================================= -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeContactModal()"><i class="fa-solid fa-xmark"></i></button>
+    <h3 data-i18n="contactTitle">Contact Us</h3>
+
+    <div style="font-size:14px; line-height:1.6; opacity:0.95;">
+      <p><strong>Email:</strong> contact@horizonteventura.com</p>
+      <p><strong>WhatsApp:</strong> +1 (437) 605-0912</p>
+      <p><strong>Location:</strong> Guardalavaca, Holguín, Cuba 🇨🇺</p>
+      <p data-i18n="contactText">
+        Reach out anytime — we’re here to help you build your perfect Cuban experience.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     GIFT POPUP
+========================================================= -->
+<div class="gift-popup" id="giftPopup">
+  <div class="gift-box">
+    <div class="gift-icon"><i class="fa-solid fa-gift"></i></div>
+    <h3 data-i18n="giftTitle">Welcome Gift 🎁</h3>
+    <p data-i18n="giftText">
+      Thanks for visiting Horizonte Ventura! Here’s a gift code for your first booking:
+    </p>
+    <div class="gift-code" id="giftCode">HV-2026-WELCOME</div>
+    <p class="small" data-i18n="giftNote">
+      Apply at checkout. Valid for first booking only.
+    </p>
+    <button class="btn btn-primary" onclick="closeGiftPopup()" data-i18n="gotItBtn">Got it!</button>
+  </div>
+</div>
+
+<!-- =========================================================
+     ASSISTANT / MASCOT
+========================================================= -->
+<div class="assistant" id="assistant">
+  <div class="assistant-menu" id="assistantMenu">
+    <div class="assistant-option" onclick="assistantAction('offers')">
+      <i class="fa-solid fa-bolt"></i>
+      <span data-i18n="assistantOffers">Current Offers</span>
+    </div>
+    <div class="assistant-option" onclick="assistantAction('events')">
+      <i class="fa-solid fa-calendar-days"></i>
+      <span data-i18n="assistantEvents">Today’s Events</span>
+    </div>
+    <div class="assistant-option" onclick="assistantAction('build')">
+      <i class="fa-solid fa-map-location-dot"></i>
+      <span data-i18n="assistantBuild">Build My Trip</span>
+    </div>
+    <div class="assistant-option" onclick="assistantAction('about')">
+      <i class="fa-solid fa-circle-info"></i>
+      <span data-i18n="assistantAbout">About Us</span>
+    </div>
+    <div class="assistant-option" onclick="assistantAction('support')">
+      <i class="fa-solid fa-headset"></i>
+      <span data-i18n="assistantSupport">Support</span>
+    </div>
+    <div class="assistant-option" onclick="assistantAction('share')">
+      <i class="fa-solid fa-share-nodes"></i>
+      <span data-i18n="assistantShare">Share</span>
+    </div>
+    <div class="assistant-option" onclick="assistantAction('admin')">
+      <i class="fa-solid fa-lock"></i>
+      <span data-i18n="assistantAdmin">Admin</span>
+    </div>
+  </div>
+
+  <div class="assistant-bubble hidden" id="assistantBubble"></div>
+
+  <div class="assistant-avatar" id="assistantAvatar">
+    <div class="assistant-face">
+      <div class="assistant-eye left"></div>
+      <div class="assistant-eye right"></div>
+      <div class="assistant-mouth"></div>
+    </div>
+    <div class="assistant-shirt">HV</div>
+  </div>
+</div>
+
 <script>
+/* =========================================================
+   GLOBAL STATE
+========================================================= */
 
-/* ======================================================
-   HORIZON VENTURA — MASTER ENGINE
-   ====================================================== */
+const ADMIN_PASSWORD = "horizonteventura2026";
 
-document.addEventListener('DOMContentLoaded', () => {
+let currentLang = "en";
+let cart = [];
+let isAdmin = false;
+let giftShown = false;
 
-  /* ======================================================
-     BOOT
-  ====================================================== */
-  const bootScreen = document.getElementById('bootScreen');
-  setTimeout(() => {
-    bootScreen.style.opacity = '0';
-    setTimeout(() => bootScreen.remove(), 500);
-  }, 1200);
+/* =========================================================
+   DATA — DESTINATIONS (ONLY REAL SERVICES)
+========================================================= */
 
-  /* ======================================================
-     GLOBAL STATE
-  ====================================================== */
-
-  let state = {
-    language: 'en',
-    country: null,
-    city: null,
-    category: null,
-    cart: [],
-    gift: null,
-    admin: false
-  };
-
-  /* ======================================================
-     TRANSLATIONS
-  ====================================================== */
-
-  const translations = {
-    en: {
-      heroTitle: "Build Your Caribbean Experience",
-      heroSubtitle: "Luxury travel, authentic culture, unforgettable moments — curated by locals.",
-      startJourney: "Start Your Journey",
-      explore: "Explore Experiences",
-      destinationsTitle: "Choose Your Destination",
-      destinationsSubtitle: "Select a country to unlock cities and experiences.",
-      citiesTitle: "Choose a City",
-      categoriesTitle: "What Would You Like To Do?",
-      categoriesSubtitle: "Choose a category to explore experiences.",
-      servicesTitle: "Available Experiences",
-      reviewsTitle: "Traveler Reviews",
-      reviewsSubtitle: "Real experiences from real travelers.",
-      contactTitle: "Contact Horizon Ventura",
-      categories: {
-        adventure: "Adventure",
-        culture: "Culture",
-        water: "Water Sports",
-        food: "Food",
-        transport: "Transport",
-        wellness: "Wellness",
-        kids: "Kids & Family",
-        nightlife: "Nightlife"
-      }
-    },
-
-    es: {
-      heroTitle: "Construye Tu Experiencia Caribeña",
-      heroSubtitle: "Viajes de lujo, cultura real y momentos inolvidables — creados por locales.",
-      startJourney: "Comenzar Viaje",
-      explore: "Explorar Experiencias",
-      destinationsTitle: "Elige Tu Destino",
-      destinationsSubtitle: "Selecciona un país para desbloquear ciudades y experiencias.",
-      citiesTitle: "Elige Una Ciudad",
-      categoriesTitle: "¿Qué Te Gustaría Hacer?",
-      categoriesSubtitle: "Elige una categoría para explorar experiencias.",
-      servicesTitle: "Experiencias Disponibles",
-      reviewsTitle: "Opiniones de Viajeros",
-      reviewsSubtitle: "Experiencias reales de viajeros reales.",
-      contactTitle: "Contactar Horizon Ventura",
-      categories: {
-        adventure: "Aventura",
-        culture: "Cultura",
-        water: "Deportes Acuáticos",
-        food: "Comida",
-        transport: "Transporte",
-        wellness: "Bienestar",
-        kids: "Niños y Familia",
-        nightlife: "Vida Nocturna"
-      }
-    },
-
-    fr: {
-      heroTitle: "Créez Votre Expérience Caribéenne",
-      heroSubtitle: "Voyages de luxe, culture authentique, moments inoubliables — conçus par des locaux.",
-      startJourney: "Commencer",
-      explore: "Explorer",
-      destinationsTitle: "Choisissez Votre Destination",
-      destinationsSubtitle: "Sélectionnez un pays pour découvrir les villes et expériences.",
-      citiesTitle: "Choisissez Une Ville",
-      categoriesTitle: "Que Souhaitez-Vous Faire?",
-      categoriesSubtitle: "Choisissez une catégorie pour explorer.",
-      servicesTitle: "Expériences Disponibles",
-      reviewsTitle: "Avis des Voyageurs",
-      reviewsSubtitle: "Expériences réelles de vrais voyageurs.",
-      contactTitle: "Contacter Horizon Ventura",
-      categories: {
-        adventure: "Aventure",
-        culture: "Culture",
-        water: "Sports Nautiques",
-        food: "Gastronomie",
-        transport: "Transport",
-        wellness: "Bien-être",
-        kids: "Enfants & Famille",
-        nightlife: "Vie Nocturne"
-      }
-    },
-
-    pt: {
-      heroTitle: "Construa Sua Experiência Caribenha",
-      heroSubtitle: "Viagens de luxo, cultura autêntica e momentos inesquecíveis.",
-      startJourney: "Começar",
-      explore: "Explorar",
-      destinationsTitle: "Escolha Seu Destino",
-      destinationsSubtitle: "Selecione um país para desbloquear cidades e experiências.",
-      citiesTitle: "Escolha Uma Cidade",
-      categoriesTitle: "O Que Gostaria de Fazer?",
-      categoriesSubtitle: "Escolha uma categoria para explorar.",
-      servicesTitle: "Experiências Disponíveis",
-      reviewsTitle: "Avaliações",
-      reviewsSubtitle: "Experiências reais de viajantes reais.",
-      contactTitle: "Contato Horizon Ventura",
-      categories: {
-        adventure: "Aventura",
-        culture: "Cultura",
-        water: "Esportes Aquáticos",
-        food: "Comida",
-        transport: "Transporte",
-        wellness: "Bem-estar",
-        kids: "Crianças & Família",
-        nightlife: "Vida Noturna"
-      }
-    },
-
-    de: {
-      heroTitle: "Gestalte Dein Karibisches Erlebnis",
-      heroSubtitle: "Luxusreisen, echte Kultur und unvergessliche Momente.",
-      startJourney: "Starten",
-      explore: "Erkunden",
-      destinationsTitle: "Wähle Dein Reiseziel",
-      destinationsSubtitle: "Wähle ein Land für Städte und Erlebnisse.",
-      citiesTitle: "Wähle Eine Stadt",
-      categoriesTitle: "Was Möchtest Du Tun?",
-      categoriesSubtitle: "Wähle eine Kategorie.",
-      servicesTitle: "Verfügbare Erlebnisse",
-      reviewsTitle: "Bewertungen",
-      reviewsSubtitle: "Echte Erlebnisse von echten Reisenden.",
-      contactTitle: "Kontakt Horizon Ventura",
-      categories: {
-        adventure: "Abenteuer",
-        culture: "Kultur",
-        water: "Wassersport",
-        food: "Essen",
-        transport: "Transport",
-        wellness: "Wellness",
-        kids: "Kinder & Familie",
-        nightlife: "Nachtleben"
-      }
-    },
-
-    it: {
-      heroTitle: "Crea La Tua Esperienza Caraibica",
-      heroSubtitle: "Viaggi di lusso, cultura autentica, momenti indimenticabili.",
-      startJourney: "Inizia",
-      explore: "Esplora",
-      destinationsTitle: "Scegli La Tua Destinazione",
-      destinationsSubtitle: "Seleziona un paese per città ed esperienze.",
-      citiesTitle: "Scegli Una Città",
-      categoriesTitle: "Cosa Vuoi Fare?",
-      categoriesSubtitle: "Scegli una categoria.",
-      servicesTitle: "Esperienze Disponibili",
-      reviewsTitle: "Recensioni",
-      reviewsSubtitle: "Esperienze reali di veri viaggiatori.",
-      contactTitle: "Contatto Horizon Ventura",
-      categories: {
-        adventure: "Avventura",
-        culture: "Cultura",
-        water: "Sport Acquatici",
-        food: "Cibo",
-        transport: "Trasporto",
-        wellness: "Benessere",
-        kids: "Bambini & Famiglia",
-        nightlife: "Vita Notturna"
-      }
-    },
-
-    ja: {
-      heroTitle: "カリブ体験を作ろう",
-      heroSubtitle: "ラグジュアリー旅行、本物の文化、忘れられない瞬間。",
-      startJourney: "開始",
-      explore: "探索",
-      destinationsTitle: "目的地を選択",
-      destinationsSubtitle: "国を選んで都市と体験を表示。",
-      citiesTitle: "都市を選択",
-      categoriesTitle: "何をしたいですか？",
-      categoriesSubtitle: "カテゴリを選択。",
-      servicesTitle: "利用可能な体験",
-      reviewsTitle: "レビュー",
-      reviewsSubtitle: "旅行者のリアルな体験。",
-      contactTitle: "Horizon Ventura 連絡先",
-      categories: {
-        adventure: "冒険",
-        culture: "文化",
-        water: "ウォータースポーツ",
-        food: "食事",
-        transport: "交通",
-        wellness: "ウェルネス",
-        kids: "子供 & 家族",
-        nightlife: "ナイトライフ"
-      }
-    },
-
-    zh: {
-      heroTitle: "打造你的加勒比体验",
-      heroSubtitle: "奢华旅行，真实文化，难忘时刻。",
-      startJourney: "开始",
-      explore: "探索",
-      destinationsTitle: "选择目的地",
-      destinationsSubtitle: "选择国家以解锁城市和体验。",
-      citiesTitle: "选择城市",
-      categoriesTitle: "你想做什么？",
-      categoriesSubtitle: "选择类别。",
-      servicesTitle: "可用体验",
-      reviewsTitle: "评价",
-      reviewsSubtitle: "真实旅客的真实体验。",
-      contactTitle: "联系 Horizon Ventura",
-      categories: {
-        adventure: "冒险",
-        culture: "文化",
-        water: "水上运动",
-        food: "美食",
-        transport: "交通",
-        wellness: "健康",
-        kids: "儿童与家庭",
-        nightlife: "夜生活"
-      }
+let destinations = [
+  {
+    id: "guardalavaca",
+    country: "Cuba",
+    city: "Guardalavaca",
+    region: "Holguín",
+    active: true,
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    description: {
+      en: "White-sand beaches, crystal waters, snorkeling, eco tours and authentic Cuban culture.",
+      es: "Playas de arena blanca, aguas cristalinas, snorkeling, ecoturismo y cultura cubana auténtica.",
+      fr: "Plages de sable blanc, eaux cristallines, snorkeling, écotours et culture cubaine authentique.",
+      de: "Weiße Sandstrände, kristallklares Wasser, Schnorcheln, Ökotouren und echte kubanische Kultur.",
+      it: "Spiagge di sabbia bianca, acque cristalline, snorkeling, eco-tour e cultura cubana autentica."
     }
-  };
-
-  /* ======================================================
-     DATA: COUNTRIES, CITIES, SERVICES
-  ====================================================== */
-
-  const data = {
-    countries: [
-      {
-        id: 'cuba',
-        name: 'Cuba',
-        flag: 'https://flagcdn.com/w80/cu.png',
-        bg: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80',
-        amigoIntro: "Welcome to Cuba — rhythm, soul, crystal waters and unforgettable culture await you.",
-        cities: [
-          { id: 'holguin', name: 'Holguín' },
-          { id: 'santiago', name: 'Santiago de Cuba' },
-          { id: 'granma', name: 'Granma' },
-          { id: 'guantanamo', name: 'Guantánamo' }
-        ]
-      },
-      {
-        id: 'jamaica',
-        name: 'Jamaica',
-        flag: 'https://flagcdn.com/w80/jm.png',
-        bg: 'https://images.unsplash.com/photo-1549640376-89f1d2c43b99?auto=format&fit=crop&w=1400&q=80',
-        amigoIntro: "From reggae vibes to blue waters — Jamaica delivers pure Caribbean energy.",
-        cities: [
-          { id: 'montego', name: 'Montego Bay' },
-          { id: 'negril', name: 'Negril' },
-          { id: 'kingston', name: 'Kingston' }
-        ]
-      },
-      {
-        id: 'trinidad',
-        name: 'Trinidad & Tobago',
-        flag: 'https://flagcdn.com/w80/tt.png',
-        bg: 'https://images.unsplash.com/photo-1580742078794-5c6d8b1c9e1c?auto=format&fit=crop&w=1400&q=80',
-        amigoIntro: "Carnival, untouched beaches and vibrant culture — welcome to Trinidad & Tobago.",
-        cities: [
-          { id: 'portofspain', name: 'Port of Spain' },
-          { id: 'scarborough', name: 'Scarborough' }
-        ]
-      },
-      {
-        id: 'mexico',
-        name: 'Mexico',
-        flag: 'https://flagcdn.com/w80/mx.png',
-        bg: 'https://images.unsplash.com/photo-1506466010722-395aa2bef877?auto=format&fit=crop&w=1400&q=80',
-        amigoIntro: "Ancient ruins, turquoise waters and legendary cuisine — Mexico awaits.",
-        cities: [
-          { id: 'cancun', name: 'Cancún' },
-          { id: 'tulum', name: 'Tulum' },
-          { id: 'playa', name: 'Playa del Carmen' }
-        ]
-      },
-      {
-        id: 'dominican',
-        name: 'Dominican Republic',
-        flag: 'https://flagcdn.com/w80/do.png',
-        bg: 'https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=1400&q=80',
-        amigoIntro: "Palm trees, bachata and luxury resorts — Dominican Republic vibes.",
-        cities: [
-          { id: 'punta', name: 'Punta Cana' },
-          { id: 'santo', name: 'Santo Domingo' }
-        ]
-      },
-      {
-        id: 'bahamas',
-        name: 'Bahamas',
-        flag: 'https://flagcdn.com/w80/bs.png',
-        bg: 'https://images.unsplash.com/photo-1519452575417-564c1401ecc0?auto=format&fit=crop&w=1400&q=80',
-        amigoIntro: "Crystal waters, pink sands and pure paradise — welcome to the Bahamas.",
-        cities: [
-          { id: 'nassau', name: 'Nassau' },
-          { id: 'freeport', name: 'Freeport' }
-        ]
-      }
-    ],
-
-    categories: [
-      { id: 'adventure', icon: '🏄‍♂️', color: '#ff7a18' },
-      { id: 'culture', icon: '🏛️', color: '#f39c12' },
-      { id: 'water', icon: '🤿', color: '#00bcd4' },
-      { id: 'food', icon: '🍽️', color: '#ff7043' },
-      { id: 'transport', icon: '🚗', color: '#ffd54f' },
-      { id: 'wellness', icon: '🧘‍♀️', color: '#81c784' },
-      { id: 'kids', icon: '🧒', color: '#ba68c8' },
-      { id: 'nightlife', icon: '🎉', color: '#e91e63' }
-    ],
-
-    services: [
-      {
-        id: 'windsurfing',
-        title: 'Professional Windsurfing',
-        category: 'adventure',
-        price: 150,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1504893524553-b8553f071dcb?auto=format&fit=crop&w=800&q=80',
-        description: 'Professional windsurfing sessions for all levels with top-tier equipment and instructors.',
-        amigo: "Feel the rush! Our professional windsurfing sessions in Holguín are designed for all levels. Catch the best Caribbean winds with top-tier equipment."
-      },
-      {
-        id: 'snorkeling',
-        title: 'Snorkeling Class (Coral Reef)',
-        category: 'water',
-        price: 85,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-        description: 'Explore crystal clear coral reefs with professional gear and certified instructors.',
-        amigo: "The Atlantic is calling! Explore the hidden coral reefs of Guardalavaca. Crystal clear water, professional gear, and breathtaking beauty."
-      },
-      {
-        id: 'tattoo',
-        title: 'Professional Tattoo',
-        category: 'culture',
-        price: 120,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1520974735194-ec3287df86f4?auto=format&fit=crop&w=800&q=80',
-        description: 'International safety standards with top artists. Carry Cuba on your skin.',
-        amigo: "Carry the soul of Cuba on your skin. Our professional artists follow strict international safety standards to give you a masterpiece."
-      },
-      {
-        id: 'classiccar',
-        title: 'Classic Car Tour (1950s Chevy)',
-        category: 'transport',
-        price: 210,
-        per: 'day',
-        image: 'https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?auto=format&fit=crop&w=800&q=80',
-        description: 'Private vintage car tours with chauffeur. Up to 4 people.',
-        amigo: "Cruise Cuba in a legendary 1950s Chevy with your own private driver — pure retro magic."
-      },
-      {
-        id: 'maita',
-        title: 'El Chorro de Maíta Museum',
-        category: 'culture',
-        price: 55,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1549887534-1541e9326642?auto=format&fit=crop&w=800&q=80',
-        description: 'Visit the most important indigenous cemetery in the Caribbean.',
-        amigo: "Step into the past! Visit the most important indigenous cemetery in the Caribbean. A mystical journey through Cuba's roots."
-      },
-      {
-        id: 'aquaticmuseum',
-        title: 'Aquatic Museum (Guardalavaca)',
-        category: 'culture',
-        price: 45,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=800&q=80',
-        description: 'Discover underwater history and marine ecosystems.',
-        amigo: "Discover the hidden world beneath the waves at Guardalavaca’s Aquatic Museum."
-      },
-      {
-        id: 'airport',
-        title: 'Airport Pickup & Transfer',
-        category: 'transport',
-        price: 65,
-        per: 'trip',
-        image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80',
-        description: 'Private airport pickup and drop-off service.',
-        amigo: "Arrive stress-free with private airport pickup — smooth, safe, and comfortable."
-      },
-      {
-        id: 'luxdinner',
-        title: 'Luxury Cuban Dinner',
-        category: 'food',
-        price: 75,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1529692236671-f1dcfdb0a5b8?auto=format&fit=crop&w=800&q=80',
-        description: 'Authentic gourmet Cuban cuisine prepared by local chefs.',
-        amigo: "Taste the heart of Cuba with gourmet dishes prepared by local masters — unforgettable flavors."
-      },
-      {
-        id: 'dolphin',
-        title: 'Dolphin Experience',
-        category: 'water',
-        price: 120,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=800&q=80',
-        description: 'Swim and interact with dolphins in a safe environment.',
-        amigo: "Swim with dolphins in crystal clear waters — a magical experience for all ages."
-      },
-      {
-        id: 'diving',
-        title: 'Scuba Diving (Day/Night/Cave)',
-        category: 'water',
-        price: 180,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80',
-        description: 'Certified diving experiences including night and cave dives.',
-        amigo: "Dive into adventure — explore reefs, caves, and night waters with certified professionals."
-      },
-      {
-        id: 'windsurfclass',
-        title: 'Windsurfing Class',
-        category: 'adventure',
-        price: 120,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=800&q=80',
-        description: 'Learn windsurfing from scratch with professional instructors.',
-        amigo: "Learn to windsurf from scratch and ride Caribbean winds like a pro."
-      },
-      {
-        id: 'kitesurf',
-        title: 'Kitesurfing Class',
-        category: 'adventure',
-        price: 140,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80',
-        description: 'High-energy kitesurfing lessons for beginners and advanced riders.',
-        amigo: "Fly over the waves — kitesurfing sessions designed for thrill-seekers."
-      },
-      {
-        id: 'kidsclub',
-        title: 'Kids Beach Club (2–4 hrs)',
-        category: 'kids',
-        price: 40,
-        per: 'child',
-        image: 'https://images.unsplash.com/photo-1503455637927-730bce8583c0?auto=format&fit=crop&w=800&q=80',
-        description: 'Supervised kids activities including beach safety, games, and fun.',
-        amigo: "Let your kids learn beach safety, play games, and enjoy supervised fun while you relax."
-      },
-      {
-        id: 'cprclass',
-        title: 'Beach CPR & First Aid Class',
-        category: 'wellness',
-        price: 60,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1580281657521-7aa9c4d4d06a?auto=format&fit=crop&w=800&q=80',
-        description: 'Learn lifesaving skills in beach and water environments.',
-        amigo: "Learn life-saving skills with certified CPR and beach safety instructors."
-      },
-      {
-        id: 'nightlife',
-        title: 'Caribbean Nightlife Tour',
-        category: 'nightlife',
-        price: 95,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=800&q=80',
-        description: 'Experience the best local nightlife, music, and dance.',
-        amigo: "Dance the night away with Caribbean rhythms, cocktails, and unforgettable vibes."
-      },
-      {
-        id: 'naturewalk',
-        title: 'Nature Walk & Crystal Springs',
-        category: 'adventure',
-        price: 70,
-        per: 'person',
-        image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80',
-        description: 'Guided nature walks with freshwater swimming spots.',
-        amigo: "Walk through nature and swim in crystal-clear springs — pure tropical magic."
-      }
-    ]
-  };
-
-  /* ======================================================
-     DOM REFERENCES
-  ====================================================== */
-
-  const heroSection = document.getElementById('hero');
-  const destinationsSection = document.getElementById('destinationsSection');
-  const citiesSection = document.getElementById('citiesSection');
-  const categoriesSection = document.getElementById('categoriesSection');
-  const servicesSection = document.getElementById('servicesSection');
-  const reviewsSection = document.getElementById('reviewsSection');
-  const contactSection = document.getElementById('contactSection');
-
-  const destinationsContainer = document.getElementById('destinations');
-  const citiesContainer = document.getElementById('cities');
-  const categoriesContainer = document.getElementById('categories');
-  const servicesContainer = document.getElementById('services');
-
-  const cartDrawer = document.getElementById('cartDrawer');
-  const cartItemsEl = document.getElementById('cartItems');
-  const cartTotalEl = document.getElementById('cartTotal');
-  const cartCountEl = document.getElementById('cartCount');
-
-  const checkoutModal = document.getElementById('checkoutModal');
-  const infoModal = document.getElementById('infoModal');
-  const infoModalTitle = document.getElementById('infoModalTitle');
-  const infoModalBody = document.getElementById('infoModalBody');
-
-  const reviewsGrid = document.getElementById('reviewsGrid');
-
-  const welcomeGift = document.getElementById('welcomeGift');
-
-  const amigoWrapper = document.getElementById('amigoWrapper');
-  const amigoCanvas = document.getElementById('amigoCanvas');
-  const amigoBubble = document.getElementById('amigoBubble');
-
-  const adminPanel = document.getElementById('adminPanel');
-
-  /* ======================================================
-     UTILITIES
-  ====================================================== */
-
-  function showSection(section) {
-    [heroSection, destinationsSection, citiesSection, categoriesSection, servicesSection, reviewsSection, contactSection].forEach(sec => {
-      sec.classList.add('hidden');
-    });
-    section.classList.remove('hidden');
-    section.classList.add('fadeIn');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  },
+  {
+    id: "holguin",
+    country: "Cuba",
+    city: "Holguín",
+    region: "Holguín",
+    active: true,
+    image: "https://images.unsplash.com/photo-1544986581-efac024faf62?auto=format&fit=crop&w=1200&q=80",
+    description: {
+      en: "Parks, hills, viewpoints, city life and cultural heritage of eastern Cuba.",
+      es: "Parques, colinas, miradores, vida urbana y patrimonio cultural del oriente cubano.",
+      fr: "Parcs, collines, belvédères, vie urbaine et patrimoine culturel de l’est de Cuba.",
+      de: "Parks, Hügel, Aussichtspunkte, Stadtleben und kulturelles Erbe Ostkubas.",
+      it: "Parchi, colline, belvedere, vita urbana e patrimonio culturale dell’est di Cuba."
+    }
+  },
+  {
+    id: "banes",
+    country: "Cuba",
+    city: "Banes",
+    region: "Holguín",
+    active: true,
+    image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+    description: {
+      en: "Archaeological museums, fishing villages and quiet beaches.",
+      es: "Museos arqueológicos, pueblos pesqueros y playas tranquilas.",
+      fr: "Musées archéologiques, villages de pêcheurs et plages tranquilles.",
+      de: "Archäologische Museen, Fischerdörfer und ruhige Strände.",
+      it: "Musei archeologici, villaggi di pescatori e spiagge tranquille."
+    }
+  },
+  {
+    id: "santiago",
+    country: "Cuba",
+    city: "Santiago de Cuba",
+    region: "Santiago",
+    active: true,
+    image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1200&q=80",
+    description: {
+      en: "Music capital of Cuba, history, nightlife, culture and Caribbean rhythm.",
+      es: "Capital musical de Cuba, historia, vida nocturna, cultura y ritmo caribeño.",
+      fr: "Capitale musicale de Cuba, histoire, vie nocturne, culture et rythme caribéen.",
+      de: "Musikmetropole Kubas, Geschichte, Nachtleben, Kultur und karibischer Rhythmus.",
+      it: "Capitale musicale di Cuba, storia, vita notturna, cultura e ritmo caraibico."
+    }
+  },
+  {
+    id: "guantanamo",
+    country: "Cuba",
+    city: "Guantánamo",
+    region: "Guantánamo",
+    active: true,
+    image: "https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80",
+    description: {
+      en: "Mountains, rivers, cocoa farms and authentic rural Cuba.",
+      es: "Montañas, ríos, fincas de cacao y Cuba rural auténtica.",
+      fr: "Montagnes, rivières, plantations de cacao et Cuba rurale authentique.",
+      de: "Berge, Flüsse, Kakaofarmen und authentisches ländliches Kuba.",
+      it: "Montagne, fiumi, piantagioni di cacao e Cuba rurale autentica."
+    }
+  },
+  {
+    id: "jamaica",
+    country: "Jamaica",
+    city: "Coming Soon",
+    active: false,
+    image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+    description: {
+      en: "Coming soon.",
+      es: "Próximamente.",
+      fr: "Bientôt disponible.",
+      de: "Demnächst verfügbar.",
+      it: "Prossimamente."
+    }
+  },
+  {
+    id: "trinidad",
+    country: "Trinidad & Tobago",
+    city: "Coming Soon",
+    active: false,
+    image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+    description: {
+      en: "Coming soon.",
+      es: "Próximamente.",
+      fr: "Bientôt disponible.",
+      de: "Demnächst verfügbar.",
+      it: "Prossimamente."
+    }
+  },
+  {
+    id: "mexico",
+    country: "Mexico",
+    city: "Coming Soon",
+    active: false,
+    image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+    description: {
+      en: "Coming soon.",
+      es: "Próximamente.",
+      fr: "Bientôt disponible.",
+      de: "Demnächst verfügbar.",
+      it: "Prossimamente."
+    }
+  },
+  {
+    id: "colombia",
+    country: "Colombia",
+    city: "Coming Soon",
+    active: false,
+    image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+    description: {
+      en: "Coming soon.",
+      es: "Próximamente.",
+      fr: "Bientôt disponible.",
+      de: "Demnächst verfügbar.",
+      it: "Prossimamente."
+    }
   }
+];
 
-  function formatPrice(num) {
-    return `$${num.toFixed(2)} CAD`;
+/* =========================================================
+   DATA — SERVICES (ONLY REAL CUBA SERVICES)
+========================================================= */
+
+let services = [
+  {
+    id: "snorkeling-guardalavaca",
+    city: "Guardalavaca",
+    title: {
+      en: "Snorkeling in Coral Reefs",
+      es: "Snorkeling en Arrecifes de Coral",
+      fr: "Snorkeling sur les récifs coralliens",
+      de: "Schnorcheln an Korallenriffen",
+      it: "Snorkeling sulle barriere coralline"
+    },
+    description: {
+      en: "Explore crystal-clear waters and vibrant coral reefs with professional local guides. Equipment included.",
+      es: "Explora aguas cristalinas y arrecifes vibrantes con guías locales profesionales. Equipamiento incluido.",
+      fr: "Explorez des eaux cristallines et des récifs colorés avec des guides locaux professionnels. Équipement inclus.",
+      de: "Erkunden Sie kristallklares Wasser und lebendige Korallenriffe mit professionellen lokalen Guides. Ausrüstung inklusive.",
+      it: "Esplora acque cristalline e barriere coralline con guide locali professionali. Attrezzatura inclusa."
+    },
+    image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 55,
+    duration: "2.5 hours",
+    type: "activity",
+    bookingType: "dateTime",
+    includes: ["Equipment", "Guide", "Transport nearby"],
+    marginIncluded: true
+  },
+  {
+    id: "horse-riding-guardalavaca",
+    city: "Guardalavaca",
+    title: {
+      en: "Horse Riding on the Beach & Countryside",
+      es: "Paseo a Caballo por la Playa y el Campo",
+      fr: "Balade à cheval sur la plage et à la campagne",
+      de: "Reiten am Strand und auf dem Land",
+      it: "Passeggiata a cavallo sulla spiaggia e in campagna"
+    },
+    description: {
+      en: "Ride through palm trees, countryside trails and beaches with experienced local horse guides.",
+      es: "Cabalgata entre palmeras, senderos rurales y playas con guías locales experimentados.",
+      fr: "Promenade à cheval à travers palmiers, sentiers ruraux et plages avec des guides locaux expérimentés.",
+      de: "Reiten durch Palmenhaine, ländliche Wege und Strände mit erfahrenen lokalen Guides.",
+      it: "Passeggiata a cavallo tra palme, sentieri rurali e spiagge con guide locali esperte."
+    },
+    image: "https://images.unsplash.com/photo-1522140604799-9bb6fdbdbd1f?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 45,
+    duration: "2 hours",
+    type: "activity",
+    bookingType: "dateTime",
+    includes: ["Horse", "Guide", "Helmet"],
+    marginIncluded: true
+  },
+  {
+    id: "eco-tour-holguin",
+    city: "Holguín",
+    title: {
+      en: "Eco Tour: Waterfalls & Nature Parks",
+      es: "Ecoturismo: Cascadas y Parques Naturales",
+      fr: "Écotourisme : cascades et parcs naturels",
+      de: "Ökotour: Wasserfälle und Naturparks",
+      it: "Eco tour: cascate e parchi naturali"
+    },
+    description: {
+      en: "Visit hidden waterfalls, rivers and protected parks with ecological guides. Ideal for nature lovers.",
+      es: "Visita cascadas ocultas, ríos y parques protegidos con guías ecológicos. Ideal para amantes de la naturaleza.",
+      fr: "Visitez cascades cachées, rivières et parcs protégés avec des guides écologiques. Idéal pour les amoureux de la nature.",
+      de: "Besuchen Sie versteckte Wasserfälle, Flüsse und geschützte Parks mit Öko-Guides. Ideal für Naturliebhaber.",
+      it: "Visita cascate nascoste, fiumi e parchi protetti con guide ecologiche. Ideale per amanti della natura."
+    },
+    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 75,
+    duration: "4–5 hours",
+    type: "activity",
+    bookingType: "date",
+    includes: ["Transport", "Guide", "Entrance fees"],
+    marginIncluded: true
+  },
+  {
+    id: "historical-santiago",
+    city: "Santiago de Cuba",
+    title: {
+      en: "Historical Santiago City Tour",
+      es: "Tour Histórico por Santiago de Cuba",
+      fr: "Visite historique de Santiago de Cuba",
+      de: "Historische Stadtführung durch Santiago de Cuba",
+      it: "Tour storico di Santiago de Cuba"
+    },
+    description: {
+      en: "Discover Cuba’s revolutionary history, music culture and colonial architecture with a local historian guide.",
+      es: "Descubre la historia revolucionaria, la música y la arquitectura colonial de Cuba con un guía local.",
+      fr: "Découvrez l’histoire révolutionnaire, la musique et l’architecture coloniale de Cuba avec un guide local.",
+      de: "Entdecken Sie Kubas revolutionäre Geschichte, Musik und koloniale Architektur mit einem lokalen Guide.",
+      it: "Scopri la storia rivoluzionaria, la musica e l’architettura coloniale di Cuba con una guida locale."
+    },
+    image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 65,
+    duration: "3 hours",
+    type: "activity",
+    bookingType: "dateTime",
+    includes: ["Guide", "Museum tickets"],
+    marginIncluded: true
+  },
+  {
+    id: "nightlife-santiago",
+    city: "Santiago de Cuba",
+    title: {
+      en: "Nightlife & Salsa Experience",
+      es: "Experiencia Nocturna y Salsa",
+      fr: "Expérience nocturne et salsa",
+      de: "Nachtleben- und Salsa-Erlebnis",
+      it: "Esperienza notturna e salsa"
+    },
+    description: {
+      en: "Experience authentic Cuban nightlife with live music, dance clubs and local venues.",
+      es: "Vive la auténtica vida nocturna cubana con música en vivo, clubes de baile y locales tradicionales.",
+      fr: "Découvrez la vie nocturne cubaine authentique avec musique live, clubs de danse et lieux locaux.",
+      de: "Erleben Sie das authentische kubanische Nachtleben mit Live-Musik, Tanzclubs und lokalen Lokalen.",
+      it: "Vivi la vera vita notturna cubana con musica dal vivo, locali da ballo e club locali."
+    },
+    image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 40,
+    duration: "3–4 hours",
+    type: "activity",
+    bookingType: "dateTime",
+    includes: ["Guide", "Club entry"],
+    marginIncluded: true
+  },
+  {
+    id: "cacao-farm-guantanamo",
+    city: "Guantánamo",
+    title: {
+      en: "Cacao Farm & Rural Life Tour",
+      es: "Tour de Finca de Cacao y Vida Rural",
+      fr: "Visite de ferme de cacao et vie rurale",
+      de: "Kakaofarm- und Landleben-Tour",
+      it: "Tour delle piantagioni di cacao e vita rurale"
+    },
+    description: {
+      en: "Visit cacao farms, learn traditional chocolate-making and explore rural Cuban life.",
+      es: "Visita fincas de cacao, aprende a hacer chocolate artesanal y conoce la vida rural cubana.",
+      fr: "Visitez des plantations de cacao, apprenez la fabrication artisanale du chocolat et découvrez la vie rurale cubaine.",
+      de: "Besuchen Sie Kakaofarmen, lernen Sie traditionelle Schokoladenherstellung und entdecken Sie das ländliche Kuba.",
+      it: "Visita piantagioni di cacao, impara a fare il cioccolato artigianale e scopri la vita rurale cubana."
+    },
+    image: "https://images.unsplash.com/photo-1524594154908-edd1c2f48e3a?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 70,
+    duration: "4 hours",
+    type: "activity",
+    bookingType: "date",
+    includes: ["Transport", "Guide", "Farm tasting"],
+    marginIncluded: true
+  },
+  {
+    id: "food-experience-guardalavaca",
+    city: "Guardalavaca",
+    title: {
+      en: "Authentic Cuban Home Dining Experience",
+      es: "Experiencia Gastronómica en Casa Cubana",
+      fr: "Expérience culinaire cubaine chez l’habitant",
+      de: "Authentisches kubanisches Hausessen-Erlebnis",
+      it: "Esperienza culinaria cubana in casa"
+    },
+    description: {
+      en: "Enjoy home-cooked Cuban meals with local families — fresh seafood, traditional recipes and real culture.",
+      es: "Disfruta comidas cubanas caseras con familias locales — mariscos frescos, recetas tradicionales y cultura real.",
+      fr: "Savourez des repas cubains faits maison avec des familles locales — fruits de mer frais, recettes traditionnelles et vraie culture.",
+      de: "Genießen Sie hausgemachte kubanische Mahlzeiten mit lokalen Familien — frische Meeresfrüchte, traditionelle Rezepte und echte Kultur.",
+      it: "Goditi pasti cubani fatti in casa con famiglie locali — pesce fresco, ricette tradizionali e vera cultura."
+    },
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 35,
+    duration: "2 hours",
+    type: "food",
+    bookingType: "dateTime",
+    includes: ["3-course meal", "Drinks"],
+    marginIncluded: true
+  },
+  {
+    id: "boat-trip-guardalavaca",
+    city: "Guardalavaca",
+    title: {
+      en: "Private Boat Trip & Snorkeling",
+      es: "Paseo Privado en Barco y Snorkeling",
+      fr: "Excursion privée en bateau et snorkeling",
+      de: "Private Bootstour und Schnorcheln",
+      it: "Gita privata in barca e snorkeling"
+    },
+    description: {
+      en: "Private boat ride along the coast with snorkeling stops, fishing and sunset views.",
+      es: "Paseo privado en barco por la costa con paradas para snorkeling, pesca y vistas al atardecer.",
+      fr: "Excursion privée en bateau le long de la côte avec snorkeling, pêche et couchers de soleil.",
+      de: "Private Bootstour entlang der Küste mit Schnorchelstopps, Angeln und Sonnenuntergängen.",
+      it: "Gita privata in barca lungo la costa con snorkeling, pesca e tramonti."
+    },
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 120,
+    duration: "3–4 hours",
+    type: "activity",
+    bookingType: "dateTime",
+    includes: ["Boat", "Captain", "Snorkel gear"],
+    marginIncluded: true
+  },
+  {
+    id: "city-tour-holguin",
+    city: "Holguín",
+    title: {
+      en: "Holguín City Tour & Viewpoints",
+      es: "Tour por la Ciudad de Holguín y Miradores",
+      fr: "Visite de la ville de Holguín et belvédères",
+      de: "Stadttour Holguín und Aussichtspunkte",
+      it: "Tour della città di Holguín e belvedere"
+    },
+    description: {
+      en: "Discover Holguín’s parks, viewpoints, museums and local life with a friendly local guide.",
+      es: "Descubre parques, miradores, museos y la vida local de Holguín con un guía local.",
+      fr: "Découvrez les parcs, belvédères, musées et la vie locale de Holguín avec un guide local.",
+      de: "Entdecken Sie Parks, Aussichtspunkte, Museen und das lokale Leben in Holguín mit einem lokalen Guide.",
+      it: "Scopri parchi, belvedere, musei e la vita locale di Holguín con una guida locale."
+    },
+    image: "https://images.unsplash.com/photo-1544986581-efac024faf62?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 50,
+    duration: "3 hours",
+    type: "activity",
+    bookingType: "dateTime",
+    includes: ["Guide", "Transport"],
+    marginIncluded: true
   }
+];
 
-  function daysBetween(start, end) {
-    const s = new Date(start);
-    const e = new Date(end);
-    const diff = Math.ceil((e - s) / (1000 * 60 * 60 * 24));
-    return diff > 0 ? diff : 1;
+/* =========================================================
+   DATA — HOUSES / ACCOMMODATION
+========================================================= */
+
+let houses = [
+  {
+    id: "casa-playa-sol",
+    city: "Guardalavaca",
+    title: {
+      en: "Casa Playa Sol — 5 min from the Beach",
+      es: "Casa Playa Sol — A 5 min de la Playa",
+      fr: "Casa Playa Sol — À 5 min de la plage",
+      de: "Casa Playa Sol — 5 Min vom Strand",
+      it: "Casa Playa Sol — A 5 min dalla spiaggia"
+    },
+    description: {
+      en: "Beautiful family home just 5 minutes from Guardalavaca beach. Private room, air conditioning, hot water, breakfast included and local hosts who treat you like family.",
+      es: "Hermosa casa familiar a solo 5 minutos de la playa Guardalavaca. Habitación privada, aire acondicionado, agua caliente, desayuno incluido y anfitriones locales que te tratan como familia.",
+      fr: "Belle maison familiale à seulement 5 minutes de la plage de Guardalavaca. Chambre privée, climatisation, eau chaude, petit-déjeuner inclus et hôtes locaux accueillants.",
+      de: "Schönes Familienhaus nur 5 Minuten vom Strand Guardalavaca entfernt. Privates Zimmer, Klimaanlage, Warmwasser, Frühstück inklusive und herzliche Gastgeber.",
+      it: "Bellissima casa familiare a soli 5 minuti dalla spiaggia di Guardalavaca. Camera privata, aria condizionata, acqua calda, colazione inclusa e host accoglienti."
+    },
+    image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 45,
+    per: "night",
+    amenities: ["WiFi", "Air Conditioning", "Breakfast", "Private Bathroom"],
+    marginIncluded: true
+  },
+  {
+    id: "casa-brisa-caribe",
+    city: "Guardalavaca",
+    title: {
+      en: "Casa Brisa Caribe — Garden & Terrace",
+      es: "Casa Brisa Caribe — Jardín y Terraza",
+      fr: "Casa Brisa Caribe — Jardin et terrasse",
+      de: "Casa Brisa Caribe — Garten und Terrasse",
+      it: "Casa Brisa Caribe — Giardino e terrazza"
+    },
+    description: {
+      en: "Quiet home with tropical garden, terrace, private bathroom, AC and walking distance to restaurants and beach access points.",
+      es: "Casa tranquila con jardín tropical, terraza, baño privado, aire acondicionado y a poca distancia de restaurantes y accesos a la playa.",
+      fr: "Maison tranquille avec jardin tropical, terrasse, salle de bain privée, climatisation et à distance de marche des restaurants et de la plage.",
+      de: "Ruhiges Haus mit tropischem Garten, Terrasse, privatem Bad, Klimaanlage und fußläufig zu Restaurants und Strandzugängen.",
+      it: "Casa tranquilla con giardino tropicale, terrazza, bagno privato, aria condizionata e a pochi passi da ristoranti e spiaggia."
+    },
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 40,
+    per: "night",
+    amenities: ["WiFi", "Terrace", "Private Bathroom", "Breakfast Optional"],
+    marginIncluded: true
+  },
+  {
+    id: "casa-mar-y-palmas",
+    city: "Holguín",
+    title: {
+      en: "Casa Mar & Palmas — Central Holguín",
+      es: "Casa Mar & Palmas — Centro de Holguín",
+      fr: "Casa Mar & Palmas — Centre de Holguín",
+      de: "Casa Mar & Palmas — Zentrum von Holguín",
+      it: "Casa Mar & Palmas — Centro di Holguín"
+    },
+    description: {
+      en: "Comfortable city home in Holguín, ideal for travelers exploring parks, viewpoints and cultural attractions.",
+      es: "Cómoda casa en el centro de Holguín, ideal para viajeros que exploran parques, miradores y atracciones culturales.",
+      fr: "Maison confortable au centre de Holguín, idéale pour explorer parcs, belvédères et attractions culturelles.",
+      de: "Komfortables Stadthaus in Holguín, ideal für Reisende, die Parks, Aussichtspunkte und kulturelle Attraktionen erkunden.",
+      it: "Casa confortevole nel centro di Holguín, ideale per esplorare parchi, belvedere e attrazioni culturali."
+    },
+    image: "https://images.unsplash.com/photo-1505691723518-36a5ac3b2f04?auto=format&fit=crop&w=1200&q=80",
+    basePrice: 38,
+    per: "night",
+    amenities: ["WiFi", "AC", "Private Bathroom"],
+    marginIncluded: true
   }
+];
 
-  /* ======================================================
-     LANGUAGE SYSTEM
-  ====================================================== */
+/* =========================================================
+   DATA — TRANSLATIONS (FULL PAGE)
+========================================================= */
 
-  function applyLanguage(lang) {
-    state.language = lang;
-    const t = translations[lang];
+const translations = {
+  en: {
+    heroBadge: "Caribbean Travel Experience",
+    heroTitle: "Build your <span>dream vacation</span><br/>with Horizonte Ventura",
+    heroSubtitle: "Authentic Cuban experiences in Guardalavaca, Holguín — tours, casas particulares, adventures, culture, food and unforgettable memories.",
+    exploreBtn: "Explore Destinations",
+    buildTripBtn: "Build Your Trip",
 
-    document.getElementById('heroTitle').textContent = t.heroTitle;
-    document.getElementById('heroSubtitle').textContent = t.heroSubtitle;
-    document.getElementById('startJourneyBtn').textContent = t.startJourney;
-    document.getElementById('exploreBtn').textContent = t.explore;
-    document.getElementById('destinationsTitle').textContent = t.destinationsTitle;
-    document.getElementById('destinationsSubtitle').textContent = t.destinationsSubtitle;
-    document.getElementById('citiesTitle').textContent = t.citiesTitle;
-    document.getElementById('categoriesTitle').textContent = t.categoriesTitle;
-    document.getElementById('categoriesSubtitle').textContent = t.categoriesSubtitle;
-    document.getElementById('servicesTitle').textContent = t.servicesTitle;
-    document.getElementById('reviewsTitle').textContent = t.reviewsTitle;
-    document.getElementById('reviewsSubtitle').textContent = t.reviewsSubtitle;
-    document.getElementById('contactTitle').textContent = t.contactTitle;
+    iconSnorkeling: "Snorkeling",
+    iconHorse: "Horse Riding",
+    iconHouses: "Casas",
+    iconFood: "Food",
+    iconNight: "Night Life",
+    iconEco: "Eco Tours",
+    iconHistory: "History",
+    iconBoat: "Boat Trips",
 
-    renderCategories();
-    renderServices();
+    destinationsTitle: "Destinations",
+    destinationsSubtitle: "Currently available destinations with real local services and trusted partners.",
+
+    servicesTitle: "Experiences & Activities",
+    servicesSubtitle: "Handpicked local experiences in Guardalavaca, Holguín and surrounding areas — no mass tourism, only real Cuba.",
+
+    housesTitle: "Casas Particulares & Stays",
+    housesSubtitle: "Comfortable, safe and authentic Cuban homes — minutes from the beach, restaurants and activities.",
+
+    whyTitle: "Why Horizonte Ventura",
+    whySubtitle: "We are not a booking site — we are your local connection to real Cuban experiences.",
+
+    why1Title: "Local Trust Network",
+    why1Text: "We work directly with Cuban families, guides and businesses — no middlemen, fair prices, real impact.",
+
+    why2Title: "Tailor-Made Experiences",
+    why2Text: "Every trip is customized — from snorkeling and eco tours to food routes and nightlife adventures.",
+
+    why3Title: "Safety & Transparency",
+    why3Text: "Clear pricing, trusted partners and real support before, during and after your trip.",
+
+    why4Title: "Sustainable Tourism",
+    why4Text: "We promote eco-friendly tourism that benefits local communities and preserves Cuban culture.",
+
+    why5Title: "Premium Quality",
+    why5Text: "Carefully selected services, clean homes, experienced guides and unforgettable experiences.",
+
+    why6Title: "Real Human Support",
+    why6Text: "Not bots. Not call centers. Real people who know Cuba and care about your experience.",
+
+    storyTitle: "Our Story",
+    storySubtitle: "How Horizonte Ventura was born and why we do what we do.",
+    storyText: `Horizonte Ventura was born from the idea that travel should be more than hotels and tours — it should be connection, culture, people and real experiences. We saw travelers coming to Cuba without truly experiencing the island, and locals struggling to connect with visitors fairly and safely.
+
+We created Horizonte Ventura to bridge that gap — connecting travelers directly with trusted Cuban families, guides and experiences in Guardalavaca, Holguín and surrounding areas. No mass tourism. No fake experiences. Only authentic Cuba — its beaches, people, food, history, nature and rhythm.
+
+Our mission is simple: build unforgettable journeys while creating real economic impact for local communities. Every booking supports Cuban families, local guides and sustainable tourism.
+
+This is not just travel. This is Horizonte Ventura.`,
+
+    privacyPolicy: "Privacy Policy",
+    termsConditions: "Terms & Conditions",
+    cookiesPolicy: "Cookies",
+    contactUs: "Contact Us",
+    footerNote: "Authentic Cuban Experiences — Guardalavaca, Holguín, Cuba 🇨🇺",
+
+    cartTitle: "Your Trip Cart",
+    totalLabel: "Total",
+    checkoutBtn: "Proceed to Checkout",
+
+    checkoutTitle: "Booking Details",
+    fullName: "Full Name",
+    email: "Email",
+    phone: "Phone",
+    country: "Country",
+    specialRequests: "Special Requests / Notes",
+    confirmBookingBtn: "Confirm Booking",
+
+    receiptTitle: "Booking Confirmation",
+    doneBtn: "Done",
+
+    adminLoginTitle: "Admin Login",
+    adminPassword: "Password",
+    loginBtn: "Login",
+
+    adminPanelTitle: "Admin Panel",
+    saveChangesBtn: "Save Changes",
+
+    contactTitle: "Contact Us",
+    contactText: "Reach out anytime — we’re here to help you build your perfect Cuban experience.",
+
+    giftTitle: "Welcome Gift 🎁",
+    giftText: "Thanks for visiting Horizonte Ventura! Here’s a gift code for your first booking:",
+    giftNote: "Apply at checkout. Valid for first booking only.",
+    gotItBtn: "Got it!",
+
+    assistantOffers: "Current Offers",
+    assistantEvents: "Today’s Events",
+    assistantBuild: "Build My Trip",
+    assistantAbout: "About Us",
+    assistantSupport: "Support",
+    assistantShare: "Share",
+    assistantAdmin: "Admin",
+
+    comingSoon: "Coming Soon",
+    viewServices: "View Services",
+    unavailable: "Unavailable",
+
+    addToTrip: "Add to Trip",
+    perNight: "per night",
+    duration: "Duration",
+    includes: "Includes",
+
+    bookingDate: "Select Date",
+    bookingTime: "Select Time",
+    bookingGuests: "Guests",
+
+    remove: "Remove",
+
+    receiptThanks: "Thank you for booking with Horizonte Ventura!",
+    receiptOrder: "Order Summary",
+    receiptCustomer: "Customer Information",
+    receiptItems: "Booked Experiences",
+    receiptTotal: "Total Paid",
+
+    adminServices: "Services",
+    adminHouses: "Houses",
+    adminDestinations: "Destinations",
+    adminEditPrice: "Edit Price",
+    adminEditTitle: "Edit Title",
+    adminEditDescription: "Edit Description",
+    adminSave: "Save",
+
+    assistantWelcome: "Hi! I’m Ventura 🦎 — your Caribbean travel assistant! Tap me for help ✨",
+    assistantOffersText: "Current deals: Free welcome drink + surprise local experience on your first booking 🎁",
+    assistantEventsText: "Today in Guardalavaca: Live music by the beach tonight 🌅🎶",
+    assistantSupportText: "You can contact us anytime via WhatsApp or email — we’ve got you covered!",
+    assistantShareText: "Share Horizonte Ventura with your friends and travel together! 🌍✈️"
+  },
+
+  es: {
+    heroBadge: "Experiencias de Viaje en el Caribe",
+    heroTitle: "Construye tus <span>vacaciones soñadas</span><br/>con Horizonte Ventura",
+    heroSubtitle: "Experiencias cubanas auténticas en Guardalavaca, Holguín — tours, casas particulares, aventuras, cultura, comida y recuerdos inolvidables.",
+    exploreBtn: "Explorar Destinos",
+    buildTripBtn: "Armar Mi Viaje",
+
+    iconSnorkeling: "Snorkeling",
+    iconHorse: "Cabalgatas",
+    iconHouses: "Casas",
+    iconFood: "Comida",
+    iconNight: "Vida Nocturna",
+    iconEco: "Ecoturismo",
+    iconHistory: "Historia",
+    iconBoat: "Paseos en Barco",
+
+    destinationsTitle: "Destinos",
+    destinationsSubtitle: "Destinos disponibles actualmente con servicios reales y socios confiables.",
+
+    servicesTitle: "Experiencias y Actividades",
+    servicesSubtitle: "Experiencias locales seleccionadas en Guardalavaca, Holguín y alrededores — no turismo masivo, solo Cuba real.",
+
+    housesTitle: "Casas Particulares y Alojamientos",
+    housesSubtitle: "Casas cómodas, seguras y auténticas — a minutos de la playa, restaurantes y actividades.",
+
+    whyTitle: "Por Qué Horizonte Ventura",
+    whySubtitle: "No somos una web de reservas — somos tu conexión local a experiencias cubanas reales.",
+
+    why1Title: "Red de Confianza Local",
+    why1Text: "Trabajamos directamente con familias cubanas, guías y negocios — sin intermediarios, precios justos, impacto real.",
+
+    why2Title: "Experiencias a Medida",
+    why2Text: "Cada viaje es personalizado — desde snorkeling y ecoturismo hasta rutas gastronómicas y vida nocturna.",
+
+    why3Title: "Seguridad y Transparencia",
+    why3Text: "Precios claros, socios confiables y apoyo real antes, durante y después de tu viaje.",
+
+    why4Title: "Turismo Sostenible",
+    why4Text: "Promovemos turismo responsable que beneficia a las comunidades locales y preserva la cultura cubana.",
+
+    why5Title: "Calidad Premium",
+    why5Text: "Servicios cuidadosamente seleccionados, casas limpias, guías experimentados y experiencias inolvidables.",
+
+    why6Title: "Soporte Humano Real",
+    why6Text: "No bots. No call centers. Personas reales que conocen Cuba y se preocupan por tu experiencia.",
+
+    storyTitle: "Nuestra Historia",
+    storySubtitle: "Cómo nació Horizonte Ventura y por qué hacemos lo que hacemos.",
+    storyText: `Horizonte Ventura nació de la idea de que viajar debe ser más que hoteles y tours — debe ser conexión, cultura, personas y experiencias reales. Vimos viajeros llegar a Cuba sin vivir realmente la isla, y locales luchando por conectarse con visitantes de forma justa y segura.
+
+Creamos Horizonte Ventura para cerrar esa brecha — conectando viajeros directamente con familias cubanas, guías y experiencias confiables en Guardalavaca, Holguín y alrededores. Sin turismo masivo. Sin experiencias falsas. Solo Cuba auténtica — sus playas, gente, comida, historia, naturaleza y ritmo.
+
+Nuestra misión es simple: crear viajes inolvidables mientras generamos impacto económico real en comunidades locales. Cada reserva apoya a familias cubanas, guías locales y turismo sostenible.
+
+Esto no es solo viajar. Esto es Horizonte Ventura.`,
+
+    privacyPolicy: "Política de Privacidad",
+    termsConditions: "Términos y Condiciones",
+    cookiesPolicy: "Cookies",
+    contactUs: "Contáctanos",
+    footerNote: "Experiencias Cubanas Auténticas — Guardalavaca, Holguín, Cuba 🇨🇺",
+
+    cartTitle: "Tu Carrito de Viaje",
+    totalLabel: "Total",
+    checkoutBtn: "Proceder al Pago",
+
+    checkoutTitle: "Datos de Reserva",
+    fullName: "Nombre Completo",
+    email: "Correo",
+    phone: "Teléfono",
+    country: "País",
+    specialRequests: "Solicitudes Especiales / Notas",
+    confirmBookingBtn: "Confirmar Reserva",
+
+    receiptTitle: "Confirmación de Reserva",
+    doneBtn: "Listo",
+
+    adminLoginTitle: "Acceso Administrador",
+    adminPassword: "Contraseña",
+    loginBtn: "Entrar",
+
+    adminPanelTitle: "Panel Administrativo",
+    saveChangesBtn: "Guardar Cambios",
+
+    contactTitle: "Contáctanos",
+    contactText: "Escríbenos cuando quieras — estamos aquí para ayudarte a crear tu experiencia perfecta en Cuba.",
+
+    giftTitle: "Regalo de Bienvenida 🎁",
+    giftText: "¡Gracias por visitar Horizonte Ventura! Aquí tienes un código de regalo para tu primera reserva:",
+    giftNote: "Aplica al pagar. Válido solo para la primera compra.",
+    gotItBtn: "¡Perfecto!",
+
+    assistantOffers: "Ofertas Actuales",
+    assistantEvents: "Eventos de Hoy",
+    assistantBuild: "Armar Mi Viaje",
+    assistantAbout: "Sobre Nosotros",
+    assistantSupport: "Soporte",
+    assistantShare: "Compartir",
+    assistantAdmin: "Admin",
+
+    comingSoon: "Próximamente",
+    viewServices: "Ver Servicios",
+    unavailable: "No Disponible",
+
+    addToTrip: "Agregar al Viaje",
+    perNight: "por noche",
+    duration: "Duración",
+    includes: "Incluye",
+
+    bookingDate: "Seleccionar Fecha",
+    bookingTime: "Seleccionar Hora",
+    bookingGuests: "Personas",
+
+    remove: "Eliminar",
+
+    receiptThanks: "¡Gracias por reservar con Horizonte Ventura!",
+    receiptOrder: "Resumen del Pedido",
+    receiptCustomer: "Datos del Cliente",
+    receiptItems: "Experiencias Reservadas",
+    receiptTotal: "Total Pagado",
+
+    adminServices: "Servicios",
+    adminHouses: "Casas",
+    adminDestinations: "Destinos",
+    adminEditPrice: "Editar Precio",
+    adminEditTitle: "Editar Título",
+    adminEditDescription: "Editar Descripción",
+    adminSave: "Guardar",
+
+    assistantWelcome: "¡Hola! Soy Ventura 🦎 — tu asistente de viajes al Caribe. ¡Tócame para ayudarte! ✨",
+    assistantOffersText: "Ofertas actuales: Bebida de bienvenida gratis + sorpresa local en tu primera reserva 🎁",
+    assistantEventsText: "Hoy en Guardalavaca: Música en vivo en la playa esta noche 🌅🎶",
+    assistantSupportText: "Puedes contactarnos por WhatsApp o correo en cualquier momento — estamos contigo!",
+    assistantShareText: "¡Comparte Horizonte Ventura con tus amigos y viajen juntos! 🌍✈️"
+  },
+
+  fr: {
+    heroBadge: "Expériences de Voyage Caraïbes",
+    heroTitle: "Construisez vos <span>vacances de rêve</span><br/>avec Horizonte Ventura",
+    heroSubtitle: "Expériences cubaines authentiques à Guardalavaca, Holguín — excursions, casas particulares, aventures, culture, gastronomie et souvenirs inoubliables.",
+    exploreBtn: "Explorer les Destinations",
+    buildTripBtn: "Créer Mon Voyage",
+
+    iconSnorkeling: "Snorkeling",
+    iconHorse: "Équitation",
+    iconHouses: "Maisons",
+    iconFood: "Gastronomie",
+    iconNight: "Vie Nocturne",
+    iconEco: "Écotours",
+    iconHistory: "Histoire",
+    iconBoat: "Excursions en Bateau",
+
+    destinationsTitle: "Destinations",
+    destinationsSubtitle: "Destinations actuellement disponibles avec des services locaux réels et partenaires de confiance.",
+
+    servicesTitle: "Expériences et Activités",
+    servicesSubtitle: "Expériences locales sélectionnées à Guardalavaca, Holguín et environs — pas de tourisme de masse, seulement Cuba authentique.",
+
+    housesTitle: "Casas Particulares et Séjours",
+    housesSubtitle: "Maisons confortables, sûres et authentiques — à quelques minutes de la plage, restaurants et activités.",
+
+    whyTitle: "Pourquoi Horizonte Ventura",
+    whySubtitle: "Nous ne sommes pas un site de réservation — nous sommes votre connexion locale à Cuba.",
+
+    why1Title: "Réseau Local de Confiance",
+    why1Text: "Nous travaillons directement avec familles cubaines, guides et entreprises — sans intermédiaires, prix justes, impact réel.",
+
+    why2Title: "Expériences Sur Mesure",
+    why2Text: "Chaque voyage est personnalisé — snorkeling, écotours, gastronomie et vie nocturne.",
+
+    why3Title: "Sécurité et Transparence",
+    why3Text: "Prix clairs, partenaires fiables et soutien réel avant, pendant et après votre voyage.",
+
+    why4Title: "Tourisme Durable",
+    why4Text: "Nous promouvons un tourisme responsable qui bénéficie aux communautés locales et préserve la culture cubaine.",
+
+    why5Title: "Qualité Premium",
+    why5Text: "Services soigneusement sélectionnés, maisons propres, guides expérimentés et expériences inoubliables.",
+
+    why6Title: "Support Humain Réel",
+    why6Text: "Pas de bots. Pas de centres d’appel. De vraies personnes qui connaissent Cuba.",
+
+    storyTitle: "Notre Histoire",
+    storySubtitle: "Comment Horizonte Ventura est né et pourquoi nous faisons ce que nous faisons.",
+    storyText: `Horizonte Ventura est né de l’idée que voyager doit être plus que des hôtels et des excursions — cela doit être une connexion, une culture, des personnes et de vraies expériences. Nous avons vu des voyageurs venir à Cuba sans vraiment découvrir l’île, et des locaux avoir du mal à se connecter équitablement et en toute sécurité.
+
+Nous avons créé Horizonte Ventura pour combler cet écart — en connectant directement les voyageurs avec des familles cubaines de confiance, des guides et des expériences à Guardalavaca, Holguín et environs. Pas de tourisme de masse. Pas de fausses expériences. Seulement Cuba authentique — ses plages, ses habitants, sa cuisine, son histoire, sa nature et son rythme.
+
+Notre mission est simple : créer des voyages inoubliables tout en générant un impact économique réel pour les communautés locales. Chaque réservation soutient des familles cubaines, des guides locaux et le tourisme durable.
+
+Ce n’est pas seulement du voyage. C’est Horizonte Ventura.`,
+
+    privacyPolicy: "Politique de Confidentialité",
+    termsConditions: "Conditions Générales",
+    cookiesPolicy: "Cookies",
+    contactUs: "Contactez-nous",
+    footerNote: "Expériences Cubaines Authentiques — Guardalavaca, Holguín, Cuba 🇨🇺",
+
+    cartTitle: "Votre Panier de Voyage",
+    totalLabel: "Total",
+    checkoutBtn: "Passer au Paiement",
+
+    checkoutTitle: "Détails de Réservation",
+    fullName: "Nom Complet",
+    email: "Email",
+    phone: "Téléphone",
+    country: "Pays",
+    specialRequests: "Demandes Spéciales / Notes",
+    confirmBookingBtn: "Confirmer la Réservation",
+
+    receiptTitle: "Confirmation de Réservation",
+    doneBtn: "Terminé",
+
+    adminLoginTitle: "Connexion Admin",
+    adminPassword: "Mot de Passe",
+    loginBtn: "Connexion",
+
+    adminPanelTitle: "Panneau Administrateur",
+    saveChangesBtn: "Enregistrer les Modifications",
+
+    contactTitle: "Contactez-nous",
+    contactText: "Contactez-nous à tout moment — nous sommes là pour créer votre expérience cubaine parfaite.",
+
+    giftTitle: "Cadeau de Bienvenue 🎁",
+    giftText: "Merci de visiter Horizonte Ventura ! Voici un code cadeau pour votre première réservation :",
+    giftNote: "À utiliser lors du paiement. Valable pour la première réservation uniquement.",
+    gotItBtn: "Parfait !",
+
+    assistantOffers: "Offres Actuelles",
+    assistantEvents: "Événements du Jour",
+    assistantBuild: "Créer Mon Voyage",
+    assistantAbout: "À Propos",
+    assistantSupport: "Support",
+    assistantShare: "Partager",
+    assistantAdmin: "Admin",
+
+    comingSoon: "Bientôt Disponible",
+    viewServices: "Voir les Services",
+    unavailable: "Indisponible",
+
+    addToTrip: "Ajouter au Voyage",
+    perNight: "par nuit",
+    duration: "Durée",
+    includes: "Inclus",
+
+    bookingDate: "Sélectionner la Date",
+    bookingTime: "Sélectionner l’Heure",
+    bookingGuests: "Personnes",
+
+    remove: "Supprimer",
+
+    receiptThanks: "Merci d’avoir réservé avec Horizonte Ventura !",
+    receiptOrder: "Résumé de la Commande",
+    receiptCustomer: "Informations Client",
+    receiptItems: "Expériences Réservées",
+    receiptTotal: "Total Payé",
+
+    adminServices: "Services",
+    adminHouses: "Maisons",
+    adminDestinations: "Destinations",
+    adminEditPrice: "Modifier le Prix",
+    adminEditTitle: "Modifier le Titre",
+    adminEditDescription: "Modifier la Description",
+    adminSave: "Enregistrer",
+
+    assistantWelcome: "Salut ! Je suis Ventura 🦎 — ton assistant de voyage caribéen. Appuie sur moi pour t’aider ✨",
+    assistantOffersText: "Offres actuelles : Boisson de bienvenue gratuite + surprise locale à ta première réservation 🎁",
+    assistantEventsText: "Aujourd’hui à Guardalavaca : Musique live sur la plage ce soir 🌅🎶",
+    assistantSupportText: "Contacte-nous par WhatsApp ou email à tout moment — on est là pour toi !",
+    assistantShareText: "Partage Horizonte Ventura avec tes amis et voyagez ensemble ! 🌍✈️"
+  },
+
+  de: {
+    heroBadge: "Karibische Reiseerlebnisse",
+    heroTitle: "Gestalte deinen <span>Traumurlaub</span><br/>mit Horizonte Ventura",
+    heroSubtitle: "Authentische kubanische Erlebnisse in Guardalavaca, Holguín — Touren, Casas Particulares, Abenteuer, Kultur, Essen und unvergessliche Momente.",
+    exploreBtn: "Reiseziele Entdecken",
+    buildTripBtn: "Reise Erstellen",
+
+    iconSnorkeling: "Schnorcheln",
+    iconHorse: "Reiten",
+    iconHouses: "Häuser",
+    iconFood: "Essen",
+    iconNight: "Nachtleben",
+    iconEco: "Ökotouren",
+    iconHistory: "Geschichte",
+    iconBoat: "Bootstouren",
+
+    destinationsTitle: "Reiseziele",
+    destinationsSubtitle: "Derzeit verfügbare Reiseziele mit echten lokalen Services und vertrauenswürdigen Partnern.",
+
+    servicesTitle: "Erlebnisse & Aktivitäten",
+    servicesSubtitle: "Handverlesene lokale Erlebnisse in Guardalavaca, Holguín und Umgebung — kein Massentourismus, nur echtes Kuba.",
+
+    housesTitle: "Casas Particulares & Unterkünfte",
+    housesSubtitle: "Komfortable, sichere und authentische kubanische Häuser — Minuten vom Strand, Restaurants und Aktivitäten entfernt.",
+
+    whyTitle: "Warum Horizonte Ventura",
+    whySubtitle: "Wir sind keine Buchungsplattform — wir sind deine lokale Verbindung zu echtem Kuba.",
+
+    why1Title: "Lokales Vertrauensnetzwerk",
+    why1Text: "Wir arbeiten direkt mit kubanischen Familien, Guides und Unternehmen — keine Zwischenhändler, faire Preise, echter Impact.",
+
+    why2Title: "Maßgeschneiderte Erlebnisse",
+    why2Text: "Jede Reise ist individuell — von Schnorcheln und Ökotouren bis zu kulinarischen Routen und Nachtleben.",
+
+    why3Title: "Sicherheit & Transparenz",
+    why3Text: "Klare Preise, vertrauenswürdige Partner und echte Unterstützung vor, während und nach deiner Reise.",
+
+    why4Title: "Nachhaltiger Tourismus",
+    why4Text: "Wir fördern umweltfreundlichen Tourismus, der lokale Gemeinschaften unterstützt und kubanische Kultur bewahrt.",
+
+    why5Title: "Premium-Qualität",
+    why5Text: "Sorgfältig ausgewählte Services, saubere Unterkünfte, erfahrene Guides und unvergessliche Erlebnisse.",
+
+    why6Title: "Echter Menschlicher Support",
+    why6Text: "Keine Bots. Keine Callcenter. Echte Menschen, die Kuba kennen und sich kümmern.",
+
+    storyTitle: "Unsere Geschichte",
+    storySubtitle: "Wie Horizonte Ventura entstand und warum wir tun, was wir tun.",
+    storyText: `Horizonte Ventura entstand aus der Idee, dass Reisen mehr sein sollte als Hotels und Touren — es sollte Verbindung, Kultur, Menschen und echte Erlebnisse bedeuten. Wir sahen Reisende nach Kuba kommen, ohne die Insel wirklich zu erleben, und Einheimische, die Schwierigkeiten hatten, fair und sicher mit Besuchern in Kontakt zu treten.
+
+Wir gründeten Horizonte Ventura, um diese Lücke zu schließen — indem wir Reisende direkt mit vertrauenswürdigen kubanischen Familien, Guides und Erlebnissen in Guardalavaca, Holguín und Umgebung verbinden. Kein Massentourismus. Keine falschen Erlebnisse. Nur authentisches Kuba — seine Strände, Menschen, Küche, Geschichte, Natur und seinen Rhythmus.
+
+Unsere Mission ist einfach: unvergessliche Reisen schaffen und gleichzeitig echten wirtschaftlichen Impact für lokale Gemeinschaften erzeugen. Jede Buchung unterstützt kubanische Familien, lokale Guides und nachhaltigen Tourismus.
+
+Das ist nicht nur Reisen. Das ist Horizonte Ventura.`,
+
+    privacyPolicy: "Datenschutz",
+    termsConditions: "AGB",
+    cookiesPolicy: "Cookies",
+    contactUs: "Kontakt",
+    footerNote: "Authentische Kubanische Erlebnisse — Guardalavaca, Holguín, Kuba 🇨🇺",
+
+    cartTitle: "Dein Reisewarenkorb",
+    totalLabel: "Gesamt",
+    checkoutBtn: "Zur Kasse",
+
+    checkoutTitle: "Buchungsdetails",
+    fullName: "Vollständiger Name",
+    email: "E-Mail",
+    phone: "Telefon",
+    country: "Land",
+    specialRequests: "Besondere Wünsche / Notizen",
+    confirmBookingBtn: "Buchung Bestätigen",
+
+    receiptTitle: "Buchungsbestätigung",
+    doneBtn: "Fertig",
+
+    adminLoginTitle: "Admin Login",
+    adminPassword: "Passwort",
+    loginBtn: "Login",
+
+    adminPanelTitle: "Admin-Bereich",
+    saveChangesBtn: "Änderungen Speichern",
+
+    contactTitle: "Kontakt",
+    contactText: "Kontaktiere uns jederzeit — wir helfen dir, deine perfekte Kuba-Reise zu gestalten.",
+
+    giftTitle: "Willkommensgeschenk 🎁",
+    giftText: "Danke für deinen Besuch bei Horizonte Ventura! Hier ist ein Geschenkcode für deine erste Buchung:",
+    giftNote: "Beim Checkout einlösen. Nur für die erste Buchung gültig.",
+    gotItBtn: "Verstanden!",
+
+    assistantOffers: "Aktuelle Angebote",
+    assistantEvents: "Heutige Events",
+    assistantBuild: "Reise Erstellen",
+    assistantAbout: "Über Uns",
+    assistantSupport: "Support",
+    assistantShare: "Teilen",
+    assistantAdmin: "Admin",
+
+    comingSoon: "Demnächst",
+    viewServices: "Services Anzeigen",
+    unavailable: "Nicht Verfügbar",
+
+    addToTrip: "Zur Reise Hinzufügen",
+    perNight: "pro Nacht",
+    duration: "Dauer",
+    includes: "Inklusive",
+
+    bookingDate: "Datum Wählen",
+    bookingTime: "Uhrzeit Wählen",
+    bookingGuests: "Personen",
+
+    remove: "Entfernen",
+
+    receiptThanks: "Danke für deine Buchung bei Horizonte Ventura!",
+    receiptOrder: "Bestellübersicht",
+    receiptCustomer: "Kundendaten",
+    receiptItems: "Gebuchte Erlebnisse",
+    receiptTotal: "Gesamtbetrag",
+
+    adminServices: "Services",
+    adminHouses: "Häuser",
+    adminDestinations: "Reiseziele",
+    adminEditPrice: "Preis Bearbeiten",
+    adminEditTitle: "Titel Bearbeiten",
+    adminEditDescription: "Beschreibung Bearbeiten",
+    adminSave: "Speichern",
+
+    assistantWelcome: "Hallo! Ich bin Ventura 🦎 — dein karibischer Reiseassistent. Tipp mich an für Hilfe ✨",
+    assistantOffersText: "Aktuelle Angebote: Kostenloser Begrüßungsdrink + lokale Überraschung bei deiner ersten Buchung 🎁",
+    assistantEventsText: "Heute in Guardalavaca: Live-Musik am Strand heute Abend 🌅🎶",
+    assistantSupportText: "Kontaktiere uns jederzeit per WhatsApp oder E-Mail — wir sind für dich da!",
+    assistantShareText: "Teile Horizonte Ventura mit Freunden und reist gemeinsam! 🌍✈️"
+  },
+
+  it: {
+    heroBadge: "Esperienze di Viaggio nei Caraibi",
+    heroTitle: "Costruisci le tue <span>vacanze da sogno</span><br/>con Horizonte Ventura",
+    heroSubtitle: "Esperienze cubane autentiche a Guardalavaca, Holguín — tour, casas particulares, avventure, cultura, cucina e ricordi indimenticabili.",
+    exploreBtn: "Esplora Destinazioni",
+    buildTripBtn: "Crea il Mio Viaggio",
+
+    iconSnorkeling: "Snorkeling",
+    iconHorse: "Passeggiate a Cavallo",
+    iconHouses: "Case",
+    iconFood: "Cibo",
+    iconNight: "Vita Notturna",
+    iconEco: "Eco Tour",
+    iconHistory: "Storia",
+    iconBoat: "Gite in Barca",
+
+    destinationsTitle: "Destinazioni",
+    destinationsSubtitle: "Destinazioni attualmente disponibili con servizi locali reali e partner affidabili.",
+
+    servicesTitle: "Esperienze e Attività",
+    servicesSubtitle: "Esperienze locali selezionate a Guardalavaca, Holguín e dintorni — niente turismo di massa, solo Cuba autentica.",
+
+    housesTitle: "Casas Particulares e Alloggi",
+    housesSubtitle: "Case confortevoli, sicure e autentiche — a pochi minuti dalla spiaggia, ristoranti e attività.",
+
+    whyTitle: "Perché Horizonte Ventura",
+    whySubtitle: "Non siamo un sito di prenotazioni — siamo la tua connessione locale con Cuba reale.",
+
+    why1Title: "Rete Locale di Fiducia",
+    why1Text: "Lavoriamo direttamente con famiglie cubane, guide e imprese — senza intermediari, prezzi equi, impatto reale.",
+
+    why2Title: "Esperienze su Misura",
+    why2Text: "Ogni viaggio è personalizzato — snorkeling, eco tour, gastronomia e vita notturna.",
+
+    why3Title: "Sicurezza e Trasparenza",
+    why3Text: "Prezzi chiari, partner affidabili e supporto reale prima, durante e dopo il viaggio.",
+
+    why4Title: "Turismo Sostenibile",
+    why4Text: "Promuoviamo un turismo responsabile che sostiene le comunità locali e preserva la cultura cubana.",
+
+    why5Title: "Qualità Premium",
+    why5Text: "Servizi selezionati con cura, case pulite, guide esperte ed esperienze indimenticabili.",
+
+    why6Title: "Supporto Umano Reale",
+    why6Text: "Niente bot. Niente call center. Persone vere che conoscono Cuba e si prendono cura di te.",
+
+    storyTitle: "La Nostra Storia",
+    storySubtitle: "Come è nata Horizonte Ventura e perché facciamo ciò che facciamo.",
+    storyText: `Horizonte Ventura è nata dall’idea che viaggiare debba essere più di hotel e tour — deve essere connessione, cultura, persone ed esperienze reali. Abbiamo visto viaggiatori arrivare a Cuba senza vivere davvero l’isola e locali faticare a connettersi equamente e in sicurezza.
+
+Abbiamo creato Horizonte Ventura per colmare questo divario — collegando direttamente i viaggiatori con famiglie cubane fidate, guide ed esperienze a Guardalavaca, Holguín e dintorni. Niente turismo di massa. Niente esperienze false. Solo Cuba autentica — le sue spiagge, la sua gente, la sua cucina, la sua storia, la sua natura e il suo ritmo.
+
+La nostra missione è semplice: creare viaggi indimenticabili generando allo stesso tempo un impatto economico reale per le comunità locali. Ogni prenotazione sostiene famiglie cubane, guide locali e turismo sostenibile.
+
+Questo non è solo viaggiare. Questo è Horizonte Ventura.`,
+
+    privacyPolicy: "Privacy",
+    termsConditions: "Termini e Condizioni",
+    cookiesPolicy: "Cookies",
+    contactUs: "Contattaci",
+    footerNote: "Esperienze Cubane Autentiche — Guardalavaca, Holguín, Cuba 🇨🇺",
+
+    cartTitle: "Il Tuo Carrello di Viaggio",
+    totalLabel: "Totale",
+    checkoutBtn: "Procedi al Checkout",
+
+    checkoutTitle: "Dettagli di Prenotazione",
+    fullName: "Nome Completo",
+    email: "Email",
+    phone: "Telefono",
+    country: "Paese",
+    specialRequests: "Richieste Speciali / Note",
+    confirmBookingBtn: "Conferma Prenotazione",
+
+    receiptTitle: "Conferma Prenotazione",
+    doneBtn: "Fatto",
+
+    adminLoginTitle: "Accesso Admin",
+    adminPassword: "Password",
+    loginBtn: "Accedi",
+
+    adminPanelTitle: "Pannello Amministratore",
+    saveChangesBtn: "Salva Modifiche",
+
+    contactTitle: "Contattaci",
+    contactText: "Scrivici in qualsiasi momento — siamo qui per creare la tua esperienza cubana perfetta.",
+
+    giftTitle: "Regalo di Benvenuto 🎁",
+    giftText: "Grazie per aver visitato Horizonte Ventura! Ecco un codice regalo per la tua prima prenotazione:",
+    giftNote: "Usalo al checkout. Valido solo per la prima prenotazione.",
+    gotItBtn: "Perfetto!",
+
+    assistantOffers: "Offerte Attuali",
+    assistantEvents: "Eventi di Oggi",
+    assistantBuild: "Crea il Mio Viaggio",
+    assistantAbout: "Chi Siamo",
+    assistantSupport: "Supporto",
+    assistantShare: "Condividi",
+    assistantAdmin: "Admin",
+
+    comingSoon: "Prossimamente",
+    viewServices: "Vedi Servizi",
+    unavailable: "Non Disponibile",
+
+    addToTrip: "Aggiungi al Viaggio",
+    perNight: "per notte",
+    duration: "Durata",
+    includes: "Include",
+
+    bookingDate: "Seleziona Data",
+    bookingTime: "Seleziona Orario",
+    bookingGuests: "Persone",
+
+    remove: "Rimuovi",
+
+    receiptThanks: "Grazie per aver prenotato con Horizonte Ventura!",
+    receiptOrder: "Riepilogo Ordine",
+    receiptCustomer: "Dati Cliente",
+    receiptItems: "Esperienze Prenotate",
+    receiptTotal: "Totale Pagato",
+
+    adminServices: "Servizi",
+    adminHouses: "Case",
+    adminDestinations: "Destinazioni",
+    adminEditPrice: "Modifica Prezzo",
+    adminEditTitle: "Modifica Titolo",
+    adminEditDescription: "Modifica Descrizione",
+    adminSave: "Salva",
+
+    assistantWelcome: "Ciao! Sono Ventura 🦎 — il tuo assistente di viaggio caraibico. Toccami per aiutarti ✨",
+    assistantOffersText: "Offerte attuali: Bevanda di benvenuto gratis + sorpresa locale alla tua prima prenotazione 🎁",
+    assistantEventsText: "Oggi a Guardalavaca: Musica dal vivo sulla spiaggia stasera 🌅🎶",
+    assistantSupportText: "Contattaci via WhatsApp o email in qualsiasi momento — siamo qui per te!",
+    assistantShareText: "Condividi Horizonte Ventura con gli amici e viaggiate insieme! 🌍✈️"
   }
+};
 
-  document.querySelectorAll('.langFlag').forEach(flag => {
-    flag.addEventListener('click', () => {
-      document.querySelectorAll('.langFlag').forEach(f => f.classList.remove('active'));
-      flag.classList.add('active');
-      applyLanguage(flag.dataset.lang);
-      amigoSpeak(`Language changed to ${flag.dataset.lang.toUpperCase()}. Let's keep exploring!`);
-    });
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function $(id) {
+  return document.getElementById(id);
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem("hv_lang", lang);
+
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
   });
 
-  /* ======================================================
-     NAVIGATION
-  ====================================================== */
-
-  document.getElementById('navHome').addEventListener('click', () => showSection(heroSection));
-  document.getElementById('navDestinations').addEventListener('click', () => {
-    renderDestinations();
-    showSection(destinationsSection);
-    amigoMoveToSection(destinationsSection);
-    amigoSpeak("Choose your destination — each one unlocks unique cities and experiences!");
-  });
-  document.getElementById('navExperiences').addEventListener('click', () => {
-    if (!state.country) {
-      renderDestinations();
-      showSection(destinationsSection);
-      amigoSpeak("First, choose a destination to unlock experiences!");
-    } else {
-      renderCategories();
-      showSection(categoriesSection);
-      amigoMoveToSection(categoriesSection);
-      amigoSpeak("Now pick what you'd like to do — adventure, food, culture and more!");
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    if (translations[lang] && translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
     }
   });
-  document.getElementById('navReviews').addEventListener('click', () => showSection(reviewsSection));
-  document.getElementById('navContact').addEventListener('click', () => showSection(contactSection));
 
-  document.getElementById('footerDestinations').addEventListener('click', e => {
-    e.preventDefault();
-    renderDestinations();
-    showSection(destinationsSection);
-  });
-  document.getElementById('footerExperiences').addEventListener('click', e => {
-    e.preventDefault();
-    renderCategories();
-    showSection(categoriesSection);
-  });
-  document.getElementById('footerReviews').addEventListener('click', e => {
-    e.preventDefault();
-    showSection(reviewsSection);
-  });
+  renderDestinations();
+  renderServices();
+  renderHouses();
+}
 
-  document.getElementById('footerTerms').addEventListener('click', e => {
-    e.preventDefault();
-    openModal('termsModal');
-  });
-  document.getElementById('footerPrivacy').addEventListener('click', e => {
-    e.preventDefault();
-    openModal('privacyModal');
-  });
+function initLanguage() {
+  const saved = localStorage.getItem("hv_lang");
+  setLanguage(saved || "en");
+}
 
-  document.getElementById('startJourneyBtn').addEventListener('click', () => {
-    renderDestinations();
-    showSection(destinationsSection);
-    amigoMoveToSection(destinationsSection);
-    amigoSpeak("Let's begin! Choose your destination to unlock your Caribbean journey.");
-  });
+/* =========================================================
+   DESTINATIONS RENDER
+========================================================= */
 
-  document.getElementById('exploreBtn').addEventListener('click', () => {
-    renderDestinations();
-    showSection(destinationsSection);
-    amigoMoveToSection(destinationsSection);
-    amigoSpeak("Explore destinations to discover cities and experiences!");
-  });
+function renderDestinations() {
+  const grid = $("destinationsGrid");
+  grid.innerHTML = "";
 
-  /* ======================================================
-     DESTINATIONS
-  ====================================================== */
+  destinations.forEach(dest => {
+    const card = document.createElement("div");
+    card.className = "destination-card";
 
-  function renderDestinations() {
-    destinationsContainer.innerHTML = '';
-    data.countries.forEach(country => {
-      const card = document.createElement('div');
-      card.className = 'destinationCard';
-      card.innerHTML = `
-        <div class="destinationBg" style="background-image:url('${country.bg}')"></div>
-        <div class="destinationOverlay"></div>
-        <div class="destinationContent">
-          <div class="destinationFlag">
-            <img src="${country.flag}">
-          </div>
-          <div class="destinationName">${country.name}</div>
+    card.innerHTML = `
+      <div class="destination-bg" style="background-image:url('${dest.image}')"></div>
+      <div class="destination-overlay"></div>
+      <div class="destination-content">
+        <div>
+          <div class="destination-title">${dest.city}, ${dest.country}</div>
+          <div class="destination-subtitle">${dest.description[currentLang]}</div>
         </div>
-      `;
-      card.addEventListener('click', () => {
-        state.country = country;
-        state.city = null;
-        state.category = null;
-        renderCities(country);
-        showSection(citiesSection);
-        amigoMoveToSection(citiesSection);
-        amigoSpeak(country.amigoIntro);
-      });
-      destinationsContainer.appendChild(card);
-    });
-  }
-
-  /* ======================================================
-     CITIES
-  ====================================================== */
-
-  function renderCities(country) {
-    citiesContainer.innerHTML = '';
-    document.getElementById('citiesSubtitle').textContent = `Destinations in ${country.name}`;
-
-    country.cities.forEach(city => {
-      const card = document.createElement('div');
-      card.className = 'cityCard';
-      card.innerHTML = `<div class="cityName">${city.name}</div>`;
-      card.addEventListener('click', () => {
-        state.city = city;
-        state.category = null;
-        renderCategories();
-        showSection(categoriesSection);
-        amigoMoveToSection(categoriesSection);
-        amigoSpeak(`Welcome to ${city.name}! What would you like to do here?`);
-      });
-      citiesContainer.appendChild(card);
-    });
-  }
-
-  /* ======================================================
-     CATEGORIES
-  ====================================================== */
-
-  function renderCategories() {
-    categoriesContainer.innerHTML = '';
-    const t = translations[state.language];
-
-    data.categories.forEach(cat => {
-      const card = document.createElement('div');
-      card.className = 'categoryCard';
-      card.innerHTML = `
-        <div class="categoryIcon" style="background:linear-gradient(135deg, ${cat.color}, var(--sunset2));">${cat.icon}</div>
-        <div class="categoryName">${t.categories[cat.id] || cat.id}</div>
-      `;
-      card.addEventListener('click', () => {
-        state.category = cat.id;
-        renderServices();
-        showSection(servicesSection);
-        amigoMoveToSection(servicesSection);
-        amigoSpeak(`Awesome choice! Here are the best ${t.categories[cat.id] || cat.id} experiences for you.`);
-        amigoSetOutfit(cat.id);
-      });
-      categoriesContainer.appendChild(card);
-    });
-  }
-
-  /* ======================================================
-     SERVICES
-  ====================================================== */
-
-  function renderServices() {
-    servicesContainer.innerHTML = '';
-    const filtered = state.category
-      ? data.services.filter(s => s.category === state.category)
-      : data.services;
-
-    document.getElementById('servicesSubtitle').textContent = state.city
-      ? `${state.city.name}, ${state.country.name}`
-      : state.country
-        ? state.country.name
-        : 'All Destinations';
-
-    filtered.forEach(service => {
-      const card = document.createElement('div');
-      card.className = 'serviceCard';
-      card.innerHTML = `
-        <div class="serviceImage" style="background-image:url('${service.image}')">
-          <div class="serviceOverlay"></div>
+        <div class="destination-actions">
+          ${
+            dest.active
+              ? `<button class="btn btn-primary btn-small" onclick="filterByCity('${dest.city}')">
+                   <i class="fa-solid fa-location-dot"></i>
+                   <span>${translations[currentLang].viewServices}</span>
+                 </button>`
+              : `<span class="badge badge-warning">${translations[currentLang].comingSoon}</span>`
+          }
         </div>
-        <div class="serviceContent">
-          <div class="serviceTitle">${service.title}</div>
-          <div class="serviceDesc">${service.description}</div>
-          <div class="servicePrice">${formatPrice(service.price)} / ${service.per}</div>
-          <div class="serviceActions">
-            <button class="serviceBtn info">Info</button>
-            <button class="serviceBtn book">Book</button>
-          </div>
-        </div>
-      `;
-
-      const infoBtn = card.querySelector('.serviceBtn.info');
-      const bookBtn = card.querySelector('.serviceBtn.book');
-
-      infoBtn.addEventListener('click', () => {
-        openInfoModal(service);
-        amigoMoveToElement(card);
-        amigoSpeak(service.amigo);
-        amigoAnimate('talk');
-      });
-
-      bookBtn.addEventListener('click', () => {
-        openBookingFlow(service);
-        amigoMoveToElement(card);
-        amigoSpeak(`Great choice! Let's book ${service.title}. Select your dates and number of people.`);
-        amigoAnimate('happy');
-      });
-
-      servicesContainer.appendChild(card);
-    });
-  }
-
-  /* ======================================================
-     INFO MODAL
-  ====================================================== */
-
-  function openInfoModal(service) {
-    infoModalTitle.textContent = service.title;
-    infoModalBody.innerHTML = `
-      <p><strong>Description:</strong> ${service.description}</p>
-      <p><strong>Price:</strong> ${formatPrice(service.price)} / ${service.per}</p>
-      <p><strong>Location:</strong> ${state.city ? state.city.name + ', ' : ''}${state.country ? state.country.name : ''}</p>
-      <p><strong>Includes:</strong> Professional guides, safety equipment, local support.</p>
+      </div>
     `;
-    openModal('infoModal');
-  }
 
-  /* ======================================================
-     BOOKING FLOW
-  ====================================================== */
+    grid.appendChild(card);
+  });
+}
 
-  function openBookingFlow(service) {
-    openModal('checkoutModal');
+function filterByCity(city) {
+  renderServices(city);
+  renderHouses(city);
+  scrollToSection("servicesSection");
+}
 
-    const confirmBtn = document.getElementById('confirmBookingBtn');
-    confirmBtn.onclick = () => {
-      const name = document.getElementById('checkoutName').value.trim();
-      const email = document.getElementById('checkoutEmail').value.trim();
-      const phone = document.getElementById('checkoutPhone').value.trim();
-      const start = document.getElementById('checkoutStartDate').value;
-      const end = document.getElementById('checkoutEndDate').value;
+/* =========================================================
+   SERVICES RENDER
+========================================================= */
 
-      if (!name || !email || !phone || !start || !end) {
-        alert('Please complete all required fields.');
-        return;
-      }
+function renderServices(filterCity = null) {
+  const grid = $("servicesGrid");
+  grid.innerHTML = "";
 
-      const days = daysBetween(start, end);
-      const item = {
-        id: Date.now(),
-        service,
-        days,
-        people: 1,
-        start,
-        end
-      };
+  const filtered = filterCity
+    ? services.filter(s => s.city === filterCity)
+    : services;
 
-      state.cart.push(item);
-      updateCart();
-      closeModal('checkoutModal');
-      amigoSpeak(`${service.title} added to your cart for ${days} day(s)!`);
-      amigoAnimate('celebrate');
-      openCart();
-    };
-  }
+  filtered.forEach(service => {
+    const card = document.createElement("div");
+    card.className = "service-card";
 
-  /* ======================================================
-     CART SYSTEM
-  ====================================================== */
+    const price = getServicePrice(service);
 
-  function updateCart() {
-    cartItemsEl.innerHTML = '';
-    let total = 0;
-
-    state.cart.forEach(item => {
-      const base = item.service.price * (item.service.per === 'day' ? item.days : 1);
-      const itemTotal = base * item.people;
-      total += itemTotal;
-
-      const el = document.createElement('div');
-      el.className = 'cartItem';
-      el.innerHTML = `
-        <div class="cartItemHeader">
-          <div>${item.service.title}</div>
-          <div>${formatPrice(itemTotal)}</div>
+    card.innerHTML = `
+      <div class="service-image" style="background-image:url('${service.image}')"></div>
+      <div class="service-body">
+        <div class="service-title">${service.title[currentLang]}</div>
+        <div class="service-description">${service.description[currentLang]}</div>
+        <div class="service-meta">
+          <span><i class="fa-regular fa-clock"></i> ${translations[currentLang].duration}: ${service.duration}</span>
+          <span><i class="fa-solid fa-location-dot"></i> ${service.city}</span>
         </div>
-        <div class="cartItemMeta">${item.days} day(s) · ${item.people} person(s)</div>
-        <div class="cartItemControls">
-          <button class="minus">−</button>
-          <button class="plus">+</button>
-          <button class="remove">Remove</button>
+        <div class="service-footer">
+          <div class="service-price">$${price} CAD</div>
+          <button class="btn btn-primary btn-small" onclick="openServiceBooking('${service.id}')">
+            <i class="fa-solid fa-plus"></i>
+            <span>${translations[currentLang].addToTrip}</span>
+          </button>
         </div>
-      `;
+      </div>
+    `;
 
-      el.querySelector('.minus').addEventListener('click', () => {
-        if (item.people > 1) {
-          item.people--;
-          updateCart();
-        }
-      });
-
-      el.querySelector('.plus').addEventListener('click', () => {
-        item.people++;
-        updateCart();
-      });
-
-      el.querySelector('.remove').addEventListener('click', () => {
-        state.cart = state.cart.filter(i => i.id !== item.id);
-        updateCart();
-      });
-
-      cartItemsEl.appendChild(el);
-    });
-
-    cartTotalEl.textContent = `Total: ${formatPrice(total)}`;
-    cartCountEl.textContent = state.cart.length;
-  }
-
-  document.getElementById('cartBtn').addEventListener('click', openCart);
-  document.getElementById('cartClose').addEventListener('click', closeCart);
-
-  function openCart() {
-    cartDrawer.classList.add('open');
-  }
-
-  function closeCart() {
-    cartDrawer.classList.remove('open');
-  }
-
-  document.getElementById('checkoutBtn').addEventListener('click', () => {
-    if (state.cart.length === 0) {
-      alert('Your cart is empty.');
-      return;
-    }
-    openModal('checkoutModal');
+    grid.appendChild(card);
   });
+}
 
-  /* ======================================================
-     MODAL SYSTEM
-  ====================================================== */
+/* =========================================================
+   HOUSES RENDER
+========================================================= */
 
-  function openModal(id) {
-    document.getElementById(id).classList.remove('hidden');
-  }
+function renderHouses(filterCity = null) {
+  const grid = $("housesGrid");
+  grid.innerHTML = "";
 
-  function closeModal(id) {
-    document.getElementById(id).classList.add('hidden');
-  }
+  const filtered = filterCity
+    ? houses.filter(h => h.city === filterCity)
+    : houses;
 
-  document.querySelectorAll('.modalClose').forEach(btn => {
-    btn.addEventListener('click', () => {
-      closeModal(btn.dataset.close);
-    });
-  });
+  filtered.forEach(house => {
+    const card = document.createElement("div");
+    card.className = "house-card";
 
-  /* ======================================================
-     REVIEWS SYSTEM
-  ====================================================== */
+    const price = getHousePrice(house);
 
-  const defaultReviews = [
-    { name: 'Alex R.', stars: 5, text: 'Best Caribbean experience of my life. Everything was perfectly organized.' },
-    { name: 'Maria G.', stars: 5, text: 'The classic car tour and snorkeling were unforgettable. Highly recommend.' },
-    { name: 'James T.', stars: 4, text: 'Amazing service and local vibes. Felt safe and well taken care of.' }
-  ];
-
-  function renderReviews() {
-    reviewsGrid.innerHTML = '';
-    const stored = JSON.parse(localStorage.getItem('hv_reviews') || '[]');
-    const all = [...defaultReviews, ...stored];
-
-    all.forEach(r => {
-      const card = document.createElement('div');
-      card.className = 'reviewCard';
-      card.innerHTML = `
-        <div class="reviewHeader">
-          <div>${r.name}</div>
-          <div class="reviewStars">${'⭐'.repeat(r.stars)}</div>
+    card.innerHTML = `
+      <div class="house-image" style="background-image:url('${house.image}')"></div>
+      <div class="house-body">
+        <div class="house-title">${house.title[currentLang]}</div>
+        <div class="house-description">${house.description[currentLang]}</div>
+        <div class="house-meta">
+          ${house.amenities.map(a => `<span><i class="fa-solid fa-check"></i> ${a}</span>`).join("")}
         </div>
-        <div>${r.text}</div>
-      `;
-      reviewsGrid.appendChild(card);
-    });
+        <div class="house-footer">
+          <div class="house-price">$${price} CAD / ${translations[currentLang].perNight}</div>
+          <button class="btn btn-success btn-small" onclick="openHouseBooking('${house.id}')">
+            <i class="fa-solid fa-bed"></i>
+            <span>${translations[currentLang].addToTrip}</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+/* =========================================================
+   PRICING (MARGINS INCLUDED)
+========================================================= */
+
+function getServicePrice(service) {
+  // Margin logic (already included but adjustable)
+  return service.basePrice;
+}
+
+function getHousePrice(house) {
+  return house.basePrice;
+}
+
+/* =========================================================
+   BOOKING MODALS (SERVICE / HOUSE)
+========================================================= */
+
+function openServiceBooking(serviceId) {
+  const service = services.find(s => s.id === serviceId);
+  if (!service) return;
+
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay active";
+
+  let bookingFields = "";
+
+  if (service.bookingType === "dateTime") {
+    bookingFields = `
+      <div class="form-group">
+        <label>${translations[currentLang].bookingDate}</label>
+        <input type="date" id="bookingDate" required />
+      </div>
+      <div class="form-group">
+        <label>${translations[currentLang].bookingTime}</label>
+        <input type="time" id="bookingTime" required />
+      </div>
+      <div class="form-group">
+        <label>${translations[currentLang].bookingGuests}</label>
+        <input type="number" id="bookingGuests" min="1" value="1" required />
+      </div>
+    `;
+  } else if (service.bookingType === "date") {
+    bookingFields = `
+      <div class="form-group">
+        <label>${translations[currentLang].bookingDate}</label>
+        <input type="date" id="bookingDate" required />
+      </div>
+      <div class="form-group">
+        <label>${translations[currentLang].bookingGuests}</label>
+        <input type="number" id="bookingGuests" min="1" value="1" required />
+      </div>
+    `;
   }
 
-  renderReviews();
+  modal.innerHTML = `
+    <div class="modal">
+      <button class="modal-close" onclick="this.closest('.modal-overlay').remove()"><i class="fa-solid fa-xmark"></i></button>
+      <h3>${service.title[currentLang]}</h3>
+      <p style="font-size:13px; opacity:0.9; margin-bottom:10px;">${service.description[currentLang]}</p>
 
-  document.getElementById('submitReviewBtn').addEventListener('click', () => {
-    const name = document.getElementById('reviewName').value.trim();
-    const stars = parseInt(document.getElementById('reviewStars').value);
-    const text = document.getElementById('reviewText').value.trim();
+      <div class="form-group">
+        <label>${translations[currentLang].includes}</label>
+        <div style="font-size:12px; opacity:0.9;">
+          ${service.includes.join(", ")}
+        </div>
+      </div>
 
-    if (!name || !text) {
-      alert('Please fill name and review.');
-      return;
-    }
+      ${bookingFields}
 
-    const stored = JSON.parse(localStorage.getItem('hv_reviews') || '[]');
-    stored.unshift({ name, stars, text });
-    localStorage.setItem('hv_reviews', JSON.stringify(stored));
+      <button class="btn btn-primary checkout-btn" onclick="confirmServiceBooking('${service.id}', this)">
+        ${translations[currentLang].addToTrip}
+      </button>
+    </div>
+  `;
 
-    document.getElementById('reviewName').value = '';
-    document.getElementById('reviewText').value = '';
+  document.body.appendChild(modal);
+}
 
-    renderReviews();
-    amigoSpeak("Thanks for your review! Travelers love hearing real experiences.");
-    amigoAnimate('happy');
-  });
+function confirmServiceBooking(serviceId, btn) {
+  const modal = btn.closest(".modal-overlay");
+  const service = services.find(s => s.id === serviceId);
 
-  /* ======================================================
-     WELCOME GIFT SYSTEM
-  ====================================================== */
+  const date = modal.querySelector("#bookingDate")?.value || null;
+  const time = modal.querySelector("#bookingTime")?.value || null;
+  const guests = modal.querySelector("#bookingGuests")?.value || 1;
 
-  if (!localStorage.getItem('hv_gift_seen')) {
-    welcomeGift.classList.remove('hidden');
-  }
-
-  document.querySelectorAll('.giftOption').forEach(opt => {
-    opt.addEventListener('click', () => {
-      state.gift = opt.dataset.gift;
-      localStorage.setItem('hv_gift', state.gift);
-      localStorage.setItem('hv_gift_seen', 'true');
-      welcomeGift.classList.add('hidden');
-      amigoSpeak("Awesome! Your VIP gift has been saved and will be applied to your first booking.");
-      amigoAnimate('celebrate');
-    });
-  });
-
-  document.getElementById('welcomeGiftClose').addEventListener('click', () => {
-    localStorage.setItem('hv_gift_seen', 'true');
-    welcomeGift.classList.add('hidden');
-  });
-
-  /* ======================================================
-     ADMIN PANEL (PRIVATE CMS)
-  ====================================================== */
-
-  const ADMIN_PASSWORD = 'HORIZON2026'; // CHANGE THIS
-
-  document.getElementById('adminLoginBtn').addEventListener('click', () => {
-    const pass = document.getElementById('adminPassword').value;
-    if (pass === ADMIN_PASSWORD) {
-      state.admin = true;
-      adminPanel.style.display = 'block';
-      amigoSpeak("Admin mode activated. You can now customize the platform.");
-      amigoAnimate('celebrate');
-    } else {
-      alert('Incorrect password.');
-    }
-  });
-
-  document.getElementById('adminLogoutBtn').addEventListener('click', () => {
-    state.admin = false;
-    adminPanel.style.display = 'none';
-    amigoSpeak("Admin mode deactivated.");
-  });
-
-  document.getElementById('updateLogoBtn').addEventListener('click', () => {
-    if (!state.admin) return;
-    const text = document.getElementById('adminLogoText').value.trim() || 'HV';
-    document.getElementById('logoBox').textContent = text;
-    amigoSpeak("Logo updated successfully!");
-    amigoAnimate('happy');
-  });
-
-  /* ======================================================
-     AMIGO 3D AVATAR ENGINE (CANVAS)
-  ====================================================== */
-
-  const ctx = amigoCanvas.getContext('2d');
-  let amigoState = {
-    x: 60,
-    y: 60,
-    r: 42,
-    mood: 'idle',
-    outfit: 'default',
-    dragging: false,
-    offsetX: 0,
-    offsetY: 0,
-    blinkTimer: 0,
-    mouthTimer: 0
+  const item = {
+    type: "service",
+    id: service.id,
+    title: service.title[currentLang],
+    city: service.city,
+    date,
+    time,
+    guests: parseInt(guests),
+    price: getServicePrice(service) * parseInt(guests),
+    image: service.image
   };
 
-  function drawAmigo() {
-    ctx.clearRect(0, 0, amigoCanvas.width, amigoCanvas.height);
+  cart.push(item);
+  updateCartUI();
+  modal.remove();
+  openCart();
+}
 
-    // Shadow
-    ctx.beginPath();
-    ctx.ellipse(amigoState.x, amigoState.y + 36, 28, 10, 0, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0,0,0,0.3)';
-    ctx.fill();
+/* =========================================================
+   HOUSE BOOKING
+========================================================= */
 
-    // Body
-    const grad = ctx.createRadialGradient(amigoState.x - 10, amigoState.y - 20, 10, amigoState.x, amigoState.y, 60);
-    grad.addColorStop(0, '#ffddaa');
-    grad.addColorStop(1, '#ff9f43');
-    ctx.beginPath();
-    ctx.arc(amigoState.x, amigoState.y, amigoState.r, 0, Math.PI * 2);
-    ctx.fillStyle = grad;
-    ctx.fill();
+function openHouseBooking(houseId) {
+  const house = houses.find(h => h.id === houseId);
+  if (!house) return;
 
-    // Hat
-    if (amigoState.outfit === 'travel' || amigoState.outfit === 'default') {
-      ctx.fillStyle = '#2c3e50';
-      ctx.fillRect(amigoState.x - 30, amigoState.y - 42, 60, 10);
-      ctx.fillStyle = '#34495e';
-      ctx.fillRect(amigoState.x - 20, amigoState.y - 52, 40, 12);
-    }
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay active";
 
-    // Sunglasses
-    if (amigoState.outfit !== 'sleep') {
-      ctx.fillStyle = '#000';
-      ctx.fillRect(amigoState.x - 26, amigoState.y - 10, 22, 10);
-      ctx.fillRect(amigoState.x + 4, amigoState.y - 10, 22, 10);
-      ctx.strokeStyle = '#000';
-      ctx.beginPath();
-      ctx.moveTo(amigoState.x - 4, amigoState.y - 5);
-      ctx.lineTo(amigoState.x + 4, amigoState.y - 5);
-      ctx.stroke();
-    }
+  modal.innerHTML = `
+    <div class="modal">
+      <button class="modal-close" onclick="this.closest('.modal-overlay').remove()"><i class="fa-solid fa-xmark"></i></button>
+      <h3>${house.title[currentLang]}</h3>
+      <p style="font-size:13px; opacity:0.9; margin-bottom:10px;">${house.description[currentLang]}</p>
 
-    // Eyes blink
-    ctx.fillStyle = '#000';
-    if (amigoState.blinkTimer < 8) {
-      ctx.fillRect(amigoState.x - 18, amigoState.y - 4, 6, 6);
-      ctx.fillRect(amigoState.x + 12, amigoState.y - 4, 6, 6);
-    } else {
-      ctx.fillRect(amigoState.x - 18, amigoState.y - 2, 6, 2);
-      ctx.fillRect(amigoState.x + 12, amigoState.y - 2, 6, 2);
-    }
-
-    // Mouth
-    ctx.strokeStyle = '#000';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    if (amigoState.mood === 'happy') {
-      ctx.arc(amigoState.x, amigoState.y + 8, 10, 0, Math.PI);
-    } else if (amigoState.mood === 'talk') {
-      ctx.arc(amigoState.x, amigoState.y + 10, 6, 0, Math.PI * 2);
-    } else {
-      ctx.moveTo(amigoState.x - 8, amigoState.y + 10);
-      ctx.lineTo(amigoState.x + 8, amigoState.y + 10);
-    }
-    ctx.stroke();
-
-    // Drink (if travel outfit)
-    if (amigoState.outfit === 'travel') {
-      ctx.fillStyle = '#8e44ad';
-      ctx.fillRect(amigoState.x + 26, amigoState.y + 12, 6, 16);
-      ctx.fillStyle = '#f1c40f';
-      ctx.beginPath();
-      ctx.arc(amigoState.x + 29, amigoState.y + 10, 6, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  function updateAmigo() {
-    amigoState.blinkTimer++;
-    if (amigoState.blinkTimer > 40) amigoState.blinkTimer = 0;
-    drawAmigo();
-    requestAnimationFrame(updateAmigo);
-  }
-
-  updateAmigo();
-
-  function amigoSpeak(text) {
-    amigoBubble.textContent = text;
-    amigoBubble.classList.add('show');
-    clearTimeout(amigoBubble._timer);
-    amigoBubble._timer = setTimeout(() => {
-      amigoBubble.classList.remove('show');
-    }, 5200);
-  }
-
-  function amigoAnimate(type) {
-    amigoState.mood = type === 'talk' ? 'talk' : type === 'happy' ? 'happy' : 'idle';
-    setTimeout(() => {
-      amigoState.mood = 'idle';
-    }, 2500);
-  }
-
-  function amigoSetOutfit(type) {
-    amigoState.outfit = 'travel';
-    if (type === 'water') amigoState.outfit = 'travel';
-    if (type === 'nightlife') amigoState.outfit = 'default';
-    if (type === 'kids') amigoState.outfit = 'default';
-  }
-
-  /* ======================================================
-     AMIGO MOVEMENT / DRAG SYSTEM
-  ====================================================== */
-
-  amigoCanvas.addEventListener('pointerdown', e => {
-    amigoState.dragging = true;
-    amigoCanvas.setPointerCapture(e.pointerId);
-    amigoState.offsetX = e.clientX - amigoWrapper.offsetLeft;
-    amigoState.offsetY = e.clientY - amigoWrapper.offsetTop;
-    amigoCanvas.style.cursor = 'grabbing';
-  });
-
-  window.addEventListener('pointermove', e => {
-    if (!amigoState.dragging) return;
-    amigoWrapper.style.left = `${e.clientX - amigoState.offsetX}px`;
-    amigoWrapper.style.top = `${e.clientY - amigoState.offsetY}px`;
-    amigoWrapper.style.right = 'auto';
-    amigoWrapper.style.bottom = 'auto';
-  });
-
-  window.addEventListener('pointerup', e => {
-    amigoState.dragging = false;
-    amigoCanvas.style.cursor = 'grab';
-  });
-
-  document.getElementById('amigoHideBtn').addEventListener('click', () => {
-    amigoWrapper.classList.toggle('hidden');
-  });
-
-  document.getElementById('amigoResetBtn').addEventListener('click', () => {
-    amigoWrapper.style.right = '24px';
-    amigoWrapper.style.bottom = '24px';
-    amigoWrapper.style.left = 'auto';
-    amigoWrapper.style.top = 'auto';
-    amigoWrapper.classList.remove('hidden');
-  });
-
-  function amigoMoveToSection(section) {
-    const rect = section.getBoundingClientRect();
-    const targetX = window.innerWidth - 160;
-    const targetY = Math.max(120, rect.top + 100);
-    amigoWrapper.style.left = `${targetX}px`;
-    amigoWrapper.style.top = `${targetY}px`;
-    amigoWrapper.style.right = 'auto';
-    amigoWrapper.style.bottom = 'auto';
-  }
-
-  function amigoMoveToElement(el) {
-    const rect = el.getBoundingClientRect();
-    const targetX = rect.right - 120;
-    const targetY = rect.top - 40 + window.scrollY;
-    amigoWrapper.style.left = `${targetX}px`;
-    amigoWrapper.style.top = `${targetY}px`;
-    amigoWrapper.style.right = 'auto';
-    amigoWrapper.style.bottom = 'auto';
-  }
-
-  /* ======================================================
-     CART BUTTON / CHECKOUT
-  ====================================================== */
-
-  document.getElementById('checkoutBtn').addEventListener('click', () => {
-    openModal('checkoutModal');
-  });
-
-  /* ======================================================
-     TERMS & PRIVACY
-  ====================================================== */
-
-  document.getElementById('footerTerms').addEventListener('click', e => {
-    e.preventDefault();
-    openModal('termsModal');
-  });
-
-  document.getElementById('footerPrivacy').addEventListener('click', e => {
-    e.preventDefault();
-    openModal('privacyModal');
-  });
-
-  /* ======================================================
-     INITIALIZE
-  ====================================================== */
-
-  applyLanguage('en');
-  showSection(heroSection);
-  renderReviews();
-  amigoSpeak("Welcome to Horizon Ventura! Drag me around, hide me if you want, or let me guide your journey 🌴");
-  amigoAnimate('happy');
-
-});
-
-</script>
-
-</body>
-</html>
+      <div class="form-group">
+        <labelLeixer — ahora sí.
