@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BookingStatus {
+  pending
+  confirmed
+  cancelled
+  completed
+}
+
+model User {
+  id             String    @id @default(uuid())
+  email          String    @unique
+  password       String
+  name           String?
+  country        String?
+  ownedReferrals Referral[] @relation("Owner")
+  usedReferrals  Referral[] @relation("UsedBy")
+  bookings       Booking[]
+  reviews        Review[]
+  createdAt      DateTime  @default(now())
+
+  @@index([createdAt])
+}
+
+model Booking {
+  id          String        @id @default(uuid())
+  userId      String
+  destination String
+  service     String
+  startDate   DateTime
+  endDate     DateTime?
+  quantity    Int
+  totalPrice  Decimal       @db.Decimal(10, 2)
+  status      BookingStatus @default(pending)
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  userId    String
+  text      String
+  imageUrl  String?
+  rating    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Referral {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  ownerId   String
+  usedById  String?
+  discount  Float    @default(10)
+  owner     User     @relation("Owner", fields: [ownerId], references: [id], onDelete: Cascade)
+  usedBy    User?    @relation("UsedBy", fields: [usedById], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+
+  @@index([ownerId])
+  @@index([usedById])
+  @@index([createdAt])
+}
