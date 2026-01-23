@@ -1,6 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import { NextIntlProvider } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { locales } from "../../../lib/i18n";
 
 type Props = {
@@ -17,9 +17,9 @@ export default async function LocaleLayout({ children, params }: Props) {
 	return (
 		<html lang={locale}>
 			<body>
-				<NextIntlProvider locale={locale} messages={messages}>
+				<NextIntlClientProvider locale={locale} messages={messages}>
 					{children}
-				</NextIntlProvider>
+				</NextIntlClientProvider>
 			</body>
 		</html>
 	);
